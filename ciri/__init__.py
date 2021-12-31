@@ -1,9 +1,10 @@
+from os import getenv
+
+from pymongo import MongoClient
 from telethon import TelegramClient
 from telethon.sessions import StringSession
-from os import getenv
-from pymongo import MongoClient
 
-#___ciri-userbot__©2022#
+# ___ciri-userbot__©2022#
 
 API_KEY = os.getenv("API_KEY")
 API_HASH = os.getenv("API_HASH")
@@ -22,7 +23,7 @@ bot = TelegramClient(None, API_KEY, API_HASH)
 
 # database
 if MONGO_DB_URL:
- db = MongoClient (MONGO_DB_URL)
+    db = MongoClient(MONGO_DB_URL)
 else:
- print("Database URL not found!")
- db = None
+    print("Database URL not found!")
+    db = None
