@@ -1,7 +1,4 @@
-from telethon import events
-
 from ciri import ALIVE_PIC
-from ciri import bot as xbot
 from ciri.utils import ciri_cmd
 
 if not ALIVE_PIC:
