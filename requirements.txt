@@ -2,3 +2,4 @@ telethon
 dnspython
 pymongo
 spotdl
+bing_image_urls
