@@ -9,9 +9,9 @@ if not ALIVE_PIC:
 async def _start(e):
     ALIVE_TEXT = "<b>Eliza</b> is Ready to Rock\n\nSystem Status\n<b>••Mу Bσѕѕ••</b> : {}\n<b>тєℓєтнσи νєяѕισи</b> : {}\nLι¢єиѕє: <b><a href='https://github.com/amarnathcjd/ciri-userbot/blob/master/LICENSE'>ӀíϲҽղՏҽ</a></b>\n"
     me = await e.client.get_me()
-    await eor(
-        e=e,
-        msg=ALIVE_TEXT.format(me.first_name, "1.24"),
+    await e.delete()
+    await e.respond(
+        ALIVE_TEXT.format(me.first_name, "1.24"),
         file=ALIVE_PIC,
         parse_mode="htm",
         link_preview=False,
