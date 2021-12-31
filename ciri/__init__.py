@@ -7,7 +7,7 @@ from telethon.sessions import StringSession
 # __Cirilla-Userbot__# [© 2021- 2022]
 
 # ENV
-API_KEY = os.getenv("API_KEY")
+API_KEY = int(os.getenv("API_KEY"))
 API_HASH = os.getenv("API_HASH")
 BOT_TOKEN = os.getenv("BOT_TOKEN")
 MONGO_DB_URL = os.getenv("MONGO_DB_URL")
@@ -18,6 +18,8 @@ SPTFY_CLIENT_SECRET = os.getenv("SPOTIFY_CLIENT_SECRET")
 CMD_HANDLERS = os.getenv("CMD_HANDLER")
 REM_BG_API_KEY = os.getenv("REM_BG_API_KEY")
 ALIVE_PIC = os.getenv("ALIVE_PHOTO")
+OWNER_ID = int(os.getenv("OWNER_ID"))
+LOG_CHAT = int(os.getenv("LOG_CHAT"))
 
 
 if not CMD_HANDLERS:
