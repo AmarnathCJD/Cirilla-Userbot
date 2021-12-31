@@ -28,7 +28,7 @@ async def _auto_dp(e):
     PICS = search
     await eor(e, "AutoDP has been started with keyword '{}'.".format(args))
     chance = -1
-    print(AUTO_DP, len(PICS))
+    AUTO_DP = True
     while AUTO_DP and len(PICS) != 0:
         try:
             chance += 1
