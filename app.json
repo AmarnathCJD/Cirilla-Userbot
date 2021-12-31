@@ -35,6 +35,10 @@
         "ALIVE_PHOTO": {
              "description": "Alive PIC telegraph link.",
              "required": false
+        },
+        "OWNER_ID": {
+             "description": "userbot owner ID",
+             "required": true
         }
     },
     "buildpacks": [{"url": "heroku/python"}]
