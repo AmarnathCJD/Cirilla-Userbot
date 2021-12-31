@@ -6,10 +6,7 @@
     "repository": "https://github.com/AmarnathCJD/Cirilla-Userbot",
     "env": {
         "API_KEY": {"description": "App ID get from my.telegram.org", "value": ""},
-        "API_HASH": {
-            "description": "Api Hash value get from my.telegram.org",
-            "value": "",
-        },
+        "API_HASH": {"description": "Api Hash get from my.telegram.org", "value": ""},
         "STRING_SESSION": {"description": "Telegram user string session", "value": ""},
         "MONGO_DB_URL": {
             "description": "Database url get from mongodb.com",
