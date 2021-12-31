@@ -1,8 +1,15 @@
 import os
-
+import logging
 from pymongo import MongoClient
 from telethon import TelegramClient
 from telethon.sessions import StringSession
+
+# setup logger
+logging.basicConfig(
+    format="%(asctime)s - %(name)s - %(levelname)s - %(message)s",
+    level=logging.INFO,
+    handlers=[logging.FileHandler("logs.txt"), logging.StreamHandler()],
+)
 
 # __Cirilla-Userbot__# [© 2021- 2022]
 
