@@ -1,4 +1,7 @@
-import logging, glob, importlib, sys
+import glob
+import importlib
+import logging
+import sys
 from pathlib import Path
 
 from telethon import events
