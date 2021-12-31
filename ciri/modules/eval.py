@@ -48,7 +48,7 @@ async def aexec(code, event):
         f"async def __aexec(e, client): "
         + "\n message = event = e"
         + "\n reply = await event.get_reply_message()"
-        + "\n p = print
+        + "\n p = print"
         + "".join(f"\n {l}" for l in code.split("\n")),
     )
 
