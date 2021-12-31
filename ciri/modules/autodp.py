@@ -32,14 +32,11 @@ async def _auto_dp(e):
     while AUTO_DP and len(PICS) != 0:
         try:
             chance += 1
-            if chance != 0:
-                dp = await e.client.get_profile_photos("me", limit=1)
-                await e.client(functions.photos.DeletePhotosRequest(dp))
             file_fetch = get(PICS[chance]).content
             with io.BytesIO(file_fetch.content) as b:
                 b.name = "wall.jpg"
                 file = await e.client.upload_file(b)
             await e.client(functions.photos.UploadProfilePhotoRequest(file))
-            await asyncio.sleep(60)
         except Exception as exception:
             logging.info(exception)
+        await asyncio.sleep(60)
