@@ -21,7 +21,7 @@ ALIVE_PIC = os.getenv("ALIVE_PHOTO")
 
 
 if not CMD_HANDLERS:
-   CMD_HANDLERS = "."
+    CMD_HANDLERS = "."
 
 
 # userbot client
