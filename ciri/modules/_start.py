@@ -19,15 +19,3 @@ async def _start(e):
         parse_mode="htm",
         link_preview=False,
     )
-
-
-@xbot.on(events.NewMessage(pattern="spoil", from_users=["me"]))
-async def _spoil_text(e):
-    try:
-        TEXT = e.text.split(maxsplit=1)[1]
-    except IndexError:
-        return await e.reply("give text to spoil!")
-    await e.respond(
-        "<span class='tg-spoiler'>{}</span>".format(TEXT),
-        reply_to=e.reply_to_msg_id or e.id,
-    )
