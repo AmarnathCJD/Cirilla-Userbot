@@ -17,10 +17,11 @@ async def _start(e):
         link_preview=False,
     )
 
+
 @ciri_cmd(pattern="spoil", allow_sudo=True)
 async def _spoil_text(e):
- try:
-   TEX = e.text.split(maxsplit=1)[1]
- except IndexError:
-   return await eor(e, "give text to spoil!")
- await eor(e, "<span class='tg-spoiler'>" + TEX + "</span>?", None, "html", False)
+    try:
+        TEX = e.text.split(maxsplit=1)[1]
+    except IndexError:
+        return await eor(e, "give text to spoil!")
+    await eor(e, "<span class='tg-spoiler'>" + TEX + "</span>?", None, "html", False)
