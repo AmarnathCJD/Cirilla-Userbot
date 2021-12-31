@@ -1,4 +1,5 @@
-import logging
+import logging, glob, importlib, sys
+from pathlib import Path
 
 from telethon import events
 
@@ -42,7 +43,7 @@ def load_modules():
                 "ciri.modules.{}".format(name), Path("ciri/modules/{}.py".format(name))
             )
             mod = importlib.util.module_from_spec(spec)
-            mod.types, mod.functions, mod.bot = types, functions, bot
+            mod.bot = ub
             spec.loader.exec_module(mod)
             sys.modules["ciri.modules." + name] = mod
             print("sucessfully imported " + name)
