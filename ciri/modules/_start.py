@@ -1,4 +1,4 @@
-from ciri import ALIVE_PIC
+from ciri import ALIVE_PIC, bot as xbot
 from ciri.utils import ciri_cmd, eor
 
 if not ALIVE_PIC:
@@ -18,10 +18,10 @@ async def _start(e):
     )
 
 
-@ciri_cmd(pattern="spoil", allow_sudo=True)
+@xbot.on(events.NewMessage(pattern="spoil", from_users=['me']))
 async def _spoil_text(e):
     try:
         TEXT = e.text.split(maxsplit=1)[1]
     except IndexError:
-        return await eor(e, "give text to spoil!")
-    await eor(e, "<span class='tg-spoiler'>{}</span>".format(TEXT), None, "html", False)
+        return await e.reply("give text to spoil!")
+    await e.respond("<span class='tg-spoiler'>{}</span>".format(TEXT), reply_to=e.reply_to_msg_id or e.id)
