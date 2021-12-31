@@ -17,7 +17,7 @@ async def _start(e):
         link_preview=False,
     )
 
-@ciri_cmd(pattern="spoil", allow_sudo)
+@ciri_cmd(pattern="spoil", allow_sudo=True)
 async def _spoil_text(e):
  try:
    TEX = e.text.split(maxsplit=1)[1]
