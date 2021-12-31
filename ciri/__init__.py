@@ -4,7 +4,7 @@ from pymongo import MongoClient
 from telethon import TelegramClient
 from telethon.sessions import StringSession
 
-#__Cirilla-Userbot__# [© 2021- 2022]
+# __Cirilla-Userbot__# [© 2021- 2022]
 
 API_KEY = os.getenv("API_KEY")
 API_HASH = os.getenv("API_HASH")
@@ -25,5 +25,5 @@ bot = TelegramClient(None, API_KEY, API_HASH)
 if MONGO_DB_URL:
     db = MongoClient(MONGO_DB_URL)
 else:
-    db = MongoClient('localhost', 27017)
+    db = MongoClient("localhost", 27017)
     print("Database URL not found!, using sqlite.")
