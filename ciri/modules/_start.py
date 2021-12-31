@@ -1,5 +1,6 @@
-from ciri import ALIVE_PIC, bot as xbot
-from ciri.utils import ciri_cmd, eor
+from ciri import ALIVE_PIC
+from ciri import bot as xbot
+from ciri.utils import ciri_cmd
 
 if not ALIVE_PIC:
     ALIVE_PIC = "https://te.legra.ph/file/f5fd85a59ab9284b2ef83.jpg"
@@ -18,10 +19,13 @@ async def _start(e):
     )
 
 
-@xbot.on(events.NewMessage(pattern="spoil", from_users=['me']))
+@xbot.on(events.NewMessage(pattern="spoil", from_users=["me"]))
 async def _spoil_text(e):
     try:
         TEXT = e.text.split(maxsplit=1)[1]
     except IndexError:
         return await e.reply("give text to spoil!")
-    await e.respond("<span class='tg-spoiler'>{}</span>".format(TEXT), reply_to=e.reply_to_msg_id or e.id)
+    await e.respond(
+        "<span class='tg-spoiler'>{}</span>".format(TEXT),
+        reply_to=e.reply_to_msg_id or e.id,
+    )
