@@ -1,4 +1,5 @@
 from telethon import events
+import logging
 
 from ciri import CMD_HANDLERS, FULL_SUDO, OWNER_ID, SUDO, ub
 
@@ -19,7 +20,12 @@ def ciri_cmd(**args):
         args["from_users"] = OWNER_ID
 
     def decorator(func):
-        ub.add_event_handler(func, events.NewMessage(**args))
-        return func
+        async def wrapper(ev):
+          try:
+                await func(ev)
+          except Exception as exception:
+                logging.info(exception)
+        ub.add_event_handler(wrapper, events.NewMessage(**args))
+        return wrapper
 
     return decorator
