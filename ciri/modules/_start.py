@@ -7,6 +7,6 @@ if not ALIVE_PIC:
 
 @ciri_cmd(pattern="alive")
 async def _start(e):
-    ALIVE_TEXT = "Eliza is Ready to Rock\n\nSystem Status\n**••Mу Bσѕѕ••** : {}\n**тєℓєтнσи νєяѕισи** : {}\nLι¢єиѕє: [ӀíϲҽղՏҽ](https://github.com/amarnathcjd/ciri-userbot/blob/master/LICENSE)\n"
+    ALIVE_TEXT = "<b>Eliza</b> is Ready to Rock\n\nSystem Status\n<b>••Mу Bσѕѕ••</b> : {}\n<b>тєℓєтнσи νєяѕισи</b> : {}\nLι¢єиѕє: <b><a href='https://github.com/amarnathcjd/ciri-userbot/blob/master/LICENSE'>ӀíϲҽղՏҽ</a></b>\n"
     me = await e.client.get_me()
-    await eor(e, ALIVE_TEXT.format(me.first_name, "1.24"), "md", False)
+    await eor(e, ALIVE_TEXT.format(me.first_name, "1.24"), ALIVE_PIC, "htm", False)
