@@ -31,3 +31,19 @@ def ciri_cmd(**args):
         return wrapper
 
     return decorator
+
+
+def load_modules():
+ print("Loading Modules...")
+ for x in glob.glob("ciri/modules/*.py"):
+    with open(x) as f:
+        name = Path(f.name).stem.replace(".py", "")
+        spec = importlib.util.spec_from_file_location(
+            "ciri.modules.{}".format(name), Path("ciri/modules/{}.py".format(name))
+        )
+        mod = importlib.util.module_from_spec(spec)
+        mod.types, mod.functions, mod.bot = types, functions, bot
+        spec.loader.exec_module(mod)
+        sys.modules["ciri.modules." + name] = mod
+        print("sucessfully imported " + name)
+ print("Sucessfully Loaded All Modules.")
