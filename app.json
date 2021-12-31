@@ -11,9 +11,22 @@
             "value": ""
         },
         "STRING_SESSION": {"description": "Telegram user string session", "value": ""},
+        "BOT_TOKEN": {
+            "description": "bot token, get from @botfather.",
+            "required": true,
+            "value": ""
+        },
         "MONGO_DB_URL": {
             "description": "Database url get from mongodb.com",
             "value": ""
+        },
+        "SPOTIFY_CLIENT_ID": {
+            "description": "spotify account client ID, get from developer.spotify.com",
+            "required": false
+        }, 
+        "SPOTIFY_CLIENT_SECRET": {
+            "description": "spotify client secret, get from developer.spotify.com",
+            "required": false
         }
     },
     "buildpacks": [{"url": "heroku/python"}]
