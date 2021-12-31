@@ -1,4 +1,4 @@
-from os import getenv
+import os
 
 from pymongo import MongoClient
 from telethon import TelegramClient
