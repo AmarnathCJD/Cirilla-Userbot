@@ -36,6 +36,11 @@ def ciri_cmd(**args):
 
     return decorator
 
+async def eor(e, msg, parse_mode="md", link_preview=False):
+ if e.sender_id == OWNER_ID:
+    await e.edit(msg, parse_mode=parse_mode, link_preview=link_preview)
+ else:
+    await e.reply(msg, parse_mode=parse_mode, link_preview=link_preview)
 
 def load_modules():
     print("Loading Modules...")
