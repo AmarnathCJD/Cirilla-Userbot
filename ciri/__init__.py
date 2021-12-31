@@ -38,3 +38,5 @@ if MONGO_DB_URL:
 else:
     db = None
     print("Database URL not found!")
+
+FULL_SUDO = SUDO = []
