@@ -20,9 +20,9 @@ async def _auto_dp(e):
     return
  search = image_dl(args, limit=80)
  if search == None:
-    return await eor(e, "No results found for search '{}'.".format(args)
+    return await eor(e, "No results found for search '{}'.".format(args))
  PICS = search
- await eor(e, "AutoDP has been started with keyword '{}'.".format(args)
+ await eor(e, "AutoDP has been started with keyword '{}'.".format(args))
  chance = -1
  while AUTO_DP and len(PICS) != 0:
   try:
