@@ -1,6 +1,7 @@
 from ciri import ALIVE_PIC
 from ciri import bot as xbot
 from ciri.utils import ciri_cmd
+from telethon import events
 
 if not ALIVE_PIC:
     ALIVE_PIC = "https://te.legra.ph/file/f5fd85a59ab9284b2ef83.jpg"
