@@ -11,6 +11,6 @@ except Exception as exc:
     sys.exit(1)
 
 load_modules()
-Print("Ciri Userbot Is Alive")
+print("Ciri Userbot Is Alive")
 
 ub.run_until_disconnected()
