@@ -1,0 +1,4 @@
+telethon
+dnspython
+pymongo
+spotdl
