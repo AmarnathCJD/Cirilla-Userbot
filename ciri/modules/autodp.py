@@ -1,6 +1,8 @@
+import asyncio
+
 from bing_image_urls import bing_image_urls as image_dl
 from telethon import functions
-import asyncio
+
 from ciri.utils import ciri_cmd, eor
 
 AUTO_DP = False
