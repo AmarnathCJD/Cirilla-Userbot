@@ -14,7 +14,7 @@
         "MONGO_DB_URL": {
             "description": "Database url get from mongodb.com",
             "value": "",
-        },
+        }
     },
     "buildpacks": [{"url": "heroku/python"}],
 }
