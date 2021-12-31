@@ -1,6 +1,6 @@
 from bing_image_urls import bing_image_urls as image_dl
 from telethon import functions
-
+import asyncio
 from ciri.utils import ciri_cmd, eor
 
 AUTO_DP = False
@@ -29,7 +29,7 @@ async def _auto_dp(e):
     await eor(e, "AutoDP has been started with keyword '{}'.".format(args))
     chance = -1
     AUTO_DP = True
-    while AUTO_DP and len(PICS) != 0:
+    while AUTO_DP and len(PICS) > chance + 1:
         try:
             chance += 1
             file_fetch = get(PICS[chance]).content
