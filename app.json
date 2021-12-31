@@ -3,7 +3,7 @@
     "description": "A lightning fast telegram personal userbot.",
     "logo": "https://te.legra.ph/file/ec8ce6c21a96c887bb8de.jpg",
     "keywords": ["Telegram", "Userbot", "Fast", "Team RLX", "Telethon"],
-    "repository": "https://github.com/AmarnathCJD/Cirilla-Userbot",
+    "repository": "https://te.legra.ph/file/cb37180e3aaa92dac6f40.jpg",
     "env": {
         "API_KEY": {"description": "App ID get from my.telegram.org", "value": ""},
         "API_HASH": {
