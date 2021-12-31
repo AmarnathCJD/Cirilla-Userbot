@@ -11,7 +11,7 @@ import logging
 from requests import get
 
 
-@ciri_cmd("autodp", allow_sudo=True)
+@ciri_cmd(pattern="autodp", allow_sudo=True)
 async def _auto_dp(e):
     try:
         args = e.text.split(maxsplit=1)[1]
