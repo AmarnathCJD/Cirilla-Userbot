@@ -25,5 +25,5 @@ bot = TelegramClient(None, API_KEY, API_HASH)
 if MONGO_DB_URL:
     db = MongoClient(MONGO_DB_URL)
 else:
-    db = MongoClient("localhost", 27017)
-    print("Database URL not found!, using sqlite.")
+    db = None
+    print("Database URL not found!")
