@@ -1,6 +1,8 @@
-from ciri.utils import ciri_cmd, eor
-import sys, traceback, io
+import io
+import sys
+import traceback
 
+from ciri.utils import ciri_cmd, eor
 
 
 @ciri_cmd(pattern="eval", full_sudo=True)
@@ -53,5 +55,3 @@ async def aexec(code, event):
     )
 
     return await locals()["__aexec"](event, event.client)
-
-
