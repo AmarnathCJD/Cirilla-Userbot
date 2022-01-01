@@ -14,11 +14,11 @@ async def spot_dl(e):
     except IndexError:
         return await eor(e, "Song query was not provided.")
     cmd = "spotdl '{}'".format(query)
+    await eor(e, "Processing ...")
     process = await asyncio.create_subprocess_shell(
         cmd, stdout=asyncio.subprocess.PIPE, stderr=asyncio.subprocess.PIPE
     )
     stdout, stderr = await process.communicate()
-    await eor(e, "Processing ...")
     try:
         file = list(Path(".").glob("*.mp3"))[0]
         await e.client.send_file(
