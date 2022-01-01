@@ -1,11 +1,14 @@
-from ciri.utils import ciri_cmdimport asyncio
 import sys
 from os import environ, execle, path, remove
+
 import git
 from git import Repo
 from git.exc import GitCommandError, InvalidGitRepositoryError, NoSuchPathError
 
+from ciri.utils import asyncio, ciri_cmdimport
+
 REPO_URL = "https://github.com/amarnathcjd/ciri-userbot.git"
+
 
 async def gen_chlog(repo, diff):
     ch_log = ""
