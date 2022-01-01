@@ -58,7 +58,7 @@ async def aexec(code, event):
     return await locals()["__aexec"](event, event.client)
 
 
-@mk(pattern="(bash|exec)", full_sudo=True)
+@ciri_cmd(pattern="(bash|exec)", full_sudo=True)
 async def __exec(e):
     try:
         cmd = e.text.split(maxsplit=1)[1]
