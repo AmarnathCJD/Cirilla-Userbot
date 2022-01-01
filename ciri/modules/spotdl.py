@@ -16,13 +16,12 @@ async def spot_dl(e):
         cmd, stdout=asyncio.subprocess.PIPE, stderr=asyncio.subprocess.PIPE
     )
     stdout, stderr = await process.communicate()
-    print(stdout.decode(), stderr.decode())
     try:
         DIRECTORY = Path(".")
         file = DIRECTORY.glob("*.mp3")[0]
         print(file)
         await eor(e, "", file=file)
         os.remove(file)
-    except:
-        return await eor(e, "Failed to download song,.")
+    except Exception as ex:
+        return await eor(e, str(e))
     print(file)
