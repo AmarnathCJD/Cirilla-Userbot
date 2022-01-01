@@ -17,8 +17,7 @@ async def spot_dl(e):
     )
     stdout, stderr = await process.communicate()
     try:
-        DIRECTORY = Path(".")
-        file = DIRECTORY.glob("*.mp3")[0]
+        file = list(Path(".").glob("*.mp3"))[0]
         print(file)
         await eor(e, "", file=file)
         os.remove(file)
