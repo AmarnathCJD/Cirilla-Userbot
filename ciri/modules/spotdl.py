@@ -14,6 +14,7 @@ async def spot_dl(e):
         cmd, stdout=asyncio.subprocess.PIPE, stderr=asyncio.subprocess.PIPE
     )
     stdout, stderr = await process.communicate()
+    print(stdout.decode(), stderr.decode())
     try:
         file_name = os.listdir("spotdl-temp")
     except:
