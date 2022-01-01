@@ -1,10 +1,10 @@
 import asyncio
 import os
+import time
 from pathlib import Path
 
-from ciri.utils import ciri_cmd, eor
 from ciri.core import progress
-import time
+from ciri.utils import ciri_cmd, eor
 
 
 @ciri_cmd(pattern="spotdl", allow_sudo=True)
@@ -20,7 +20,7 @@ async def spot_dl(e):
     stdout, stderr = await process.communicate()
     try:
         file = list(Path(".").glob("*.mp3"))[0]
-        u = await eor(e, "Processing ...")
+        await eor(e, "Processing ...")
         await e.client.send_file(
             e.chat_id,
             file,
