@@ -28,7 +28,7 @@ async def spot_dl(e):
                 progress(d, t, e, time.time(), "Uploading...", file)
             ),
         )
+        await e.delete()
         os.remove(file)
     except Exception as ex:
         return await eor(e, str(ex))
-    print(file)
