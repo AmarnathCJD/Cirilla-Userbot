@@ -1,12 +1,11 @@
+import asyncio
 import sys
-from os import environ, execle, path, remove
+from os import environ, execle
 
 import git
-from git import Repo
-from git.exc import GitCommandError, InvalidGitRepositoryError, NoSuchPathError
+from git.exc import GitCommandError
 
 from ciri.utils import ciri_cmd
-import asyncio
 
 REPO_URL = "https://github.com/amarnathcjd/ciri-userbot.git"
 
