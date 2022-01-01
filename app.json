@@ -20,14 +20,6 @@
             "description": "Database url get from mongodb.com",
             "value": ""
         },
-        "SPOTIFY_CLIENT_ID": {
-            "description": "spotify account client ID, get from developer.spotify.com",
-            "required": false
-        }, 
-        "SPOTIFY_CLIENT_SECRET": {
-            "description": "spotify client secret, get from developer.spotify.com",
-            "required": false
-        },
         "REM_BG_API_KEY": {
             "description": "Need for remove bg module, get from remove.bg",
             "required": false
@@ -41,5 +33,5 @@
              "required": true
         }
     },
-    "buildpacks": [{"url": "heroku/python"}]
+    "buildpacks": [{"url": "heroku/python"}, {"url": "https://github.com/jonathanong/heroku-buildpack-ffmpeg-latest.git"}]
 }
