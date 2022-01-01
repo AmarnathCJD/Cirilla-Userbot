@@ -1,6 +1,8 @@
 import asyncio
 
 from ciri.utils import ciri_cmd, eor
+import os
+from pathlib import Path
 
 
 @ciri_cmd(pattern="spotdl", allow_sudo=True)
@@ -16,7 +18,11 @@ async def spot_dl(e):
     stdout, stderr = await process.communicate()
     print(stdout.decode(), stderr.decode())
     try:
-        file_name = os.listdir("spotdl-temp")
+       DIRECTORY = Path('.')
+       file = DIRECTORY.glob('*.mp3')[0]
+       print(file)
+       await eor(e, '', file=file)
+       os.remove(file)
     except:
-        return await eor(e, "Failed to download song, spotify API refused to connect.")
-    print(file_name)
+        return await eor(e, "Failed to download song,.")
+    print(file)
