@@ -1,4 +1,5 @@
 import io
+import asyncio
 import sys
 import traceback
 
@@ -55,3 +56,22 @@ async def aexec(code, event):
     )
 
     return await locals()["__aexec"](event, event.client)
+
+
+@mk(pattern="(bash|exec)", full_sudo=True)
+async def __exec(e):
+    try:
+        cmd = e.text.split(maxsplit=1)[1]
+    except IndexError:
+        return
+    process = await asyncio.create_subprocess_shell(
+        cmd, stdout=asyncio.subprocess.PIPE, stderr=asyncio.subprocess.PIPE
+    )
+    stdout, stderr = await process.communicate()
+    result = str(stdout.decode().strip()) + str(stderr.decode().strip())
+    cresult = f"<code>bash:~$</code> <code>{cmd}</code>\n<code>{result}</code>"
+    if len(cresult) > 4095:
+        with io.BytesIO(cresult.encode()) as finale_b:
+            finale_b.name = "bash.txt"
+            return await e.respond(f"`{cmd}`", file=finale_b)
+    await eor(e, cresult)
