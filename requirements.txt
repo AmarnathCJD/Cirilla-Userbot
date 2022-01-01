@@ -3,4 +3,4 @@ dnspython
 pymongo
 spotdl
 bing_image_urls
-git
+gitpython
