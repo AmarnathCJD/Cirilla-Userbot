@@ -31,7 +31,8 @@ async def _auto_dp(e):
     await eor(e, "AutoDP has been started with keyword '{}'.".format(args))
     chance = -1
     AUTO_DP = True
-    while AUTO_DP and len(PICS) > chance + 1:
+    print(len(PICS) > (chance + 1))
+    while AUTO_DP and len(PICS) > (chance + 1):
         try:
             chance += 1
             file_fetch = get(PICS[chance]).content
