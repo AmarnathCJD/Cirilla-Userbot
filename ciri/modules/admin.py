@@ -10,3 +10,5 @@ async def _del(e):
         await reply.delete()
     except Exception as exc:
         await eor(e, "failed to delete, " + str(exc))
+    finally:
+        await e.delete()
