@@ -1,9 +1,10 @@
-from ciri.utils import ciri_cmd, eor
+from ciri.utils import ciri_cmd
 
 REPO_URL = "https://github.com/amarnathcjd/ciri-userbot.git"
 requirements_path = path.join(
     path.dirname(path.dirname(path.dirname(__file__))), "requirements.txt"
 )
+
 
 async def gen_chlog(repo, diff):
     ch_log = ""
@@ -13,8 +14,8 @@ async def gen_chlog(repo, diff):
             f"  • {c.summary} ({c.committed_datetime.strftime(d_form)}) <{c.author}>\n"
         )
     return ch_log
-  
-  
+
+
 async def update_requirements():
     reqs = str(requirements_path)
     try:
@@ -27,7 +28,8 @@ async def update_requirements():
         return process.returncode
     except Exception as e:
         return repr(e)
-      
+
+
 async def update(event, repo, ups_rem, ac_br):
     try:
         ups_rem.pull(ac_br)
@@ -41,7 +43,8 @@ async def update(event, repo, ups_rem, ac_br):
     args = [sys.executable, "-m", "userbot"]
     execle(sys.executable, *args, environ)
     return
-  
+
+
 @ciri_cmd(pattern="update")
 async def update_ub(e):
     repo = git.Repo()
@@ -57,9 +60,7 @@ async def update_ub(e):
         await event.edit("`Deploying userbot, please wait....`")
         return
     if changelog == "" and not force_update:
-        await event.edit(
-            "\n`Ciri has no new updates with  " f"**master**\n"
-        )
+        await event.edit("\n`Ciri has no new updates with  " f"**master**\n")
         return repo.__del__()
     if conf == "" and not force_update:
         await e.edit(gen_changelog)
