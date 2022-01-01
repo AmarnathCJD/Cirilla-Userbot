@@ -7,7 +7,7 @@ if not ALIVE_PIC:
 
 @ciri_cmd(pattern="alive", allow_sudo=True)
 async def _start(e):
-    ALIVE_TEXT = "<b>Eliza</b> is Ready to Rock\n\nSystem Status\n<b>••Mу Bσѕѕ••</b> : {}\n<b>тєℓєтнσи νєяѕισи</b> : {}\nLι¢єиѕє: <b><a href='https://github.com/amarnathcjd/ciri-userbot/blob/master/LICENSE'>ӀíϲҽղՏҽ</a></b>\n"
+    ALIVE_TEXT = "<b>Eliza</b> is Ready to Rock\n\nSystem Status\n<b>••Mу Bσѕѕ••</b> : {}\n<b>тєℓєтнσи νєяѕισи</b> : {}\nLι¢єиѕє: <b><a href='https://github.com/amarnathcjd/cirilla-userbot/blob/master/LICENSE'>ӀíϲҽղՏҽ</a></b>\n"
     me = await e.client.get_me()
     await e.delete()
     await e.respond(
