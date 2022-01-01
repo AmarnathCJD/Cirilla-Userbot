@@ -1,9 +1,6 @@
-import asyncio
-import json
 import math
-import os
-import subprocess
 import time
+
 
 async def progress(current, total, event, start, type_of_ps, file_name=None):
     """Generic progress_callback for uploads and downloads."""
@@ -62,4 +59,3 @@ def time_formatter(milliseconds: int) -> str:
         + ((str(milliseconds) + " millisecond(s), ") if milliseconds else "")
     )
     return tmp[:-2]
-
