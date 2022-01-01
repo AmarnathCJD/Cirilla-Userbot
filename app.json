@@ -2,15 +2,27 @@
     "name": "Cirilla Userbot",
     "description": "A lightning fast telegram personal userbot.",
     "logo": "https://te.legra.ph/file/cb37180e3aaa92dac6f40.jpg",
-    "keywords": ["Telegram", "Userbot", "Fast", "Team RLX", "Telethon"],
+    "keywords": [
+        "Telegram",
+        "Userbot",
+        "Fast",
+        "Team RLX",
+        "Telethon"
+    ],
     "repository": "https://te.legra.ph/file/cb37180e3aaa92dac6f40.jpg",
     "env": {
-        "API_KEY": {"description": "App ID get from my.telegram.org", "value": ""},
-        "API_HASH": {
-            "description": "Api Hash get from my.telegram.org", 
+        "API_KEY": {
+            "description": "App ID get from my.telegram.org",
             "value": ""
         },
-        "STRING_SESSION": {"description": "Telegram user string session", "value": ""},
+        "API_HASH": {
+            "description": "Api Hash get from my.telegram.org",
+            "value": ""
+        },
+        "STRING_SESSION": {
+            "description": "Telegram user string session",
+            "value": ""
+        },
         "BOT_TOKEN": {
             "description": "bot token, get from @botfather.",
             "required": true,
@@ -25,13 +37,20 @@
             "required": false
         },
         "ALIVE_PHOTO": {
-             "description": "Alive PIC telegraph link.",
-             "required": false
+            "description": "Alive PIC telegraph link.",
+            "required": false
         },
         "OWNER_ID": {
-             "description": "userbot owner ID",
-             "required": true
+            "description": "userbot owner ID",
+            "required": true
         }
     },
-    "buildpacks": [{"url": "heroku/python"}, {"url": "https://github.com/jonathanong/heroku-buildpack-ffmpeg-latest.git"}]
+    "buildpacks": [
+        {
+            "url": "heroku/python"
+        },
+        {
+            "url": "https://github.com/jonathanong/heroku-buildpack-ffmpeg-latest.git"
+        }
+    ]
 }
