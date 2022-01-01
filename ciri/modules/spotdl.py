@@ -18,9 +18,9 @@ async def spot_dl(e):
         cmd, stdout=asyncio.subprocess.PIPE, stderr=asyncio.subprocess.PIPE
     )
     stdout, stderr = await process.communicate()
+    await eor(e, "Processing ...")
     try:
         file = list(Path(".").glob("*.mp3"))[0]
-        await eor(e, "Processing ...")
         await e.client.send_file(
             e.chat_id,
             file,
