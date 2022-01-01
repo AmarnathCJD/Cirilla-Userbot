@@ -1,10 +1,11 @@
-from ciri.utils import ciri_cmd
+from ciri.utils import ciri_cmdimport asyncio
+import sys
+from os import environ, execle, path, remove
+import git
+from git import Repo
+from git.exc import GitCommandError, InvalidGitRepositoryError, NoSuchPathError
 
 REPO_URL = "https://github.com/amarnathcjd/ciri-userbot.git"
-requirements_path = path.join(
-    path.dirname(path.dirname(path.dirname(__file__))), "requirements.txt"
-)
-
 
 async def gen_chlog(repo, diff):
     ch_log = ""
@@ -17,7 +18,7 @@ async def gen_chlog(repo, diff):
 
 
 async def update_requirements():
-    reqs = str(requirements_path)
+    reqs = "requirements.txt"
     try:
         process = await asyncio.create_subprocess_shell(
             " ".join([sys.executable, "-m", "pip", "install", "-r", reqs]),
