@@ -22,6 +22,6 @@ async def spot_dl(e):
         print(file)
         await eor(e, "", file=file)
         os.remove(file)
-    except Exception as ex:
+    except Exception:
         return await eor(e, str(e))
     print(file)
