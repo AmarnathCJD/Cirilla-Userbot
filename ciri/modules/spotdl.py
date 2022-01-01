@@ -19,7 +19,7 @@ async def spot_dl(e):
     try:
         file = list(Path(".").glob("*.mp3"))[0]
         print(file)
-        await eor(e, "", file=file)
+        await e.respond("", file=file)
         os.remove(file)
     except Exception as ex:
         return await eor(e, str(ex))
