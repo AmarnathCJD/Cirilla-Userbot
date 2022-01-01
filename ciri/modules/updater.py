@@ -5,7 +5,8 @@ import git
 from git import Repo
 from git.exc import GitCommandError, InvalidGitRepositoryError, NoSuchPathError
 
-from ciri.utils import asyncio, ciri_cmdimport
+from ciri.utils import ciri_cmd
+import asyncio
 
 REPO_URL = "https://github.com/amarnathcjd/ciri-userbot.git"
 
