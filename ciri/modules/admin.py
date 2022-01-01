@@ -7,6 +7,6 @@ async def _del(e):
         return await eor(e, "Reply to msg to delete it!")
     try:
         reply = await e.get_reply_message()
-        await reply.delet()
+        await reply.delete()
     except Exception as exc:
         await eor(e, "failed to delete, " + str(exc))
