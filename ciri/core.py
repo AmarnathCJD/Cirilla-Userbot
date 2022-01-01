@@ -1,6 +1,7 @@
+import asyncio
 import math
 import time
-import asyncio
+
 
 async def progress(current, total, event, start, type_of_ps, file_name=None):
     """Generic progress_callback for uploads and downloads."""
