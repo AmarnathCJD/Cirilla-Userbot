@@ -31,7 +31,9 @@ async def print_changelogs(event, ac_br, changelog):
     changelog_str = (
         f"**New UPDATE available for [{ac_br}]:\n\nCHANGELOG:**\n`{changelog}`"
     )
-    changelog_str += '\ndo `.update now` to update Now. Check `.help updater` for details'
+    changelog_str += (
+        "\ndo `.update now` to update Now. Check `.help updater` for details"
+    )
     if len(changelog_str) > 4096:
         await event.edit("`Changelog is too big, view the file to see it.`")
         with open("output.txt", "w+") as file:
