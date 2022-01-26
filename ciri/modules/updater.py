@@ -148,6 +148,3 @@ async def upstream(event):
         await event.edit("`Updating userbot, please wait....`")
         await update(event, repo, ups_rem, ac_br)
     return
-
-
-
