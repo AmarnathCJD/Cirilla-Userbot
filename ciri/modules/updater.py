@@ -10,7 +10,7 @@ from git.exc import GitCommandError, InvalidGitRepositoryError, NoSuchPathError
 from ciri.utils import ciri_cmd, eor
 
 UPSTREAM_REPO_BRANCH = "master"
-UPSTREAM_REPO_URL = "https://github.com/amarnathcjd/ciri-userbot"
+UPSTREAM_REPO_URL = "https://github.com/AmarnathCJD/Cirilla-Userbot.git"
 
 requirements_path = path.join(
     path.dirname(path.dirname(path.dirname(__file__))), "requirements.txt"
