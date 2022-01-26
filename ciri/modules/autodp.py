@@ -36,7 +36,7 @@ async def _auto_dp(e):
     while AUTO_DP and len(PICS) != 0:
         try:
             file_fetch = get(PICS[chance]).content
-            with io.BytesIO(file_fetch.content) as b:
+            with io.BytesIO(file_fetch) as b:
                 b.name = "pic.jpg"
                 file = await e.client.upload_file(b)
             PICS.pop(chance)
