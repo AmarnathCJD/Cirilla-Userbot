@@ -6,6 +6,7 @@ from telethon import functions
 from ciri.utils import ciri_cmd, eor
 
 AUTO_DP = False
+QUERY = ""
 PICS = []
 import io
 import logging
@@ -27,13 +28,15 @@ async def _auto_dp(e):
     search = image_dl(args, limit=80)
     if search == None:
         return await eor(e, "No results found for search '{}'.".format(args))
+    PICS.clear()
     for x in search:
         PICS.append(x)
     await eor(e, "AutoDP has been started with keyword '{}'💗.".format(args))
     AUTO_DP = True
+    QUERY = args
     chance = 0
     print(AUTO_DP, len(PICS))
-    while AUTO_DP and len(PICS) != 0:
+    while AUTO_DP and len(PICS) != 0 and QUERY == args:
         try:
             file_fetch = get(PICS[chance]).content
             with io.BytesIO(file_fetch) as b:
