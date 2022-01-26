@@ -70,9 +70,7 @@ async def update(e, repo, ups_rem, ac_br):
     except GitCommandError:
         repo.git.reset("--hard", "FETCH_HEAD")
     await update_requirements()
-    await e.edit(
-        "`Successfully Updated!\n" "Bot is restarting... Wait for a minute!`"
-    )
+    await e.edit("`Successfully Updated!\n" "Bot is restarting... Wait for a minute!`")
     # Spin a new instance of bot
     args = [sys.executable, "-m", "ciri"]
     execle(sys.executable, *args, environ)
@@ -141,9 +139,7 @@ async def upstream(e):
         )
 
     if force_update:
-        await e.edit(
-            "`Force-Syncing to latest stable userbot code, please wait...`"
-        )
+        await e.edit("`Force-Syncing to latest stable userbot code, please wait...`")
     if conf == "now":
         await e.edit("`Updating userbot, please wait....`")
         await update(e, repo, ups_rem, ac_br)
