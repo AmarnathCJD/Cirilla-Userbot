@@ -64,13 +64,13 @@ async def update_requirements():
         return repr(e)
 
 
-async def update(event, repo, ups_rem, ac_br):
+async def update(e, repo, ups_rem, ac_br):
     try:
         ups_rem.pull(ac_br)
     except GitCommandError:
         repo.git.reset("--hard", "FETCH_HEAD")
     await update_requirements()
-    await event.edit(
+    await e.edit(
         "`Successfully Updated!\n" "Bot is restarting... Wait for a minute!`"
     )
     # Spin a new instance of bot
@@ -80,12 +80,10 @@ async def update(event, repo, ups_rem, ac_br):
 
 
 @ciri_cmd(pattern="update", allow_sudo=True)
-async def upstream(event):
-    await event.respond("Ff")
-    print("Hi")
-    "For .update command, check if the bot is up to date, update if specified"
-    conf = event.pattern_match.group(1).strip()
-    await eor(event, "`Checking for updates, please wait....`")
+async def upstream(e):
+    conf = e.text.split()
+    conf = conf[1] if len(conf) == 2 else ""
+    await eor(e, "`Checking for updates, please wait....`")
     off_repo = UPSTREAM_REPO_URL
     force_update = False
     try:
@@ -93,14 +91,14 @@ async def upstream(event):
         txt += "some problems occured`\n\n**LOGTRACE:**\n"
         repo = Repo()
     except NoSuchPathError as error:
-        await event.edit(f"{txt}\n`directory {error} is not found`")
+        await e.edit(f"{txt}\n`directory {error} is not found`")
         return repo.__del__()
     except GitCommandError as error:
-        await event.edit(f"{txt}\n`Early failure! {error}`")
+        await e.edit(f"{txt}\n`Early failure! {error}`")
         return repo.__del__()
     except InvalidGitRepositoryError as error:
         if conf is None:
-            return await event.edit(
+            return await e.edit(
                 f"`Unfortunately, the directory {error} "
                 "does not seem to be a git repository.\n"
                 "But we can fix that by force updating the userbot using "
@@ -115,7 +113,7 @@ async def upstream(event):
         repo.heads.master.checkout(True)
     ac_br = repo.active_branch.name
     if ac_br != UPSTREAM_REPO_BRANCH:
-        await event.edit(
+        await e.edit(
             "**[UPDATER]:**\n"
             f"`Looks like you are using your own custom branch ({ac_br}). "
             "in that case, Updater is unable to identify "
@@ -131,22 +129,22 @@ async def upstream(event):
     ups_rem.fetch(ac_br)
     changelog = await gen_chlog(repo, f"HEAD..upstream/{ac_br}")
     if changelog == "" and not force_update:
-        await event.edit(
+        await e.edit(
             "\n`Ciri has no new updates with  " f"**{UPSTREAM_REPO_BRANCH}**\n"
         )
         return repo.__del__()
     if conf == "" and not force_update:
-        await print_changelogs(event, ac_br, changelog)
-        await event.delete()
-        return await event.respond(
+        await print_changelogs(e, ac_br, changelog)
+        await e.delete()
+        return await e.respond(
             'do "[`.update now`] or [`.update deploy`]" to update.Check `.help updater` for details'
         )
 
     if force_update:
-        await event.edit(
+        await e.edit(
             "`Force-Syncing to latest stable userbot code, please wait...`"
         )
     if conf == "now":
-        await event.edit("`Updating userbot, please wait....`")
-        await update(event, repo, ups_rem, ac_br)
+        await e.edit("`Updating userbot, please wait....`")
+        await update(e, repo, ups_rem, ac_br)
     return
