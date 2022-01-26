@@ -32,6 +32,7 @@ async def _auto_dp(e):
     await eor(e, "AutoDP has been started with keyword '{}'💗.".format(args))
     AUTO_DP = True
     chance = 0
+    print(AUTO_DP, len(PICS))
     while AUTO_DP and len(PICS) != 0:
         try:
             file_fetch = get(PICS[chance]).content
