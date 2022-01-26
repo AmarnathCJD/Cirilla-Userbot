@@ -39,9 +39,9 @@ def ciri_cmd(**args):
 
 async def eor(e, msg, file=None, parse_mode="md", link_preview=False):
     if e.sender_id == OWNER_ID:
-        await e.edit(msg, file=file, parse_mode=parse_mode, link_preview=link_preview)
+        return await e.edit(msg, file=file, parse_mode=parse_mode, link_preview=link_preview)
     else:
-        await e.reply(msg, file=file, parse_mode=parse_mode, link_preview=link_preview)
+        return await e.reply(msg, file=file, parse_mode=parse_mode, link_preview=link_preview)
 
 
 def load_modules():
