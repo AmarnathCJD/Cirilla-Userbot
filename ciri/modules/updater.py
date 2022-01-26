@@ -81,10 +81,11 @@ async def update(event, repo, ups_rem, ac_br):
 
 @ciri_cmd(pattern="update", allow_sudo=True)
 async def upstream(event):
+    await event.respond("Ff")
     print("Hi")
     "For .update command, check if the bot is up to date, update if specified"
     conf = event.pattern_match.group(1).strip()
-    event = await eor(event, "`Checking for updates, please wait....`")
+    await eor(event, "`Checking for updates, please wait....`")
     off_repo = UPSTREAM_REPO_URL
     force_update = False
     try:
