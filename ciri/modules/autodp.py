@@ -19,7 +19,10 @@ async def _auto_dp(e):
     try:
         args = e.text.split(maxsplit=1)[1]
     except IndexError:
-        await eor(e, "give some query for autodp.")
+        if not QUERY:
+         await eor(e, "give some query for autodp.")
+        else:
+         await eor(e, "autodp is running with `{}`".format(QUERY))
     if args == "off":
         AUTO_DP = False
         await eor(e, "AutoDP has been disabled.")
