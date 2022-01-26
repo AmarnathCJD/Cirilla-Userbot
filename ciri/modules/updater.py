@@ -31,6 +31,7 @@ async def print_changelogs(event, ac_br, changelog):
     changelog_str = (
         f"**New UPDATE available for [{ac_br}]:\n\nCHANGELOG:**\n`{changelog}`"
     )
+    changelog_str += '\ndo `.update now` to update Now. Check `.help updater` for details'
     if len(changelog_str) > 4096:
         await event.edit("`Changelog is too big, view the file to see it.`")
         with open("output.txt", "w+") as file:
@@ -133,10 +134,7 @@ async def upstream(e):
         return repo.__del__()
     if conf == "" and not force_update:
         await print_changelogs(e, ac_br, changelog)
-        await e.delete()
-        return await e.respond(
-            'do "[`.update now`] or [`.update deploy`]" to update.Check `.help updater` for details'
-        )
+        return await e.delete()
 
     if force_update:
         await e.edit("`Force-Syncing to latest stable userbot code, please wait...`")
