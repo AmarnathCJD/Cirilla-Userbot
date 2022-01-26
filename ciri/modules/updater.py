@@ -81,7 +81,7 @@ async def update(e, repo, ups_rem, ac_br):
 async def upstream(e):
     conf = e.text.split()
     conf = conf[1] if len(conf) == 2 else ""
-    await eor(e, "`Checking for updates, please wait....`")
+    e = await eor(e, "`Checking for updates, please wait....`")
     off_repo = UPSTREAM_REPO_URL
     force_update = False
     try:
