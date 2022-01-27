@@ -1,5 +1,7 @@
-from telethon import types
 import datetime
+
+from telethon import types
+
 from ciri import ALIVE_PIC
 from ciri.utils import ciri_cmd, eor
 
@@ -67,7 +69,7 @@ async def set_dp(e):
                     file_reference=r.photo.file_reference,
                     sizes=r.photo.sizes,
                     dc_id=r.photo.dc_id,
-                    date=datetime.datetime.now()
+                    date=datetime.datetime.now(),
                 ),
             ]
         )
