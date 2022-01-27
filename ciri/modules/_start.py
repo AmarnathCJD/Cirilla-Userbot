@@ -1,5 +1,5 @@
 from telethon import types
-
+import datetime
 from ciri import ALIVE_PIC
 from ciri.utils import ciri_cmd, eor
 
@@ -49,7 +49,7 @@ async def set_dp(e):
         ALIVE_PIC.append(
             [
                 "sticker",
-                types.Document(
+                types.InputDocument(
                     id=r.document.id,
                     access_hash=r.document.access_hash,
                     file_reference=r.document.file_reference,
@@ -67,6 +67,7 @@ async def set_dp(e):
                     file_reference=r.photo.file_reference,
                     sizes=r.photo.sizes,
                     dc_id=r.photo.dc_id,
+                    date=datetime.datetime.now()
                 ),
             ]
         )
