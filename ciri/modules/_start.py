@@ -1,5 +1,5 @@
 from ciri import ALIVE_PIC
-from ciri.utils import ciri_cmd
+from ciri.utils import ciri_cmd, eor
 
 ALIVE_PIC = []
 
@@ -45,5 +45,5 @@ async def set_dp(e):
     ALIVE_PIC.append(["sticker", types.Document(id=r.document.id, access_hash=r.document.access_hash, file_reference=r.document.file_reference)])
  else:
     ALIVE_PIC.clear()
-    ALIVE_PIC.append(["photo", types.Photo(id=r.photo.id, access_hash=r.photo.access_hash, file_reference=r.photo.file_reference, sizes=r.photo.sizes, attributes=[], dc_id=r.photo.dc_id)]
+    ALIVE_PIC.append(["photo", types.Photo(id=r.photo.id, access_hash=r.photo.access_hash, file_reference=r.photo.file_reference, sizes=r.photo.sizes, attributes=[], dc_id=r.photo.dc_id)])
  await eor(e, "sucessfully set custom alive pic.")
