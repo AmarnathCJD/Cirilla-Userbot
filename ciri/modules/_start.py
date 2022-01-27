@@ -28,7 +28,7 @@ async def _start(e):
             image = None
             await e.respond(file=ALIVE_PIC[0][1])
     await e.respond(
-        ALIVE_TEXT.format(me.first_name),
+        ALIVE_CAPTION.format(me.first_name),
         file=image,
         parse_mode="html",
         link_preview=False,
