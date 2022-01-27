@@ -13,7 +13,7 @@ ALIVE_CAPTION = """
 <b>Hey,  I am alive.</b>
 
 <b>✵ Owner -</b> {}
-<b>✵ Ultroid -</b> 0.1
+<b>✵ Ciri -</b> v1.1
 <b>✵ UpTime -</b> soon!
 <b>✵ Python -</b> <code>3.9.9</code>
 <b>✵ Telethon -</b> </code>1.25.0</code>
