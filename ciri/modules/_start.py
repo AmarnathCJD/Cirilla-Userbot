@@ -66,7 +66,6 @@ async def set_dp(e):
                     access_hash=r.photo.access_hash,
                     file_reference=r.photo.file_reference,
                     sizes=r.photo.sizes,
-                    attributes=[],
                     dc_id=r.photo.dc_id,
                 ),
             ]
