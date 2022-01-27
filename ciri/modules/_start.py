@@ -1,6 +1,8 @@
+from telethon import types
+
 from ciri import ALIVE_PIC
 from ciri.utils import ciri_cmd, eor
-from telethon import types
+
 ALIVE_PIC = []
 
 ALIVE_CAPTION = """
