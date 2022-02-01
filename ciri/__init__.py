@@ -1,9 +1,11 @@
 import logging
 import os
-
+from dotenv import load_dotenv
 from pymongo import MongoClient
 from telethon import TelegramClient
 from telethon.sessions import StringSession
+
+load_dotenv()
 
 # setup logger
 logging.basicConfig(
