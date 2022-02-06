@@ -52,18 +52,19 @@ async def _auto_dp(e):
             logging.info(exception)
         await asyncio.sleep(60)
 
+
 @ciri_cmd(pattern="setdp")
 async def set_dp(e):
- r = await e.get_reply_message()
- if not r and not r.photo and not r.video:
-   await eor(e, "Reply to an image/video to set dp.")
- else:
-   try:
-      if r.photo:
-       await e.client(functions.UploadProfilePhotoRequest(file=r.photo))
-      elif r.video:
-       await e.client(functions.UploadProfilePhotoRequest(video=r.video))
-   except Exception as c:
-      await eor(e, str(c))
-      return
- await eor(e, "done.")
+    r = await e.get_reply_message()
+    if not r and not r.photo and not r.video:
+        await eor(e, "Reply to an image/video to set dp.")
+    else:
+        try:
+            if r.photo:
+                await e.client(functions.UploadProfilePhotoRequest(file=r.photo))
+            elif r.video:
+                await e.client(functions.UploadProfilePhotoRequest(video=r.video))
+        except Exception as c:
+            await eor(e, str(c))
+            return
+    await eor(e, "done.")
