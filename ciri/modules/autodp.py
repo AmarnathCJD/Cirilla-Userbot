@@ -61,7 +61,11 @@ async def set_dp(e):
     else:
         try:
             if r.photo:
-                p = types.InputPhoto(id=r.photo.id, access_hash=r.photo.access_hash, file_reference=r.photo.file_reference)
+                p = types.InputPhoto(
+                    id=r.photo.id,
+                    access_hash=r.photo.access_hash,
+                    file_reference=r.photo.file_reference,
+                )
                 await e.client(functions.photos.UpdateProfilePhotoRequest(p))
             elif r.video:
                 await e.client(
