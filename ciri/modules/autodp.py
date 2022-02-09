@@ -61,9 +61,9 @@ async def set_dp(e):
     else:
         try:
             if r.photo:
-                await e.client(functions.UploadProfilePhotoRequest(file=r.photo))
+                await e.client(functions.photos.UploadProfilePhotoRequest(file=r.photo))
             elif r.video:
-                await e.client(functions.UploadProfilePhotoRequest(video=r.video))
+                await e.client(functions.photos.UploadProfilePhotoRequest(video=r.video))
         except Exception as c:
             await eor(e, str(c))
             return
