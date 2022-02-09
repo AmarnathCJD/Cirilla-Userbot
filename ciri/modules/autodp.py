@@ -1,7 +1,7 @@
 import asyncio
 
 from bing_image_urls import bing_image_urls as image_dl
-from telethon import functions
+from telethon import functions, types
 
 from ciri.utils import ciri_cmd, eor
 
@@ -61,7 +61,8 @@ async def set_dp(e):
     else:
         try:
             if r.photo:
-                await e.client(functions.photos.UploadProfilePhotoRequest(file=r.photo))
+                p = types.InputPhoto(id=r.photo.id, access_hash=r.photo.access_hash, file_reference=r.photo.file_reference)
+                await e.client(functions.photos.UpdateProfilePhotoRequest(p))
             elif r.video:
                 await e.client(
                     functions.photos.UploadProfilePhotoRequest(video=r.video)
