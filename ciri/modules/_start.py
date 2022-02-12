@@ -13,10 +13,10 @@ ALIVE_CAPTION = """
 <b>Hey,  I am alive.</b>
 
 <b>✵ Owner -</b> {}
-<b>✵ Ciri -</b> v1.1
+<b>✵ Ciri -</b> v1.2
 <b>✵ UpTime -</b> soon!
-<b>✵ Python -</b> <code>3.9.9</code>
-<b>✵ Telethon -</b> </code>1.25.0</code>
+<b>✵ Python -</b> <code>3.10</code>
+<b>✵ Telethon -</b> </code>2.0₱</code>
 <b>✵ Branch -</b>  <a href='github.com/amarnathcjd/cirilla-userbot'>master</a>
 """
 
@@ -78,4 +78,7 @@ async def set_dp(e):
 
 @ciri_cmd(pattern="ping")
 async def _ping(e):
-    await e.edit("pinging...")
+    s = datetime.datetime.now()
+    r = await eor(e, "`Pinging...`")
+    f = datetime.datetime.now() - s
+    await r.edit("Pong!\n<code>{} ms</code>".format(str(f.microseconds)[:4] + " ms"), parse_mode="html")
