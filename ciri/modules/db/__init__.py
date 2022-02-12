@@ -6,6 +6,7 @@ from pymongo import MongoClient
 
 DB = MongoClient(DB_URL)["ciri"]
 
+
 def set_dp(id, access_hash, file_reference, type):
     DB.main.update_one(
         {"id": "dp"},
