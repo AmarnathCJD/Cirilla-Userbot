@@ -51,7 +51,7 @@ async def set_dp(e):
         _id = r.sticker.id
         _access_hash = r.sticker.access_hash
         _file_reference = r.sticker.file_reference
-     else if r.photo:
+     elif r.photo:
         _type = "photo"
         _id = r.photo.id
         _access_hash = r.photo.access_hash
@@ -81,7 +81,7 @@ def construct_dp():
        return nil
     if dp['type'] == "link":
        return dp["id"]
-    else if dp["type"] == "sticker":
+    elif dp["type"] == "sticker":
        return types.Document(id=dp["id"], access_hash=dp["access_hash"], file_reference=dp["file_reference"])
-    else if dp["type"] == "photo":
+    elif dp["type"] == "photo":
        return types.Photo(id=dp['id'], access_hash=dp["access_hash"], file_reference=dp["file_reference"], dc_id=4, date=datetime.datetime.now(), sizes=[6])
