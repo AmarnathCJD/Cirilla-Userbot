@@ -63,7 +63,7 @@ async def set_dp(e):
         _id = payload
         _access_hash = ""
         _file_reference = ""
-    setdp(_id, _access_hash, _file_reference, _type)
+    set_dp(_id, _access_hash, _file_reference, _type)
     await eor(e, "sucessfully set custom alive pic.")
 
 
