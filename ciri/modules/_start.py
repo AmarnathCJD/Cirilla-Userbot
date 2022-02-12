@@ -1,9 +1,11 @@
 import datetime
-from .db import set_dp, get_dp
+
 from telethon import types
 
 from ciri import ALIVE_PIC
 from ciri.utils import ciri_cmd, eor
+
+from .db import get_dp, set_dp
 
 ALIVE_PIC = []
 
@@ -37,30 +39,30 @@ async def _start(e):
 async def set_dp(e):
     payload = e.text.split()
     if len(payload) > 1:
-       payload = payload [1]
+        payload = payload[1]
     else:
-       payload = ""
+        payload = ""
     if not payload:
-     if not e.reply_to and not (await e.get_reply_message()).media:
-        return await eor(e, "`Reply to image to set alive pic!`")
-     r = await e.get_reply_message()
-     if not r.photo and not r.sticker:
-        return await eor(e, "Thats not a valid sticker or image.")
-     if r.sticker:
-        _type = "document"
-        _id = r.sticker.id
-        _access_hash = r.sticker.access_hash
-        _file_reference = r.sticker.file_reference
-     elif r.photo:
-        _type = "photo"
-        _id = r.photo.id
-        _access_hash = r.photo.access_hash
-        _file_reference = r.photo.file_reference
+        if not e.reply_to and not (await e.get_reply_message()).media:
+            return await eor(e, "`Reply to image to set alive pic!`")
+        r = await e.get_reply_message()
+        if not r.photo and not r.sticker:
+            return await eor(e, "Thats not a valid sticker or image.")
+        if r.sticker:
+            _type = "document"
+            _id = r.sticker.id
+            _access_hash = r.sticker.access_hash
+            _file_reference = r.sticker.file_reference
+        elif r.photo:
+            _type = "photo"
+            _id = r.photo.id
+            _access_hash = r.photo.access_hash
+            _file_reference = r.photo.file_reference
     else:
-       _type = 'link'
-       _id = payload
-       _access_hash = ''
-       _file_reference = ''
+        _type = "link"
+        _id = payload
+        _access_hash = ""
+        _file_reference = ""
     setdp(_id, _access_hash, _file_reference, _type)
     await eor(e, "sucessfully set custom alive pic.")
 
@@ -75,13 +77,25 @@ async def _ping(e):
         parse_mode="html",
     )
 
+
 def construct_dp():
     dp = get_dp()
     if not dp:
-       return nil
-    if dp['type'] == "link":
-       return dp["id"]
+        return nil
+    if dp["type"] == "link":
+        return dp["id"]
     elif dp["type"] == "sticker":
-       return types.Document(id=dp["id"], access_hash=dp["access_hash"], file_reference=dp["file_reference"])
+        return types.Document(
+            id=dp["id"],
+            access_hash=dp["access_hash"],
+            file_reference=dp["file_reference"],
+        )
     elif dp["type"] == "photo":
-       return types.Photo(id=dp['id'], access_hash=dp["access_hash"], file_reference=dp["file_reference"], dc_id=4, date=datetime.datetime.now(), sizes=[6])
+        return types.Photo(
+            id=dp["id"],
+            access_hash=dp["access_hash"],
+            file_reference=dp["file_reference"],
+            dc_id=4,
+            date=datetime.datetime.now(),
+            sizes=[6],
+        )
