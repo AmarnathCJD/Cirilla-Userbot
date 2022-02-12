@@ -1,5 +1,5 @@
 import datetime
-
+from .db import set_dp, get_dp
 from telethon import types
 
 from ciri import ALIVE_PIC
@@ -16,7 +16,7 @@ ALIVE_CAPTION = """
 <b>✵ Ciri -</b> v1.2
 <b>✵ UpTime -</b> soon!
 <b>✵ Python -</b> <code>3.10</code>
-<b>✵ Telethon -</b> </code>2.0₱</code>
+<b>✵ Telethon -</b> </code>1.25.1</code>
 <b>✵ Branch -</b>  <a href='github.com/amarnathcjd/cirilla-userbot'>master</a>
 """
 
@@ -24,16 +24,10 @@ ALIVE_CAPTION = """
 @ciri_cmd(pattern="alive", allow_sudo=True)
 async def _start(e):
     me = await e.client.get_me()
-    image = None
     await e.delete()
-    if len(ALIVE_PIC) == 1:
-        image = ALIVE_PIC[0][1]
-        if ALIVE_PIC[0][0] == "sticker":
-            image = None
-            await e.respond(file=ALIVE_PIC[0][1])
     await e.respond(
         ALIVE_CAPTION.format(me.first_name),
-        file=image,
+        file=construct_dp(),
         parse_mode="html",
         link_preview=False,
     )
@@ -41,38 +35,33 @@ async def _start(e):
 
 @ciri_cmd(pattern="setalivepic", allow_sudo=True)
 async def set_dp(e):
-    if not e.reply_to and not (await e.get_reply_message()).media:
-        return await eor(e, "`Reply to image to set alive pic!`")
-    r = await e.get_reply_message()
-    if not r.photo and not r.sticker:
-        return await eor(e, "Thats not a valid sticker or image.")
-    if r.sticker:
-        ALIVE_PIC.clear()
-        ALIVE_PIC.append(
-            [
-                "sticker",
-                types.InputDocument(
-                    id=r.document.id,
-                    access_hash=r.document.access_hash,
-                    file_reference=r.document.file_reference,
-                ),
-            ]
-        )
+    payload = e.text.split()
+    if len(payload) > 1:
+       payload = payload [1]
     else:
-        ALIVE_PIC.clear()
-        ALIVE_PIC.append(
-            [
-                "photo",
-                types.Photo(
-                    id=r.photo.id,
-                    access_hash=r.photo.access_hash,
-                    file_reference=r.photo.file_reference,
-                    sizes=r.photo.sizes,
-                    dc_id=r.photo.dc_id,
-                    date=datetime.datetime.now(),
-                ),
-            ]
-        )
+       payload = ""
+    if not payload:
+     if not e.reply_to and not (await e.get_reply_message()).media:
+        return await eor(e, "`Reply to image to set alive pic!`")
+     r = await e.get_reply_message()
+     if not r.photo and not r.sticker:
+        return await eor(e, "Thats not a valid sticker or image.")
+     if r.sticker:
+        _type = "document"
+        _id = r.sticker.id
+        _access_hash = r.sticker.access_hash
+        _file_reference = r.sticker.file_reference
+     else if r.photo:
+        _type = "photo"
+        _id = r.photo.id
+        _access_hash = r.photo.access_hash
+        _file_reference = r.photo.file_reference
+    else:
+       _type = 'link'
+       _id = payload
+       _access_hash = ''
+       _file_reference = ''
+    setdp(_id, _access_hash, _file_reference, _type)
     await eor(e, "sucessfully set custom alive pic.")
 
 
@@ -85,3 +74,14 @@ async def _ping(e):
         "Pong!\n<code>{}</code>".format(str(f.microseconds)[:3] + " ms"),
         parse_mode="html",
     )
+
+def construct_dp():
+    dp = get_dp()
+    if not dp:
+       return nil
+    if dp['type'] == "link":
+       return dp["id"]
+    else if dp["type"] == "sticker":
+       return types.Document(id=dp["id"], access_hash=dp["access_hash"], file_reference=dp["file_reference"])
+    else if dp["type"] == "photo":
+       return types.Photo(id=dp['id'], access_hash=dp["access_hash"], file_reference=dp["file_reference"], dc_id=4, date=datetime.datetime.now(), sizes=[6])
