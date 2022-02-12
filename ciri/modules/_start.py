@@ -81,4 +81,7 @@ async def _ping(e):
     s = datetime.datetime.now()
     r = await eor(e, "`Pinging...`")
     f = datetime.datetime.now() - s
-    await r.edit("Pong!\n<code>{} ms</code>".format(str(f.microseconds)[:4] + " ms"), parse_mode="html")
+    await r.edit(
+        "Pong!\n<code>{} ms</code>".format(str(f.microseconds)[:4] + " ms"),
+        parse_mode="html",
+    )
