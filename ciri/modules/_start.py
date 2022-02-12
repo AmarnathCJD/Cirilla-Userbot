@@ -75,7 +75,7 @@ async def set_dp(e):
         )
     await eor(e, "sucessfully set custom alive pic.")
 
+
 @ciri_cmd(pattern="ping")
 async def _ping(e):
- r = await e.edit("pinging...")
- 
+    await e.edit("pinging...")
