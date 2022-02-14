@@ -28,14 +28,14 @@ async def _start(e):
     me = await e.client.get_me()
     await e.delete()
     try:
-     await e.respond(
-        ALIVE_CAPTION.format(me.first_name),
-        file=construct_dp(),
-        parse_mode="html",
-        link_preview=False,
-    )
+        await e.respond(
+            ALIVE_CAPTION.format(me.first_name),
+            file=construct_dp(),
+            parse_mode="html",
+            link_preview=False,
+        )
     except Exception as abc:
-     print(abc)
+        print(abc)
 
 
 @ciri_cmd(pattern="setalivepic", allow_sudo=True)
