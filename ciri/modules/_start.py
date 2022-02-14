@@ -27,10 +27,12 @@ ALIVE_CAPTION = """
 async def _start(e):
     me = await e.client.get_me()
     await e.delete()
+    file = construct_dp()
+    print(file)
     try:
         await e.respond(
             ALIVE_CAPTION.format(me.first_name),
-            file=construct_dp(),
+            file=file,
             parse_mode="html",
             link_preview=False,
         )
