@@ -42,7 +42,7 @@ async def eval__(e):
     if len(evaluation) > 4095:
         with io.BytesIO(evaluation.encode()) as finale_b:
             finale_b.name = "eval.txt"
-            return await eor(e, f"```{c}```", file=finale_b)
+            return await eor(e, f"```{a}```", file=finale_b)
     await eor(e, final_output)
 
 
