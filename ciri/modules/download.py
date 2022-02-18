@@ -1,9 +1,10 @@
-from ciri.utils import ciri_cmd
+import asyncio
 from os import system
 
 import aria2p
 
-import asyncio
+from ciri.utils import ciri_cmd
+
 cmd = "aria2c --enable-rpc --rpc-listen-all=false --rpc-listen-port 6800  --max-connection-per-server=10 --rpc-max-request-size=1024M --seed-time=0.01 --min-split-size=10M --follow-torrent=mem --split=10 --daemon=true"
 aria2 = aria2p.API(aria2p.Client(host="http://localhost", port=6800, secret=""))
 
@@ -12,24 +13,25 @@ TIME_OUT = 5
 
 aria2_is_running = system(cmd)
 
+
 @ciri_cmd(pattern="mg")
 async def _dl_torrent(e):
- t = e.text.split(" ", maxsplit=1)
- if len(t) == 1:
-    return await e.reply("k")
- t = t[1]
- urls = [t]
- try:
+    t = e.text.split(" ", maxsplit=1)
+    if len(t) == 1:
+        return await e.reply("k")
+    t = t[1]
+    urls = [t]
+    try:
         download = aria2.add_uris(urls, options=None, position=None)
- except Exception as e:
+    except Exception as e:
         return await eor(e, "`Error:\n`" + str(e))
- gid = download.gid
- complete = None
- file = aria2.get_download(gid)
- if file.followed_by_ids:
+    gid = download.gid
+    complete = None
+    file = aria2.get_download(gid)
+    if file.followed_by_ids:
         new_gid = await check_metadata(gid)
         await progress_status(gid=new_gid, event=e, previous=None)
- while complete != True:
+    while complete != True:
         file = aria2.get_download(gid)
         complete = file.is_complete
         try:
@@ -51,7 +53,8 @@ async def _dl_torrent(e):
         except Exception:
             pass
 
- await e.edit("**File Downloaded Successfully:** `{}`".format(file.name))
+    await e.edit("**File Downloaded Successfully:** `{}`".format(file.name))
+
 
 async def progress_status(gid, event, previous):
     try:
@@ -100,6 +103,7 @@ async def progress_status(gid, event, previous):
             logger.info(str(e))
             await event.edit("Error :\n`{}`".format(str(e)))
             return
+
 
 async def check_metadata(gid):
     file = aria2.get_download(gid)
