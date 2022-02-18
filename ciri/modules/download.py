@@ -8,7 +8,7 @@ from ciri.utils import ciri_cmd
 cmd = "aria2c --enable-rpc --rpc-listen-all=false --rpc-listen-port 6800  --max-connection-per-server=10 --rpc-max-request-size=1024M --seed-time=0.01 --min-split-size=10M --follow-torrent=mem --split=10 --daemon=true"
 aria2 = aria2p.API(aria2p.Client(host="http://localhost", port=6800, secret=""))
 
-TIME_OUT = 5
+TIME_OUT = 10
 
 
 aria2_is_running = system(cmd)
