@@ -94,9 +94,9 @@ async def _ping(e):
 def construct_dp():
     dp = get_dp()
     if not dp:
-        return None
+        return None, 'nil'
     if dp["type"] == "link":
-        return dp["id"]
+        return dp["id"], "link"
     elif dp["type"] in ["sticker", "gif"]:
         return (
             types.Document(
@@ -118,3 +118,5 @@ def construct_dp():
             ),
             "photo",
         )
+
+# soon 
