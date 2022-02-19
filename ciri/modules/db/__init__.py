@@ -9,7 +9,7 @@ DB = MongoClient(DB_URL)["ciri"]
 
 def set_dp(id, access_hash, file_reference, type):
     DB.main.update_one(
-        {"id": "dp"},
+        {"uid": "dp"},
         {
             "$set": {
                 "id": id,
@@ -23,4 +23,4 @@ def set_dp(id, access_hash, file_reference, type):
 
 
 def get_dp():
-    return DB.main.find_one({"id": "dp"})
+    return DB.main.find_one({"uid": "dp"})
