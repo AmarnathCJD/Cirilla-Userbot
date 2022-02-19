@@ -27,8 +27,11 @@ ALIVE_CAPTION = """
 async def _start(e):
     me = await e.client.get_me()
     await e.delete()
-    file = construct_dp()
+    file, _t = construct_dp()
     print(file)
+    if _t == "sticker":
+       await e.respond(file=file)
+       file = None
     try:
         await e.respond(
             ALIVE_CAPTION.format(me.first_name),
@@ -51,10 +54,10 @@ async def set_dp(e):
         if not e.reply_to and not (await e.get_reply_message()).media:
             return await eor(e, "`Reply to image to set alive pic!`")
         r = await e.get_reply_message()
-        if not r.photo and not r.sticker:
+        if not r.photo and not r.sticker and not r.gif:
             return await eor(e, "Thats not a valid sticker or image.")
         if r.sticker:
-            _type = "document"
+            _type = "sticker"
             _id = r.sticker.id
             _access_hash = r.sticker.access_hash
             _file_reference = r.sticker.file_reference
@@ -99,7 +102,7 @@ def construct_dp():
             id=dp["id"],
             access_hash=dp["access_hash"],
             file_reference=dp["file_reference"],
-        )
+        ), dp["type"]
     elif dp["type"] == "photo":
         return types.Photo(
             id=dp["id"],
@@ -108,4 +111,4 @@ def construct_dp():
             dc_id=4,
             date=datetime.datetime.now(),
             sizes=[6],
-        )
+        ), "photo"
