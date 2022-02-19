@@ -91,7 +91,7 @@ async def _ping(e):
 def construct_dp():
     dp = get_dp()
     if not dp:
-        return nil
+        return None
     if dp["type"] == "link":
         return dp["id"]
     elif dp["type"] in ["sticker", "gif"]:
