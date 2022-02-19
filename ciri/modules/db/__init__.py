@@ -1,6 +1,6 @@
 from os import getenv
 
-DB_URL = getenv("MONGO_DB_URI")
+DB_URL = getenv("MONGO_DB_URL")
 
 from pymongo import MongoClient
 
