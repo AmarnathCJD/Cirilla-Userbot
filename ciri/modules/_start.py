@@ -63,6 +63,11 @@ async def set_dp(e):
             _id = r.photo.id
             _access_hash = r.photo.access_hash
             _file_reference = r.photo.file_reference
+        elif r.gif:
+            _type = "gif"
+            _id = r.gif.id
+            _access_hash = r.gif.access_hash
+            _file_reference = r.gif.file_reference
     else:
         _type = "link"
         _id = payload
@@ -89,7 +94,7 @@ def construct_dp():
         return nil
     if dp["type"] == "link":
         return dp["id"]
-    elif dp["type"] == "sticker":
+    elif dp["type"] in ["sticker", "gif"]:
         return types.Document(
             id=dp["id"],
             access_hash=dp["access_hash"],
