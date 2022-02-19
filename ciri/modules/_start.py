@@ -30,8 +30,8 @@ async def _start(e):
     file, _t = construct_dp()
     print(file)
     if _t == "sticker":
-       await e.respond(file=file)
-       file = None
+        await e.respond(file=file)
+        file = None
     try:
         await e.respond(
             ALIVE_CAPTION.format(me.first_name),
@@ -98,17 +98,23 @@ def construct_dp():
     if dp["type"] == "link":
         return dp["id"]
     elif dp["type"] in ["sticker", "gif"]:
-        return types.Document(
-            id=dp["id"],
-            access_hash=dp["access_hash"],
-            file_reference=dp["file_reference"],
-        ), dp["type"]
+        return (
+            types.Document(
+                id=dp["id"],
+                access_hash=dp["access_hash"],
+                file_reference=dp["file_reference"],
+            ),
+            dp["type"],
+        )
     elif dp["type"] == "photo":
-        return types.Photo(
-            id=dp["id"],
-            access_hash=dp["access_hash"],
-            file_reference=dp["file_reference"],
-            dc_id=4,
-            date=datetime.datetime.now(),
-            sizes=[6],
-        ), "photo"
+        return (
+            types.Photo(
+                id=dp["id"],
+                access_hash=dp["access_hash"],
+                file_reference=dp["file_reference"],
+                dc_id=4,
+                date=datetime.datetime.now(),
+                sizes=[6],
+            ),
+            "photo",
+        )
