@@ -76,13 +76,14 @@ async def __exec(e):
             return await e.respond(f"`{cmd}`", file=finale_b, parse_mode="html")
     await eor(e, cresult, parse_mode="html")
 
+
 @ciri_cmd(pattern="ul")
 async def upload(e):
- try:
+    try:
         cmd = e.text.split(maxsplit=1)[1]
- except IndexError:
+    except IndexError:
         return await eor(e, "Provide the path to file!")
- try:
-  await e.respond(file=cmd)
- except Exception as c:
-  await eor(e, 'Error: `' + str(c) + "`")
+    try:
+        await e.respond(file=cmd)
+    except Exception as c:
+        await eor(e, "Error: `" + str(c) + "`")
