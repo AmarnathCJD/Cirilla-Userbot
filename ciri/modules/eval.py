@@ -93,21 +93,22 @@ async def upload(e):
         await eor(e, str(c))
 
 
-@ciri_cmd(pattern="goval")
+@ciri_cmd(pattern="goval", allow_sudo=True)
 async def go_eval(e):
     try:
         cmd = e.text.split(maxsplit=1)[1]
     except IndexError:
-        return await eor(e, "No cmd provided.")
+        await eor(e, "No cmd provided.")
+        return
     endpoint = "https://go.dev/_/compile"
     params = {"version": 2, "body": cmd, "withVet": True}
     with requests.post(endpoint, params=params).json() as resp:
         print(resp)
         result = {"out": "nil", "err": "nil"}
         if resp.get("Events"):
-            result["out"] = r["Events"][0]["Message"]
+            result["out"] = resp["Events"][0]["Message"]
         if resp.get("Errors"):
-            result["err"] = r["Errors"]
+            result["err"] = resp["Errors"]
     if result["out"] != "nil":
         evaluation = result["out"]
     elif result["err"] != "nil":
