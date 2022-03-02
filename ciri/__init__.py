@@ -6,7 +6,6 @@ from pymongo import MongoClient
 from telethon import TelegramClient
 from telethon.sessions import StringSession
 
-
 # setup logger
 logging.basicConfig(
     format="%(asctime)s - %(name)s - %(levelname)s - %(message)s",
