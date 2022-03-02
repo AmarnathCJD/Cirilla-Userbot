@@ -28,7 +28,7 @@ def ciri_cmd(**args):
         async def wrapper(ev):
             try:
                 await func(ev)
-            except Exception as exception:
+            except BaseException as exception:
                 logging.info(exception)
 
         ub.add_event_handler(wrapper, events.NewMessage(**args))
