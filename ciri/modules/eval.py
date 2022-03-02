@@ -101,8 +101,11 @@ async def go_eval(e):
         await eor(e, "No cmd provided.")
         return
     endpoint = "https://go.dev/_/compile"
+    print(1)
     params = {"version": 2, "body": cmd, "withVet": True}
+    print(2)
     with requests.post(endpoint, params=params).json() as resp:
+        print(3)
         print(resp)
         result = {"out": "nil", "err": "nil"}
         if resp.get("Events"):
