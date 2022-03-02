@@ -100,7 +100,7 @@ async def go_eval(e):
     except IndexError:
         return await eor(e, "No cmd provided.")
     endpoint = "https://go.dev/_/compile"
-    params = {"version": 2, "body": code, "withVet": True}
+    params = {"version": 2, "body": cmd, "withVet": True}
     with requests.post(endpoint, params=params).json() as resp:
         result = {"out": "nil", "err": "nil"}
         if resp.get("Events"):
