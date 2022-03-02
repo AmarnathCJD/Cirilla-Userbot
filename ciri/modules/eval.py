@@ -85,5 +85,6 @@ async def upload(e):
         return await eor(e, "Provide the path to file!")
     try:
         await e.respond(file=cmd)
+        await e.delete()
     except Exception as c:
-        await eor(e, "Error: `" + str(c) + "`")
+        await eor(e, str(c))
