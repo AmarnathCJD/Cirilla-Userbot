@@ -104,14 +104,15 @@ async def go_eval(e):
     print(1)
     params = {"version": 2, "body": cmd, "withVet": True}
     print(2)
-    with requests.post(endpoint, params=params).json() as resp:
-        print(3)
-        print(resp)
-        result = {"out": "nil", "err": "nil"}
-        if resp.get("Events"):
-            result["out"] = resp["Events"][0]["Message"]
-        if resp.get("Errors"):
-            result["err"] = resp["Errors"]
+    r = requests.post(endpoint, params=params)
+    resp = r.json()
+    print(3)
+    print(resp)
+    result = {"out": "nil", "err": "nil"}
+    if resp.get("Events"):
+         result["out"] = resp["Events"][0]["Message"]
+    if resp.get("Errors"):
+         result["err"] = resp["Errors"]
     if result["out"] != "nil":
         evaluation = result["out"]
     elif result["err"] != "nil":
