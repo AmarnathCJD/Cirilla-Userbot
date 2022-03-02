@@ -69,11 +69,12 @@ async def __exec(e):
     )
     stdout, stderr = await process.communicate()
     result = str(stdout.decode().strip()) + str(stderr.decode().strip())
-    cresult = f"<b>Bash:~$</b> <code>{cmd}</code>\n<code>{result}</code>"
-    if len(cresult) > 4095:
-        with io.BytesIO(cresult.encode()) as finale_b:
-            finale_b.name = "bash.txt"
-            return await e.respond(f"`{cmd}`", file=finale_b, parse_mode="html")
+    cresult = f"<b>Bash:~#</b> <code>{cmd}</code>\n<b>Result:</b> <code>{result}</code>"
+    if len(result) > 4095:
+        with io.BytesIO(result.encode()) as file:
+            file.name = "bash.txt"
+            await e.respond(f"<code>{cmd}</code>", file=file, parse_mode="html")
+            return await e.delete()
     await eor(e, cresult, parse_mode="html")
 
 
