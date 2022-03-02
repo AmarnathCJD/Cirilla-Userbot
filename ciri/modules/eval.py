@@ -2,7 +2,7 @@ import asyncio
 import io
 import sys
 import traceback
-
+import requests
 from ciri.utils import ciri_cmd, eor
 
 
@@ -89,3 +89,32 @@ async def upload(e):
         await e.delete()
     except Exception as c:
         await eor(e, str(c))
+
+@ciri_cmd(pattern="goval")
+async def go_eval(e):
+ try:
+        cmd = e.text.split(maxsplit=1)[1]
+ except IndexError:
+   return await eor(e, "No cmd provided.")
+ endpoint = "https://go.dev/_/compile"
+ params = {"version": 2, "body": code, "withVet": True}
+ with requests.post(endpoint, params=params).json() as resp:
+  result = {"out": "nil", "err": "nil"}
+  if resp.get("Events"):
+     result["out"] = r["Events"][0]["Message"]
+  if resp.get("Errors"):
+     result["err"] = r["Errors"]
+ if result ["out"] != "nil":
+     evaluation = result["out"]
+ elif result ["err"] != "nil":
+     evaluation = result ["err"]
+ else:
+     evaluation = "nil"
+ final_output = (
+        "__►__ **EVALGo**\n```{}``` \n\n __►__ **OUTPUT**: \n```{}``` \n".format(
+            cmd,
+            evaluation,
+        )
+    )
+ await eor(e, final_output)
+     
