@@ -110,9 +110,9 @@ async def go_eval(e):
     print(resp)
     result = {"out": "nil", "err": "nil"}
     if resp.get("Events"):
-         result["out"] = resp["Events"][0]["Message"]
+        result["out"] = resp["Events"][0]["Message"]
     if resp.get("Errors"):
-         result["err"] = resp["Errors"]
+        result["err"] = resp["Errors"]
     if result["out"] != "nil":
         evaluation = result["out"]
     elif result["err"] != "nil":
