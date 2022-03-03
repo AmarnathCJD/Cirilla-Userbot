@@ -45,4 +45,4 @@ async def _(e):
 @bot.on(events.CallbackQuery(pattern="help_(.*?)"))
 async def cb_gelp(e):
     data = e.data.decode()
-    await e.reply(data, alert=True)
+    await e.answer(data, alert=True)
