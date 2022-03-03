@@ -11,7 +11,7 @@ async def help_menu(e):
     await eor(e, "Hi")
 
 
-@ciri_cmd.on(pattern="dc")
+@ciri_cmd(pattern="dc")
 async def _(e):
     if e.fwd_from:
         return
