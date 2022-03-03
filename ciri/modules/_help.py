@@ -16,4 +16,5 @@ async def _(e):
     if e.fwd_from:
         return
     result = await e.client(functions.help.GetNearestDcRequest())
-    await eor(e, result.stringify())
+    res = "**DC Lookup**\n**Current DC:** {}\n**Nearest DC:** {}\n**Country:** {}".format(result.this_dc, result.nearest_dc, result.country)
+    await eor(e, res)
