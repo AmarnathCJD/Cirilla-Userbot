@@ -15,7 +15,7 @@ async def help_menu(e):
         if len(btn) == 2:
             buttons.append(btn)
             btn = []
-        btn.append(Button.Inline(x, x.lower()))
+        btn.append(Button.inline(x, x.lower()))
     if len(btn) != 0:
         buttons.append(btn)
     result = await e.builder.article(string, buttons=buttons)
