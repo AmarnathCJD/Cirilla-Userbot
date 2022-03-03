@@ -1,6 +1,6 @@
 from .. import bot
 
-cmds = ["Alive", "Autodp", "Eval", "Spotdl"]
+cmds = ["Alive", "Admin", "Autodp", "Eval", "Spotdl"]
 from telethon import Button, events, functions
 
 from ..utils import ciri_cmd, eor
@@ -8,16 +8,17 @@ from ..utils import ciri_cmd, eor
 
 @bot.on(events.InlineQuery(pattern="help"))
 async def help_menu(e):
-    string = "Help menu for Ciri."
+    string = "Here is the help menu for Ciri."
     buttons = []
     btn = []
     for x in cmds:
         if len(btn) == 2:
             buttons.append(btn)
             btn = []
-        btn.append(Button.inline(x, x.lower()))
+        btn.append(Button.inline(x, "help_" + x.lower()))
     if len(btn) != 0:
         buttons.append(btn)
+    buttons.append([Button.inline("Back", "help_back")])
     result = e.builder.article(title=string, text=string, buttons=buttons)
     await e.answer([result])
 
@@ -39,3 +40,8 @@ async def _(e):
         result.this_dc, result.nearest_dc, result.country
     )
     await eor(e, res)
+
+@bot.on(events.CallbackQuery(pattern="help_(.*?)"))
+async def cb_gelp(e):
+ data = e.data.decode()
+ await e.reply(data, alert=True)
