@@ -1,11 +1,14 @@
 from .. import bot
-cmds = ["Alive", "Autodp", "Eval", 'Spotdl']
-from ..utils import ciri_cmd, eor
+
+cmds = ["Alive", "Autodp", "Eval", "Spotdl"]
 from telethon import events
+
+from ..utils import ciri_cmd, eor
+
 
 @bot.on(events.InlineQuery(pattern="help"))
 async def help_menu(e):
- await eor(e, "Hi")
+    await eor(e, "Hi")
 
 
 @ciri_cmd.on(pattern="dc")
