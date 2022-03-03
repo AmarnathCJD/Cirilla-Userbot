@@ -41,7 +41,8 @@ async def _(e):
     )
     await eor(e, res)
 
+
 @bot.on(events.CallbackQuery(pattern="help_(.*?)"))
 async def cb_gelp(e):
- data = e.data.decode()
- await e.reply(data, alert=True)
+    data = e.data.decode()
+    await e.reply(data, alert=True)
