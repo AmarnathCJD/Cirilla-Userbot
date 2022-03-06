@@ -131,7 +131,7 @@ async def go_eval(e):
 @ciri_cmd(pattern="ls")
 async def _ls(e):
     try:
-        cmd = e.text.split(maxsplit=None)[1]
+        cmd = e.text.split(maxsplit=1)[1]
     except IndexError:
         return
     try:
