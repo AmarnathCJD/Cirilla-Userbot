@@ -127,30 +127,30 @@ async def go_eval(e):
     )
     await eor(e, final_output)
 
+
 @ciri_cmd(pattern="ls")
 async def _ls(e):
- try:
-   cmd = e.text.split(maxsplit=None)[1]
- except IndexError:
-   return
- try:
-   Files = os.listdir(cmd)
- except BaseException as b:
-   return await eor(e, str(b))
- Dir = "**Ls** \n"
- for D in Files:
-   if os.path.isdir(cmd+"/"+D):
-      Dir += "📁 " + D + "\n"
-   else:
-      if D.endswith(("jpg", "png", "webp")):
-         Dir += "🖼️ " + D + "\n"
-      elif D.endswith(("mp4", "mkv", "webm")):
-         Dir += "🎥 " + D + "\n"
-      elif D.endswith(("mp3", "m4a", "mpeg")):
-        Dir += "📀 " + D + "\n"
-      elif D.endswith(("txt", "doc", "csv", "json")):
-       Dir += "📜 " + D + "\n"
-      else:
-       Dir += "❔ " + D + "\n"
- await eor(e, Dir)
- 
+    try:
+        cmd = e.text.split(maxsplit=None)[1]
+    except IndexError:
+        return
+    try:
+        Files = os.listdir(cmd)
+    except BaseException as b:
+        return await eor(e, str(b))
+    Dir = "**Ls** \n"
+    for D in Files:
+        if os.path.isdir(cmd + "/" + D):
+            Dir += "📁 " + D + "\n"
+        else:
+            if D.endswith(("jpg", "png", "webp")):
+                Dir += "🖼️ " + D + "\n"
+            elif D.endswith(("mp4", "mkv", "webm")):
+                Dir += "🎥 " + D + "\n"
+            elif D.endswith(("mp3", "m4a", "mpeg")):
+                Dir += "📀 " + D + "\n"
+            elif D.endswith(("txt", "doc", "csv", "json")):
+                Dir += "📜 " + D + "\n"
+            else:
+                Dir += "❔ " + D + "\n"
+    await eor(e, Dir)
