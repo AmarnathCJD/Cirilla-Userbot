@@ -2,7 +2,7 @@ import asyncio
 import io
 import sys
 import traceback
-
+import os
 import requests
 
 from ciri.utils import ciri_cmd, eor
