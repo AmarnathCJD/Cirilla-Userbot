@@ -4,7 +4,7 @@ from ciri import BOT_TOKEN, bot, ub
 from ciri.utils import load_modules
 
 try:
-    bot.start(bot_token=BOT_TOKEN)
+    # bot.start(bot_token=BOT_TOKEN)
     ub.start()
 except Exception as exc:
     print(exc)
