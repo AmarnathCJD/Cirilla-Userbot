@@ -1,6 +1,6 @@
 import sys
 
-from ciri import BOT_TOKEN, bot, ub
+from ciri import ub
 from ciri.utils import load_modules
 
 try:
