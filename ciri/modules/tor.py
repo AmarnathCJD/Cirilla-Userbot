@@ -162,11 +162,11 @@ async def clr_aria(message):
         removed = aria2p_client.remove_all(force=True)
         aria2p_client.purge()
     except Exception as e:
-        LOGS.error(str(e))
+        print(e)
     await sleep(1)
     if not removed:
         subprocess_run("aria2p remove-all")
-    await eor(e, "`Successfully cleared all downloads.`")
+    await eor(message, "`Successfully cleared all downloads.`")
 
 
 @ciri_cmd(pattern="ariacancel ?(.*)")
@@ -179,7 +179,7 @@ async def remove_a_download(message):
         return
     file_name = downloads.name
     aria2p_client.remove(downloads=[downloads], force=True, files=True, clean=True)
-    await eor(e, f"**Successfully cancelled download.** \n`{file_name}`")
+    await eor(message, f"**Successfully cancelled download.** \n`{file_name}`")
 
 
 @ciri_cmd(pattern="ariastatus$")
@@ -206,7 +206,7 @@ async def show_all(message):
                 + f"`{str(download.gid)}`"
                 + "\n\n"
             )
-    await eor(e, msg)
+    await eor(message, msg)
 
 
 def humanbytes(size, decimal_places=2):
