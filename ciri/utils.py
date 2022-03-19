@@ -6,7 +6,7 @@ from pathlib import Path
 
 from telethon import events
 
-from ciri import CMD_HANDLERS, FULL_SUDO, OWNER_ID, SUDO, ub
+from ciri import CMD_HANDLERS, FULL_SUDO, OWNER_ID, SUDO, userbot, bot
 
 
 def ciri_cmd(**args):
@@ -31,7 +31,7 @@ def ciri_cmd(**args):
             except BaseException as exception:
                 logging.info(exception)
 
-        ub.add_event_handler(wrapper, events.NewMessage(**args))
+        userbot.add_event_handler(wrapper, events.NewMessage(**args))
         return wrapper
 
     return decorator
@@ -49,7 +49,6 @@ async def eor(e, msg, file=None, parse_mode="md", link_preview=False):
 
 
 def load_modules():
-    print("Loading Modules...")
     for x in glob.glob("ciri/modules/*.py"):
         with open(x) as f:
             name = Path(f.name).stem.replace(".py", "")
@@ -57,8 +56,14 @@ def load_modules():
                 "ciri.modules.{}".format(name), Path("ciri/modules/{}.py".format(name))
             )
             mod = importlib.util.module_from_spec(spec)
-            mod.bot = ub
+            mod.bot = userbot
+            mod.tbot = bot
+            mod.eor = eor
             spec.loader.exec_module(mod)
             sys.modules["ciri.modules." + name] = mod
-            print("sucessfully imported " + name)
-    print("Sucessfully Loaded All Modules.")
+            print("Import " + name.upper() + " module")
+
+async def get_owner():
+    global OWNER_ID
+    OWNER_ID = (await userbot.get_me()).id
+

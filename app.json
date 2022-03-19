@@ -28,7 +28,7 @@
             "required": true,
             "value": ""
         },
-        "MONGO_DB_URL": {
+        "MONGO_DB_URI": {
             "description": "Database url get from mongodb.com",
             "value": ""
         },
@@ -39,10 +39,6 @@
         "ALIVE_PHOTO": {
             "description": "Alive PIC telegraph link.",
             "required": false
-        },
-        "OWNER_ID": {
-            "description": "userbot owner ID",
-            "required": true
         }
     },
     "buildpacks": [

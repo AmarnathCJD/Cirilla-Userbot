@@ -1,16 +1,16 @@
 import sys
 
-from ciri import ub
-from ciri.utils import load_modules
+from ciri import userbot, bot, BOT_TOKEN
+from ciri.utils import get_owner, load_modules
 
 try:
-    # bot.start(bot_token=BOT_TOKEN)
-    ub.start()
+    userbot.start()
+    bot.start(bot_token=BOT_TOKEN)
 except Exception as exc:
-    print(exc)
     sys.exit(1)
 
 load_modules()
-print("Ciri Userbot Is Alive")
+print("Cirilla Userbot Is Alive")
 
-ub.run_until_disconnected()
+userbot.loop.run_until_complete(get_owner())
+userbot.run_until_disconnected()

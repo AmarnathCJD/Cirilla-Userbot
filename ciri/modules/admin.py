@@ -1,3 +1,5 @@
+import telethon
+from ciri.modules import CheckRights, get_user
 from ciri.utils import ciri_cmd, eor
 
 
@@ -12,3 +14,19 @@ async def _del(e):
         await eor(e, "failed to delete, " + str(exc))
     finally:
         await e.delete()
+
+
+@ciri_cmd(pattern="ban", allow_sudo=True)
+async def _ban(e: telethon.types.UpdateNewMessage):
+    if not CheckRights(e, "ban_users"):
+        return
+    user, r = await get_user(e)
+    if not user:
+        return
+    try:
+        await e.client(telethon.functions.channels.EditBannedRequest(
+            channel=e.chat_id, user_id=user.id, banned_rights=telethon.types.ChatBannedRights(view_messages=True)))
+    except Exception as err:
+        await eor(e, "`{}`".format(err))
+        return
+    await eor(e, "`Banned`")

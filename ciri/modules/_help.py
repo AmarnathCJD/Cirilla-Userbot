@@ -12,7 +12,7 @@ async def help_menu(e):
     buttons = []
     btn = []
     for x in cmds:
-        if len(btn) == 2:
+        if len(btn) == 3:
             buttons.append(btn)
             btn = []
         btn.append(Button.inline(x, "help_" + x.lower()))
