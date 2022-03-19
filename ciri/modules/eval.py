@@ -6,8 +6,8 @@ import traceback
 
 import requests
 
-from ciri.utils import ciri_cmd, eor
 from ciri import THUMB_FILE
+from ciri.utils import ciri_cmd, eor
 
 
 @ciri_cmd(pattern="eval", full_sudo=True)
@@ -135,7 +135,7 @@ async def _ls(e):
     try:
         cmd = e.text.split(maxsplit=1)[1]
     except IndexError:
-        cmd = '/'
+        cmd = "/"
     try:
         Files = os.listdir(cmd)
     except BaseException as b:
