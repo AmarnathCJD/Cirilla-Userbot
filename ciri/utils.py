@@ -1,9 +1,10 @@
 import glob
 import importlib
 import logging
+import os
 import sys
 from pathlib import Path
-import os
+
 from telethon import events
 
 from ciri import CMD_HANDLERS, FULL_SUDO, OWNER_ID, SUDO, bot, userbot
