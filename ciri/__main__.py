@@ -1,12 +1,12 @@
 import sys
 
-from ciri import userbot, bot, BOT_TOKEN
+from ciri import BOT_TOKEN, bot, userbot
 from ciri.utils import get_owner, load_modules
 
 try:
     userbot.start()
     bot.start(bot_token=BOT_TOKEN)
-except Exception as exc:
+except Exception:
     sys.exit(1)
 
 load_modules()

@@ -1,4 +1,5 @@
 import telethon
+
 from ciri.modules import CheckRights, get_user
 from ciri.utils import ciri_cmd, eor
 
@@ -24,8 +25,13 @@ async def _ban(e: telethon.types.UpdateNewMessage):
     if not user:
         return
     try:
-        await e.client(telethon.functions.channels.EditBannedRequest(
-            channel=e.chat_id, user_id=user.id, banned_rights=telethon.types.ChatBannedRights(view_messages=True)))
+        await e.client(
+            telethon.functions.channels.EditBannedRequest(
+                channel=e.chat_id,
+                user_id=user.id,
+                banned_rights=telethon.types.ChatBannedRights(view_messages=True),
+            )
+        )
     except Exception as err:
         await eor(e, "`{}`".format(err))
         return

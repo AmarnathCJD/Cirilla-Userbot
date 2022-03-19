@@ -5,7 +5,6 @@ from pathlib import Path
 
 from ciri.core import progress
 from ciri.utils import ciri_cmd, eor
-import spotdl as s
 
 
 @ciri_cmd(pattern="spotdl", allow_sudo=True)

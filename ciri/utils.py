@@ -6,7 +6,7 @@ from pathlib import Path
 
 from telethon import events
 
-from ciri import CMD_HANDLERS, FULL_SUDO, OWNER_ID, SUDO, userbot, bot
+from ciri import CMD_HANDLERS, FULL_SUDO, OWNER_ID, SUDO, bot, userbot
 
 
 def ciri_cmd(**args):
@@ -63,7 +63,7 @@ def load_modules():
             sys.modules["ciri.modules." + name] = mod
             print("Import " + name.upper() + " module")
 
+
 async def get_owner():
     global OWNER_ID
     OWNER_ID = (await userbot.get_me()).id
-
