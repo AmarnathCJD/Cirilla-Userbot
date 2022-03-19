@@ -18,6 +18,8 @@ load_dotenv()
 
 # __Cirilla-Userbot__# [© 2021- 2022]
 
+UserDetails = {"id": 0, "first_name": "", "username": ""}
+
 # ENV
 API_KEY = int(os.getenv("API_KEY"))
 API_HASH = os.getenv("API_HASH")
@@ -32,8 +34,8 @@ THUMB = os.environ.get("THUMB", "https://te.legra.ph/file/0f54f2801ef1baea71f95.
 if not CMD_HANDLERS:
     CMD_HANDLERS = "."
 
-with requests.get(THUMB) as r:
-    THUMB_FILE = io.BytesIO(r.content)
+BytesFile = requests.get(THUMB)
+THUMB_FILE = io.BytesIO(BytesFile.content)
 
 OWNER_ID = 1
 
