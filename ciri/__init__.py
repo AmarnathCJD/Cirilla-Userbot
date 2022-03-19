@@ -42,7 +42,6 @@ bot = TelegramClient(None, API_KEY, API_HASH)
 if MONGO_DB_URI:
     db = MongoClient(MONGO_DB_URI)
 else:
-    db = MongoClient()
-    logging.WARNING("No MongoDB URI provided, skipping for now")
+    db = None
 
 FULL_SUDO = SUDO = []
