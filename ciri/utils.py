@@ -11,6 +11,7 @@ from ciri import CMD_HANDLERS, FULL_SUDO, OWNER_ID, SUDO, bot, userbot
 
 
 def ciri_cmd(**args):
+    OWNER_ID = int(OWNER_ID)
     args["pattern"] = "^[" + CMD_HANDLERS + "](?i)" + args["pattern"]
     if args.get("allow_sudo"):
         FROM_USERS = SUDO
