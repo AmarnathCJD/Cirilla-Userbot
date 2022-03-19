@@ -1,6 +1,6 @@
 import sys
 
-from ciri import BOT_TOKEN, bot, userbot
+from ciri import BOT_TOKEN, bot, userbot, OWNER_ID
 from ciri.utils import get_owner, load_modules
 
 try:
@@ -13,4 +13,5 @@ load_modules()
 print("Cirilla Userbot Is Alive")
 
 userbot.loop.run_until_complete(get_owner())
+print(OWNER_ID)
 userbot.run_until_disconnected()
