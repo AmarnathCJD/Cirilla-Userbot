@@ -1,7 +1,6 @@
 import glob
 import importlib
 import logging
-import os
 import sys
 from pathlib import Path
 
@@ -68,4 +67,3 @@ def load_modules():
 async def get_owner():
     global OWNER_ID
     OWNER_ID = (await userbot.get_me()).id
-    
