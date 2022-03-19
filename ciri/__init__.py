@@ -25,7 +25,7 @@ STRING_SESSION = os.getenv("STRING_SESSION")
 CMD_HANDLERS = os.getenv("CMD_HANDLER")
 ALIVE_PIC = os.getenv("ALIVE_PHOTO")
 LOG_CHAT = int(os.getenv("LOG_CHAT"))
-
+THUMB = os.environ.get("THUMB", "https://te.legra.ph/file/0f54f2801ef1baea71f95.jpg")
 
 if not CMD_HANDLERS:
     CMD_HANDLERS = "."
