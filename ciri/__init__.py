@@ -30,7 +30,7 @@ LOG_CHAT = int(os.getenv("LOG_CHAT"))
 if not CMD_HANDLERS:
     CMD_HANDLERS = "."
 
-OWNER_ID = os.getenv("OWNER_ID")
+OWNER_ID = 1
 
 # userbot client
 userbot = TelegramClient(StringSession(STRING_SESSION), API_KEY, API_HASH)
