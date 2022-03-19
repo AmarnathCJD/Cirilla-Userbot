@@ -6,7 +6,7 @@ from pathlib import Path
 
 from telethon import events
 
-from ciri import CMD_HANDLERS, FULL_SUDO, OWNER_ID, SUDO, bot, userbot
+from ciri import CMD_HANDLERS, OWNER_ID, bot, userbot
 
 
 def ciri_cmd(**args):
@@ -16,6 +16,7 @@ def ciri_cmd(**args):
     elif args.get("full_sudo"):
         del args["full_sudo"]
     args["outgoing"] = True
+
     def decorator(func):
         async def wrapper(ev):
             try:
