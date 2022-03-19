@@ -154,6 +154,7 @@ async def t_url_download(message):
         new_gid = await check_metadata(gid)
         await check_progress_for_dl(gid=new_gid, message=message, previous="")
 
+
 @ciri_cmd(pattern="ariadelall$")
 async def clr_aria(message):
     removed = False
@@ -188,25 +189,24 @@ async def show_all(message):
     for download in downloads:
         if str(download.status) != "complete":
             msg = (
-            msg
-            + "**File:**  "
-            + str(download.name)
-            + "\n**Speed:**  "
-            + str(download.download_speed_string())
-            + "\n**Progress:**  "
-            + str(download.progress_string())
-            + "\n**Total Size:**  "
-            + str(download.total_length_string())
-            + "\n**Status:**  "
-            + str(download.status)
-            + "\n**ETA:**  "
-            + str(download.eta_string())
-            + "\n**GID:**  "
-            + f"`{str(download.gid)}`"
-            + "\n\n"
-        )
+                msg
+                + "**File:**  "
+                + str(download.name)
+                + "\n**Speed:**  "
+                + str(download.download_speed_string())
+                + "\n**Progress:**  "
+                + str(download.progress_string())
+                + "\n**Total Size:**  "
+                + str(download.total_length_string())
+                + "\n**Status:**  "
+                + str(download.status)
+                + "\n**ETA:**  "
+                + str(download.eta_string())
+                + "\n**GID:**  "
+                + f"`{str(download.gid)}`"
+                + "\n\n"
+            )
     await eor(e, msg)
-
 
 
 def humanbytes(size, decimal_places=2):
