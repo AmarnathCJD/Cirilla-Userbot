@@ -1,12 +1,11 @@
-import math
-import os
-import math
-import aria2p
-from ciri.utils import ciri_cmd, eor
 from asyncio import sleep
-from pathlib import Path
 from subprocess import PIPE, Popen
+
+import aria2p
 from requests import get
+
+from ciri.utils import ciri_cmd, eor
+
 
 def subprocess_run(cmd):
     subproc = Popen(cmd, stdout=PIPE, stderr=PIPE, shell=True, universal_newlines=True)
@@ -39,14 +38,13 @@ def aria_start():
           --bt-tracker={trackers} \
           --daemon=true \
           --allow-overwrite=true"
-    process = subprocess_run(cmd)
-    aria2 = aria2p.API(
-        aria2p.Client(host="http://localhost", port=6800, secret="")
-    )
+    subprocess_run(cmd)
+    aria2 = aria2p.API(aria2p.Client(host="http://localhost", port=6800, secret=""))
     return aria2
 
 
 aria2p_client = aria_start()
+
 
 async def check_metadata(gid):
     t_file = aria2p_client.get_download(gid)
@@ -54,6 +52,7 @@ async def check_metadata(gid):
         return None
     new_gid = t_file.followed_by_ids[0]
     return new_gid
+
 
 async def check_progress_for_dl(gid, message, previous):
     complete = False
@@ -72,11 +71,13 @@ async def check_progress_for_dl(gid, message, previous):
                 percentage = int(t_file.progress)
                 downloaded = percentage * int(t_file.total_length) / 100
                 prog_str = f"** Downloading! @ {t_file.progress_string()}**"
-                if is_file is None :
-                   info_msg = f"**Connections:**  `{t_file.connections}`\n"
-                else :
-                   info_msg = f"**Connection:**  `{t_file.connections}` \n" \
-                       f"**Seeds:**  `{t_file.num_seeders}` \n"
+                if is_file is None:
+                    info_msg = f"**Connections:**  `{t_file.connections}`\n"
+                else:
+                    info_msg = (
+                        f"**Connection:**  `{t_file.connections}` \n"
+                        f"**Seeds:**  `{t_file.num_seeders}` \n"
+                    )
                 msg = (
                     f"`{prog_str}` \n\n"
                     f"**Name:**  `{t_file.name}` \n"
@@ -109,6 +110,7 @@ async def check_progress_for_dl(gid, message, previous):
                 await message.edit(
                     f"**Download Auto Canceled :**\n`{t_file.name}`\nYour Torrent/Link is Dead."
                 )
+
 
 @ciri_cmd(pattern="ariadl ?(.*)")
 async def t_url_download(message):
@@ -152,9 +154,10 @@ async def t_url_download(message):
         new_gid = await check_metadata(gid)
         await check_progress_for_dl(gid=new_gid, message=message, previous="")
 
+
 def humanbytes(size, decimal_places=2):
-    for unit in ['B', 'KiB', 'MiB', 'GiB', 'TiB', 'PiB']:
-        if size < 1024.0 or unit == 'PiB':
+    for unit in ["B", "KiB", "MiB", "GiB", "TiB", "PiB"]:
+        if size < 1024.0 or unit == "PiB":
             break
         size /= 1024.0
     return f"{size:.{decimal_places}f} {unit}"
