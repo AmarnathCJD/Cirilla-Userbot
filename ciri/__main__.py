@@ -1,6 +1,6 @@
 import sys
 
-from ciri import BOT_TOKEN, bot, userbot, OWNER_ID
+from ciri import BOT_TOKEN, OWNER_ID, bot, userbot
 from ciri.utils import get_owner, load_modules
 
 try:
