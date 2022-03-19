@@ -1,7 +1,8 @@
+import io
 import logging
 import os
+
 import requests
-import io
 from dotenv import load_dotenv
 from pymongo import MongoClient
 from telethon import TelegramClient
@@ -32,7 +33,7 @@ if not CMD_HANDLERS:
     CMD_HANDLERS = "."
 
 with requests.get(THUMB) as r:
- THUMB_FILE = io.BytesIO(r.content)
+    THUMB_FILE = io.BytesIO(r.content)
 
 OWNER_ID = 1
 
