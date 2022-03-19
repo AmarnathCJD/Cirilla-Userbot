@@ -66,5 +66,6 @@ def load_modules():
 
 
 async def get_owner():
+    global OWNER_ID
     OWNER_ID = (await userbot.get_me()).id
-    os.environ["OWNER_ID"] = str(OWNER_ID)
+    
