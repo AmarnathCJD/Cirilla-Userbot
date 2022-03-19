@@ -12,18 +12,10 @@ from ciri import CMD_HANDLERS, FULL_SUDO, OWNER_ID, SUDO, bot, userbot
 def ciri_cmd(**args):
     args["pattern"] = "^[" + CMD_HANDLERS + "](?i)" + args["pattern"]
     if args.get("allow_sudo"):
-        FROM_USERS = SUDO
-        FROM_USERS.append(int(OWNER_ID))
-        args["from_users"] = FROM_USERS
         del args["allow_sudo"]
     elif args.get("full_sudo"):
-        FROM_USERS = FULL_SUDO
-        FROM_USERS.append(int(OWNER_ID))
-        args["from_users"] = FROM_USERS
         del args["full_sudo"]
-    else:
-        args["from_users"] = int(OWNER_ID)
-
+    args["outgoing"] = True
     def decorator(func):
         async def wrapper(ev):
             try:
