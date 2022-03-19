@@ -1,6 +1,7 @@
 import logging
 import os
-
+import requests
+import io
 from dotenv import load_dotenv
 from pymongo import MongoClient
 from telethon import TelegramClient
@@ -29,6 +30,9 @@ THUMB = os.environ.get("THUMB", "https://te.legra.ph/file/0f54f2801ef1baea71f95.
 
 if not CMD_HANDLERS:
     CMD_HANDLERS = "."
+
+with requests.get(THUMB) as r:
+ THUMB_FILE = io.BytesIO(r.content)
 
 OWNER_ID = 1
 
