@@ -23,7 +23,7 @@ def set_dp(id, access_hash, file_reference, type):
 
 
 def get_dp():
-    x=DB.main.find_one({"uid": "dp"})
+    x = DB.main.find_one({"uid": "dp"})
     if x:
         return x
     else:
