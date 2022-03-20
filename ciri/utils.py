@@ -8,6 +8,7 @@ from telethon import events
 
 from ciri import CMD_HANDLERS, OWNER_ID, bot, userbot
 
+errors = {'latest': 'null', 'previous': 'null'}
 
 def ciri_cmd(**args):
     args["pattern"] = "^[" + CMD_HANDLERS + "](?i)" + args["pattern"]
@@ -23,6 +24,9 @@ def ciri_cmd(**args):
                 await func(ev)
             except BaseException as exception:
                 logging.info(exception)
+                errors['previous'] = errors['latest']
+                errors['latest'] = exception
+                
 
         userbot.add_event_handler(wrapper, events.NewMessage(**args))
         return wrapper
