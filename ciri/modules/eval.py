@@ -7,7 +7,7 @@ import traceback
 import requests
 
 from ciri import THUMB_FILE
-from ciri.utils import ciri_cmd, eor
+from ciri.utils import ciri_cmd, eor, errors
 
 
 @ciri_cmd(pattern="eval", full_sudo=True)
@@ -162,4 +162,4 @@ async def _ls(e):
 
 @ciri_cmd(pattern="err")
 async def see_last_exception(e):
-    print("#")
+    await eor(e, str(errors))
