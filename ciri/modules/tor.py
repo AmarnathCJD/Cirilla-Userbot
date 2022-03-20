@@ -39,8 +39,7 @@ def aria_start():
           --daemon=true \
           --allow-overwrite=true"
     subprocess_run(cmd)
-    aria2 = aria2p.API(aria2p.Client(
-        host="http://localhost", port=6800, secret=""))
+    aria2 = aria2p.API(aria2p.Client(host="http://localhost", port=6800, secret=""))
     return aria2
 
 
@@ -179,8 +178,7 @@ async def remove_a_download(message):
         await eor(message, "GID not found ....")
         return
     file_name = downloads.name
-    aria2p_client.remove(downloads=[downloads],
-                         force=True, files=True, clean=True)
+    aria2p_client.remove(downloads=[downloads], force=True, files=True, clean=True)
     await eor(message, f"**Successfully cancelled download.** \n`{file_name}`")
 
 
@@ -238,7 +236,10 @@ help = {
     },
     "ariapause": {"description": "Pauses all downloads.", "usage": ".ariapause"},
     "ariaresume": {"description": "Resumes all downloads.", "usage": ".ariaresume"},
-    "ariacancel": {"description": "Cancel download of specific gid.", "usage": ".ariacancel <gid>"},
+    "ariacancel": {
+        "description": "Cancel download of specific gid.",
+        "usage": ".ariacancel <gid>",
+    },
     "ariadelall": {"description": "Cancel all downloads.", "usage": ".ariadelall"},
-    "ariastatus": {"description": "Shows all downloads.", "usage": ".ariastatus"}
+    "ariastatus": {"description": "Shows all downloads.", "usage": ".ariastatus"},
 }
