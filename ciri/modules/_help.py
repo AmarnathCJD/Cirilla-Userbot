@@ -49,8 +49,8 @@ Pʟᴜɢɪɴs ~ 77
 Aᴅᴅᴏɴs ~ 85
 Tᴏᴛᴀʟ Cᴏᴍᴍᴀɴᴅs ~ 562
 """
-    r = await e.builder.photo(
-        file=get_dp(),
+    r = await e.builder.article(
+        title="1.0.0",
         text=string,
         buttons=main_help_menu,
     )
