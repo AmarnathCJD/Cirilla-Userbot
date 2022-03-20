@@ -20,7 +20,7 @@ async def _kmg_to_stkr(e):
     if not r and not r.photo:
         return await eor(e, "`Thats not a image.`")
     pht = await r.download_media()
-    new_name = stk.replace(stk.split(.)[-1], "") + ".jpg"
+    new_name = stk.replace(stk.split('.')[-1], "") + ".jpg"
     os.rename(pht, new_name)
     await e.respond(file=new_name)
     await e.delete()
