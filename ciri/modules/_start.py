@@ -35,8 +35,7 @@ async def _start(e):
         file = None
     try:
         await e.respond(
-            ALIVE_CAPTION.format(
-                me.first_name, (time.time() - StartTime) / 3600),
+            ALIVE_CAPTION.format(me.first_name, (time.time() - StartTime) / 3600),
             file=file,
             parse_mode="html",
             link_preview=False,
