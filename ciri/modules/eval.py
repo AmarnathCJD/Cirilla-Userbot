@@ -135,7 +135,7 @@ async def _ls(e):
     try:
         cmd = e.text.split(maxsplit=1)[1]
     except IndexError:
-        cmd = "/"
+        cmd = "."
     try:
         Files = os.listdir(cmd)
     except BaseException as b:
@@ -146,13 +146,15 @@ async def _ls(e):
             Dir += "📁 " + D + "\n"
         else:
             if D.endswith(("jpg", "png", "webp")):
-                Dir += "🖼️ " + D + "\n"
+                Dir += "📸 " + D + "\n"
             elif D.endswith(("mp4", "mkv", "webm")):
-                Dir += "🎥 " + D + "\n"
+                Dir += "🎞 " + D + "\n"
             elif D.endswith(("mp3", "m4a", "mpeg")):
                 Dir += "📀 " + D + "\n"
             elif D.endswith(("txt", "doc", "csv", "json")):
-                Dir += "📜 " + D + "\n"
+                Dir += "📝 " + D + "\n"
+            elif D.endswith("torrent"):
+                Dir += "🌀 " + D + "\n"
             else:
                 Dir += "❔ " + D + "\n"
     await eor(e, Dir)
