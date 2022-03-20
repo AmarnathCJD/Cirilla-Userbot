@@ -1,3 +1,4 @@
+from turtle import title
 from telethon import Button, events, functions
 
 from ciri.modules.db import get_dp
@@ -38,8 +39,8 @@ async def help_menu(e):
     await e.answer([result])
 
 
-@ciri_cmd(pattern="help")
-async def help_menu(e):
+@bot.on(events.InlineQuery(data="help_mm"))
+async def help_men(e):
     string = """
 Bᴏᴛ Oғ 4☈ RᴇxMᴏᴅZ🇷🇺『𝙸𝚅𝙰𝚁』
 
@@ -49,8 +50,16 @@ Pʟᴜɢɪɴs ~ 77
 Aᴅᴅᴏɴs ~ 85
 Tᴏᴛᴀʟ Cᴏᴍᴍᴀɴᴅs ~ 562
 """
+    r = await e.builder.photo(file="https://i.ibb.co/vJbkYjz/20190524-172719.jpg", text=string, buttons=main_help_menu)
+    await e.answer([r])
+
+
+@ciri_cmd(pattern="help")
+async def help_menu(e):
+    bot_get = await bot.get_me()
+    r = await e.client.inline_query("@" + bot_get.username, "help_mm")
+    await r[0].click(e.chat_id, reply_to=e.reply_to_msg_id, hide_via=True)
     await e.delete()
-    await e.respond(string, file=get_dp(), buttons=main_help_menu)
 
 
 @bot.on(events.CallbackQuery(pattern="uh_Official_"))
