@@ -23,4 +23,8 @@ def set_dp(id, access_hash, file_reference, type):
 
 
 def get_dp():
-    return DB.main.find_one({"uid": "dp"})
+    x=DB.main.find_one({"uid": "dp"})
+    if x:
+        return x
+    else:
+        return {"id": "https://te.legra.ph/file/cb37180e3aaa92dac6f40.jpg", "type": "link"}

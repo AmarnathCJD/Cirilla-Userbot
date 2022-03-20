@@ -1,5 +1,7 @@
 from telethon import Button, events, functions
 
+from ciri.modules.db import get_dp
+
 from .. import HelpStr, bot
 from ..utils import ciri_cmd, eor
 
@@ -48,7 +50,7 @@ Aᴅᴅᴏɴs ~ 85
 Tᴏᴛᴀʟ Cᴏᴍᴍᴀɴᴅs ~ 562
 """
     r = await e.builder.photo(
-        file="https://i.ibb.co/vJbkYjz/20190524-172719.jpg",
+        file=get_dp(),
         text=string,
         buttons=main_help_menu,
     )
