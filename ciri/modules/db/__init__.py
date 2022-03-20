@@ -3,7 +3,7 @@ from os import getenv
 DB_URL = getenv("MONGO_DB_URL")
 
 from pymongo import MongoClient
-
+from telethon import types
 DB = MongoClient(DB_URL)["ciri"]
 
 
@@ -27,4 +27,4 @@ def get_dp():
     if x:
         return x
     else:
-        return {"id": "https://te.legra.ph/file/cb37180e3aaa92dac6f40.jpg", "type": "link"}
+        return types.Document(id=5888843716973562956, access_hash=8845595446721316165, file_reference=b'\x04H\xdeIR\x00\x06I\xc8b6\xfd\xfe\xb1~\xcd\xc9\xc8\xa7-\x8f\xa0\xbc`\x7f\xd6\xef\xee\x19')

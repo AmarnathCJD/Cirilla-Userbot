@@ -87,9 +87,9 @@ def construct_dp():
 @ciri_cmd(pattern="setalive")
 async def _setalive(e):
     r = await e.get_reply_message()
-    p = e.text.split("")
+    p = e.text.split(maxsplit=2)
     if not r.media and len(p) > 1:
-        set_dp(p[1], "", "", "link")
+        set_dp(p[1], ".", ".", "link")
         await eor(e, "`Setted.`")
     elif r.media:
         if r.photo:
