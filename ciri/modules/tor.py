@@ -40,7 +40,8 @@ def aria_start():
           --daemon=true \
           --allow-overwrite=true"
     subprocess_run(cmd)
-    aria2 = aria2p.API(aria2p.Client(host="http://localhost", port=6800, secret=""))
+    aria2 = aria2p.API(aria2p.Client(
+        host="http://localhost", port=6800, secret=""))
     return aria2
 
 
@@ -155,15 +156,73 @@ async def t_url_download(message):
         new_gid = await check_metadata(gid)
         await check_progress_for_dl(gid=new_gid, message=message, previous="")
 
+
+@ciri_cmd(pattern="ariadelall$")
+async def clr_aria(message):
+    removed = False
+    try:
+        removed = aria2p_client.remove_all(force=True)
+        aria2p_client.purge()
+    except Exception as e:
+        print(e)
+    await sleep(1)
+    if not removed:
+        subprocess_run("aria2p remove-all")
+    await eor(message, "`Successfully cleared all downloads.`")
+
+
+@ciri_cmd(pattern="ariacancel ?(.*)")
+async def remove_a_download(message):
+    g_id = message.pattern_match.group(1)
+    try:
+        downloads = aria2p_client.get_download(g_id)
+    except:
+        await eor(message, "GID not found ....")
+        return
+    file_name = downloads.name
+    aria2p_client.remove(downloads=[downloads],
+                         force=True, files=True, clean=True)
+    await eor(message, f"**Successfully cancelled download.** \n`{file_name}`")
+
+
+@ciri_cmd(pattern="ariastatus$")
+async def show_all(message):
+    downloads = aria2p_client.get_downloads()
+    msg = "**On Going Downloads**\n\n"
+    for download in downloads:
+        if str(download.status) != "complete":
+            msg = (
+                msg
+                + "**File:**  "
+                + str(download.name)
+                + "\n**Speed:**  "
+                + str(download.download_speed_string())
+                + "\n**Progress:**  "
+                + str(download.progress_string())
+                + "\n**Total Size:**  "
+                + str(download.total_length_string())
+                + "\n**Status:**  "
+                + str(download.status)
+                + "\n**ETA:**  "
+                + str(download.eta_string())
+                + "\n**GID:**  "
+                + f"`{str(download.gid)}`"
+                + "\n\n"
+            )
+    await eor(message, msg)
+
+
 @ciri_cmd(pattern="ariapause")
 async def pause_all(message):
     await eor(message, "`Pausing downloads...`")
     aria2p_client.pause_all()
 
+
 @ciri_cmd(pattern="ariaresume")
 async def resume_all(message):
     await eor(message, "`Resuming downloads...`")
-    aria2p_client.resume_all()    
+    aria2p_client.resume_all()
+
 
 def humanbytes(size, decimal_places=2):
     for unit in ['B', 'KB', 'MB', 'GB', 'TB', 'PB']:
@@ -172,10 +231,12 @@ def humanbytes(size, decimal_places=2):
         size /= 1024.0
     return f"{size:.{decimal_places}f} {unit}"
 
+
 help = {
     "ariadl": {"description": "Downloads torrent file from the given url or magnet link.", "usage": ".ariadl <url> or .ariadl <magnet link>"},
     "ariapause": {"description": "Pauses all downloads.", "usage": ".ariapause"},
     "ariaresume": {"description": "Resumes all downloads.", "usage": ".ariaresume"},
-    "ariacancel": {"description": "Cancel download of specific gid.", "usage": ".ariacancel <gid>"}
-    
+    "ariacancel": {"description": "Cancel download of specific gid.", "usage": ".ariacancel <gid>"},
+    "ariadelall": {"description": "Cancel all downloads.", "usage": ".ariadelall"},
+    "ariastatus": {"description": "Shows all downloads.", "usage": ".ariastatus"}
 }
