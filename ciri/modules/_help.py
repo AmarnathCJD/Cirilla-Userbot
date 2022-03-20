@@ -36,7 +36,7 @@ async def help_menu(e):
     await e.answer([result])
 
 
-@bot.on(events.InlineQuery(pattern="help_mm"))
+@bot.on(events.InlineQuery(pattern="hedd"))
 async def help_men(e):
     string = """
 Bᴏᴛ Oғ 4☈ RᴇxMᴏᴅZ🇷🇺『𝙸𝚅𝙰𝚁』
@@ -58,7 +58,7 @@ Tᴏᴛᴀʟ Cᴏᴍᴍᴀɴᴅs ~ 562
 @ciri_cmd(pattern="help")
 async def help_menu(e):
     bot_get = await bot.get_me()
-    r = await e.client.inline_query("@" + bot_get.username, "help_mm")
+    r = await e.client.inline_query("@" + bot_get.username, "hedd")
     await r[0].click(e.chat_id, reply_to=e.reply_to_msg_id, hide_via=True)
     await e.delete()
 
