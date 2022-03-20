@@ -1,7 +1,5 @@
 from telethon import Button, events, functions
 
-from ciri.modules.db import get_dp
-
 from .. import HelpStr, bot
 from ..utils import ciri_cmd, eor
 
