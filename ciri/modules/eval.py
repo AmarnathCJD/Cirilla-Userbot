@@ -159,6 +159,7 @@ async def _ls(e):
                 Dir += "❔ " + D + "\n"
     await eor(e, Dir)
 
+
 @ciri_cmd(pattern="err")
 async def see_last_exception(e):
- print('#')
+    print("#")
