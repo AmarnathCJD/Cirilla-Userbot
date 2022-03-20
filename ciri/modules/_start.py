@@ -63,7 +63,7 @@ def construct_dp():
         return dp["id"], "link"
     elif dp["type"] in ["sticker", "gif"]:
         return (
-            types.Document(
+            types.InputDocument(
                 id=dp["id"],
                 access_hash=dp["access_hash"],
                 file_reference=dp["file_reference"],
@@ -72,13 +72,10 @@ def construct_dp():
         )
     elif dp["type"] == "photo":
         return (
-            types.Photo(
+            types.InputPhoto(
                 id=dp["id"],
                 access_hash=dp["access_hash"],
                 file_reference=dp["file_reference"],
-                dc_id=4,
-                date=datetime.datetime.now(),
-                sizes=0,
             ),
             "photo",
         )
