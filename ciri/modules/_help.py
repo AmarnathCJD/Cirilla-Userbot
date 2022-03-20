@@ -1,7 +1,4 @@
-from turtle import title
 from telethon import Button, events, functions
-
-from ciri.modules.db import get_dp
 
 from .. import HelpStr, bot
 from ..utils import ciri_cmd, eor
@@ -50,7 +47,11 @@ Pʟᴜɢɪɴs ~ 77
 Aᴅᴅᴏɴs ~ 85
 Tᴏᴛᴀʟ Cᴏᴍᴍᴀɴᴅs ~ 562
 """
-    r = await e.builder.photo(file="https://i.ibb.co/vJbkYjz/20190524-172719.jpg", text=string, buttons=main_help_menu)
+    r = await e.builder.photo(
+        file="https://i.ibb.co/vJbkYjz/20190524-172719.jpg",
+        text=string,
+        buttons=main_help_menu,
+    )
     await e.answer([r])
 
 
