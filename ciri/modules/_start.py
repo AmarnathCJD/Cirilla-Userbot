@@ -43,7 +43,7 @@ async def _start(e):
         print(abc)
 
 
-@ciri_cmd(pattern="setalivepic", allow_sudo=True)
+@ciri_cmd(pattern="alivepic")
 async def set_dp(e):
     payload = e.text.split()
     if len(payload) > 1:
@@ -78,6 +78,7 @@ async def set_dp(e):
         _file_reference = ""
     set_dp(_id, _access_hash, _file_reference, _type)
     await eor(e, "sucessfully set custom alive pic.")
+    return
 
 
 @ciri_cmd(pattern="ping")
