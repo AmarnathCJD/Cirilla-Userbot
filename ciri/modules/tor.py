@@ -1,15 +1,20 @@
 import math
 import os
 import math
+
+import telethon
 import aria2p
+import ciri
 from ciri.utils import ciri_cmd, eor
 from asyncio import sleep
 from pathlib import Path
 from subprocess import PIPE, Popen
 from requests import get
 
+
 def subprocess_run(cmd):
-    subproc = Popen(cmd, stdout=PIPE, stderr=PIPE, shell=True, universal_newlines=True)
+    subproc = Popen(cmd, stdout=PIPE, stderr=PIPE,
+                    shell=True, universal_newlines=True)
     talk = subproc.communicate()
     exitCode = subproc.returncode
     if exitCode != 0:
@@ -48,12 +53,14 @@ def aria_start():
 
 aria2p_client = aria_start()
 
+
 async def check_metadata(gid):
     t_file = aria2p_client.get_download(gid)
     if not t_file.followed_by_ids:
         return None
     new_gid = t_file.followed_by_ids[0]
     return new_gid
+
 
 async def check_progress_for_dl(gid, message, previous):
     complete = False
@@ -72,11 +79,11 @@ async def check_progress_for_dl(gid, message, previous):
                 percentage = int(t_file.progress)
                 downloaded = percentage * int(t_file.total_length) / 100
                 prog_str = f"** Downloading! @ {t_file.progress_string()}**"
-                if is_file is None :
-                   info_msg = f"**Connections:**  `{t_file.connections}`\n"
-                else :
-                   info_msg = f"**Connection:**  `{t_file.connections}` \n" \
-                       f"**Seeds:**  `{t_file.num_seeders}` \n"
+                if is_file is None:
+                    info_msg = f"**Connections:**  `{t_file.connections}`\n"
+                else:
+                    info_msg = f"**Connection:**  `{t_file.connections}` \n" \
+                        f"**Seeds:**  `{t_file.num_seeders}` \n"
                 msg = (
                     f"`{prog_str}` \n\n"
                     f"**Name:**  `{t_file.name}` \n"
@@ -110,6 +117,7 @@ async def check_progress_for_dl(gid, message, previous):
                     f"**Download Auto Canceled :**\n`{t_file.name}`\nYour Torrent/Link is Dead."
                 )
 
+
 @ciri_cmd(pattern="ariadl ?(.*)")
 async def t_url_download(message):
     is_url, is_mag = False, False
@@ -126,14 +134,14 @@ async def t_url_download(message):
             return await message.edit(f"**ERROR:**  `{e}`")
     elif args:
         if args.lower().startswith("http"):
-            try:  # URL
+            try:
                 is_url = True
                 download = aria2p_client.add_uris([args], options=None)
             except Exception as e:
                 return await message.edit(f"**ERROR while adding URI** \n`{e}`")
         elif args.lower().startswith("magnet:"):
             is_mag = True
-            try:  # Magnet
+            try:
                 download = aria2p_client.add_magnet(args, options=None)
             except Exception as e:
                 return await message.edit(f"**ERROR while adding URI** \n`{e}`")
@@ -152,9 +160,27 @@ async def t_url_download(message):
         new_gid = await check_metadata(gid)
         await check_progress_for_dl(gid=new_gid, message=message, previous="")
 
+@ciri_cmd(pattern="ariapause")
+async def pause_all(message):
+    await eor(message, "`Pausing downloads...`")
+    aria2p_client.pause_all()
+
+@ciri_cmd(pattern="ariaresume")
+async def resume_all(message):
+    await eor(message, "`Resuming downloads...`")
+    aria2p_client.resume_all()    
+
 def humanbytes(size, decimal_places=2):
-    for unit in ['B', 'KiB', 'MiB', 'GiB', 'TiB', 'PiB']:
-        if size < 1024.0 or unit == 'PiB':
+    for unit in ['B', 'KB', 'MB', 'GB', 'TB', 'PB']:
+        if size < 1024.0 or unit == 'PB':
             break
         size /= 1024.0
     return f"{size:.{decimal_places}f} {unit}"
+
+help = {
+    "ariadl": {"description": "Downloads torrent file from the given url or magnet link.", "usage": ".ariadl <url> or .ariadl <magnet link>"},
+    "ariapause": {"description": "Pauses all downloads.", "usage": ".ariapause"},
+    "ariaresume": {"description": "Resumes all downloads.", "usage": ".ariaresume"},
+    "ariacancel": {"description": "Cancel download of specific gid.", "usage": ".ariacancel <gid>"}
+    
+}
