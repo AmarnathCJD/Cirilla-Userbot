@@ -39,7 +39,7 @@ async def help_menu(e):
     await e.answer([result])
 
 
-@bot.on(events.InlineQuery(data="help_mm"))
+@bot.on(events.InlineQuery(pattern="help_mm"))
 async def help_men(e):
     string = """
 Bᴏᴛ Oғ 4☈ RᴇxMᴏᴅZ🇷🇺『𝙸𝚅𝙰𝚁』
