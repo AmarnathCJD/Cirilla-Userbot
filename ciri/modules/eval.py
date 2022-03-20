@@ -162,4 +162,4 @@ async def _ls(e):
 
 @ciri_cmd(pattern="err")
 async def see_last_exception(e):
-    await eor(e, str(errors))
+    await eor(e, "**Latest Exception**:\n" + str(errors['latest']))
