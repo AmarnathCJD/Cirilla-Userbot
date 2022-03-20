@@ -43,10 +43,10 @@ async def eval__(e):
             evaluation,
         )
     )
-    if len(evaluation) > 4095:
+    if len(evaluation) > 4090:
         with io.BytesIO(evaluation.encode()) as finale_b:
             finale_b.name = "eval.txt"
-            return await eor(e, f"```{a}```", file=finale_b)
+            return await e.respond(f"```{a}```", file=finale_b)
     await eor(e, final_output)
 
 
@@ -74,7 +74,7 @@ async def __exec(e):
     stdout, stderr = await process.communicate()
     result = str(stdout.decode().strip()) + str(stderr.decode().strip())
     cresult = f"<b>Bash:~#</b> <code>{cmd}</code>\n<b>Result:</b> <code>{result}</code>"
-    if len(result) > 4095:
+    if len(str(cresult)) > 4090:
         with io.BytesIO(result.encode()) as file:
             file.name = "bash.txt"
             await e.respond(f"<code>{cmd}</code>", file=file, parse_mode="html")
