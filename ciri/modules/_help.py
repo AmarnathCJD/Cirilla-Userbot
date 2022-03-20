@@ -1,9 +1,25 @@
+from .. import HelpStr, userbot
+from ..utils import ciri_cmd, eor
+from telethon import Button, events, functions
+from ciri.modules.db import get_dp
 from .. import bot
 
-cmds = ["Alive", "Admin", "Autodp", "Eval", "Spotdl", "Torr", "StickTools"]
-from telethon import Button, events, functions
+cmds = ["Alive", "Admin", "Dp", "Eval", "Spotdl", "Torr", "StickTools"]
 
-from ..utils import ciri_cmd, eor
+
+main_help_menu = [
+    [
+        Button.inline("Plugins", data="uh_Official_"),
+        Button.inline("Addons", data="uh_Addons_"),
+    ],
+    [
+        Button.inline("Owner Tools", data="ownr"),
+        Button.url(
+            "Settings", url=f"https://t.me/aiko_robot?start=set"
+        ),
+    ],
+    [Button.inline("Close", data="close")],
+]
 
 
 @bot.on(events.InlineQuery(pattern="help"))
@@ -24,12 +40,38 @@ async def help_menu(e):
 
 
 @ciri_cmd(pattern="help")
+async def help_menu(e):
+    string = """
+Bᴏᴛ Oғ 4☈ RᴇxMᴏᴅZ🇷🇺『𝙸𝚅𝙰𝚁』
+
+Mᴀɪɴ Mᴇɴᴜ
+
+Pʟᴜɢɪɴs ~ 77
+Aᴅᴅᴏɴs ~ 85
+Tᴏᴛᴀʟ Cᴏᴍᴍᴀɴᴅs ~ 562
+"""
+    await e.delete()
+    await e.respond(string, file=get_dp(), buttons=main_help_menu)
+
+
+@bot.on(events.CallbackQuery(pattern="uh_Official_"))
 async def help_show(e):
     bot_get = await bot.get_me()
     r = await e.client.inline_query("@" + bot_get.username, "help")
     await r[0].click(e.chat_id, reply_to=e.reply_to_msg_id, hide_via=True)
     await e.delete()
 
+@bot.on(events.CallbackQuery(pattern="help(\_(.*))"))
+async def help_show(e):
+    p = e.pattern_match.group(1)
+    if p in HelpStr:
+        string = "Help for {}/n**Description:** ".format(p)
+        string += HelpStr[p]["description"]
+        string += "\n**Usage:** "
+        string += HelpStr[p]["usage"]
+        await e.edit(string, buttons=Button.inline("Back", "help_back"))
+    else:
+        await e.answer("No help found for this plugin.", alert=True)
 
 @ciri_cmd(pattern="dc")
 async def _(e):

@@ -2,6 +2,7 @@ import asyncio
 import os
 import time
 from pathlib import Path
+from ciri import HelpStr
 
 from ciri.core import progress
 from ciri.utils import ciri_cmd, eor
@@ -31,4 +32,8 @@ async def spot_dl(e):
         await e.delete()
         os.remove(file)
     except Exception as ex:
-        return await eor(e, str(ex))
+        await eor(e, "Song not found!")
+
+HelpStr.append({
+    "spotdl": {"description": "Downloads songs from spotify.", "usage": "spotdl <query>"},
+})

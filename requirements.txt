@@ -6,3 +6,4 @@ bing_image_urls
 gitpython
 aira2p
 numpy
+google-translate.py

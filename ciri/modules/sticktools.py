@@ -1,4 +1,5 @@
 import os
+from ciri import HelpStr
 
 from ciri.utils import ciri_cmd, eor
 
@@ -21,8 +22,13 @@ async def _kmg_to_stkr(e):
     if not r and not r.photo:
         return await eor(e, "`Thats not a image.`")
     pht = await r.download_media()
-    new_name = stk.replace(stk.split(".")[-1], "") + ".jpg"
+    new_name = pht.replace(pht.split(".")[-1], "") + ".jpg"
     os.rename(pht, new_name)
     await e.respond(file=new_name)
     await e.delete()
     os.remove(new_name)
+
+HelpStr.append({
+    "stoi": {"description": "Sticker to Image", "usage": ".stoi"},
+    "itos": {"description": "Image to Sticker", "usage": ".itos"}
+})

@@ -50,4 +50,3 @@ async def CheckRights(e, right: str):
     else:
         await eor(e, "You don't have the right to use this command!")
         return False
-    e.chat.admin_rights

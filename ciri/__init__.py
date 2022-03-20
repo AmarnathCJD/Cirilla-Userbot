@@ -1,6 +1,7 @@
 import io
 import logging
 import os
+import time
 
 import requests
 from dotenv import load_dotenv
@@ -19,6 +20,8 @@ load_dotenv()
 # __Cirilla-Userbot__# [© 2021- 2022]
 
 UserDetails = {"id": 0, "first_name": "", "username": ""}
+HelpStr = []
+StartTime = time.time()
 
 # ENV
 API_KEY = int(os.getenv("API_KEY"))

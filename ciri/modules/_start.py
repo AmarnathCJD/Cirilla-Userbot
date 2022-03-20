@@ -1,8 +1,9 @@
 import datetime
+import time
 
 from telethon import types
 
-from ciri import ALIVE_PIC
+from ciri import ALIVE_PIC, StartTime
 from ciri.utils import ciri_cmd, eor
 
 from .db import get_dp, set_dp
@@ -16,7 +17,7 @@ ALIVE_CAPTION = """
 
 <b>✵ Owner -</b> {}
 <b>✵ Ciri -</b> v1.2
-<b>✵ UpTime -</b> soon!
+<b>✵ UpTime -</b> {}
 <b>✵ Python -</b> <code>3.10</code>
 <b>✵ Telethon -</b> </code>1.25.1</code>
 <b>✵ Branch -</b>  <a href='github.com/amarnathcjd/cirilla-userbot'>master</a>
@@ -34,51 +35,14 @@ async def _start(e):
         file = None
     try:
         await e.respond(
-            ALIVE_CAPTION.format(me.first_name),
+            ALIVE_CAPTION.format(
+                me.first_name, (time.time() - StartTime).strftime("%H:%M:%S")),
             file=file,
             parse_mode="html",
             link_preview=False,
         )
     except Exception as abc:
         print(abc)
-
-
-@ciri_cmd(pattern="alivepic")
-async def set_dp(e):
-    payload = e.text.split()
-    if len(payload) > 1:
-        payload = payload[1]
-    else:
-        payload = ""
-    if not payload:
-        if not e.reply_to and not (await e.get_reply_message()).media:
-            return await eor(e, "`Reply to image to set alive pic!`")
-        r = await e.get_reply_message()
-        if not r.photo and not r.sticker and not r.gif:
-            return await eor(e, "Thats not a valid sticker or image.")
-        if r.sticker:
-            _type = "sticker"
-            _id = r.sticker.id
-            _access_hash = r.sticker.access_hash
-            _file_reference = r.sticker.file_reference
-        elif r.photo:
-            _type = "photo"
-            _id = r.photo.id
-            _access_hash = r.photo.access_hash
-            _file_reference = r.photo.file_reference
-        elif r.gif:
-            _type = "gif"
-            _id = r.gif.id
-            _access_hash = r.gif.access_hash
-            _file_reference = r.gif.file_reference
-    else:
-        _type = "link"
-        _id = payload
-        _access_hash = ""
-        _file_reference = ""
-    set_dp(_id, _access_hash, _file_reference, _type)
-    await eor(e, "sucessfully set custom alive pic.")
-    return
 
 
 @ciri_cmd(pattern="ping")
@@ -115,10 +79,42 @@ def construct_dp():
                 file_reference=dp["file_reference"],
                 dc_id=4,
                 date=datetime.datetime.now(),
-                sizes=[6],
+                sizes=0,
             ),
             "photo",
         )
 
 
-# soon
+@ciri_cmd(pattern="setalive")
+async def _setalive(e):
+    r = await e.get_reply_message()
+    p = e.text.split("")
+    if not r.media and len(p) > 1:
+        set_dp(p[1], "", "", "link")
+        await eor(e, "`Setted.`")
+    elif r.media:
+        if r.photo:
+            set_dp(
+                r.photo.id,
+                r.photo.access_hash,
+                r.photo.file_reference,
+                "photo",
+            )
+        elif r.sticker:
+            set_dp(
+                r.sticker.id,
+                r.sticker.access_hash,
+                r.sticker.file_reference,
+                "sticker",
+            )
+        elif r.gif:
+            set_dp(
+                r.gif.id,
+                r.gif.access_hash,
+                r.gif.file_reference,
+                "gif",
+            )
+        await eor(e, "`Setted.`")
+    else:
+        await eor(e, "`I can't set this.`")
+
