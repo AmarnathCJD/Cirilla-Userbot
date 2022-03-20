@@ -8,8 +8,7 @@ from ciri.utils import ciri_cmd, eor
 
 
 def subprocess_run(cmd):
-    subproc = Popen(cmd, stdout=PIPE, stderr=PIPE,
-                    shell=True, universal_newlines=True)
+    subproc = Popen(cmd, stdout=PIPE, stderr=PIPE, shell=True, universal_newlines=True)
     talk = subproc.communicate()
     exitCode = subproc.returncode
     if exitCode != 0:
@@ -225,15 +224,18 @@ async def resume_all(message):
 
 
 def humanbytes(size, decimal_places=2):
-    for unit in ['B', 'KB', 'MB', 'GB', 'TB', 'PB']:
-        if size < 1024.0 or unit == 'PB':
+    for unit in ["B", "KB", "MB", "GB", "TB", "PB"]:
+        if size < 1024.0 or unit == "PB":
             break
         size /= 1024.0
     return f"{size:.{decimal_places}f} {unit}"
 
 
 help = {
-    "ariadl": {"description": "Downloads torrent file from the given url or magnet link.", "usage": ".ariadl <url> or .ariadl <magnet link>"},
+    "ariadl": {
+        "description": "Downloads torrent file from the given url or magnet link.",
+        "usage": ".ariadl <url> or .ariadl <magnet link>",
+    },
     "ariapause": {"description": "Pauses all downloads.", "usage": ".ariapause"},
     "ariaresume": {"description": "Resumes all downloads.", "usage": ".ariaresume"},
     "ariacancel": {"description": "Cancel download of specific gid.", "usage": ".ariacancel <gid>"},
