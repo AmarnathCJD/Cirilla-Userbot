@@ -13,7 +13,7 @@ def set_dp(id, access_hash, file_reference, type):
         {
             "$set": {
                 "id": id,
-                "acess_hash": access_hash,
+                "access_hash": access_hash,
                 "file_reference": file_reference,
                 "type": type,
             }
