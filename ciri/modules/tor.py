@@ -1,15 +1,10 @@
-import math
-import os
-import math
-
-import telethon
-import aria2p
-import ciri
-from ciri.utils import ciri_cmd, eor
 from asyncio import sleep
-from pathlib import Path
 from subprocess import PIPE, Popen
+
+import aria2p
 from requests import get
+
+from ciri.utils import ciri_cmd, eor
 
 
 def subprocess_run(cmd):
@@ -44,10 +39,8 @@ def aria_start():
           --bt-tracker={trackers} \
           --daemon=true \
           --allow-overwrite=true"
-    process = subprocess_run(cmd)
-    aria2 = aria2p.API(
-        aria2p.Client(host="http://localhost", port=6800, secret="")
-    )
+    subprocess_run(cmd)
+    aria2 = aria2p.API(aria2p.Client(host="http://localhost", port=6800, secret=""))
     return aria2
 
 
@@ -82,8 +75,10 @@ async def check_progress_for_dl(gid, message, previous):
                 if is_file is None:
                     info_msg = f"**Connections:**  `{t_file.connections}`\n"
                 else:
-                    info_msg = f"**Connection:**  `{t_file.connections}` \n" \
+                    info_msg = (
+                        f"**Connection:**  `{t_file.connections}` \n"
                         f"**Seeds:**  `{t_file.num_seeders}` \n"
+                    )
                 msg = (
                     f"`{prog_str}` \n\n"
                     f"**Name:**  `{t_file.name}` \n"

@@ -1,6 +1,8 @@
+import io
 import logging
 import os
 
+import requests
 from dotenv import load_dotenv
 from pymongo import MongoClient
 from telethon import TelegramClient
@@ -16,6 +18,8 @@ load_dotenv()
 
 # __Cirilla-Userbot__# [© 2021- 2022]
 
+UserDetails = {"id": 0, "first_name": "", "username": ""}
+
 # ENV
 API_KEY = int(os.getenv("API_KEY"))
 API_HASH = os.getenv("API_HASH")
@@ -25,10 +29,13 @@ STRING_SESSION = os.getenv("STRING_SESSION")
 CMD_HANDLERS = os.getenv("CMD_HANDLER")
 ALIVE_PIC = os.getenv("ALIVE_PHOTO")
 LOG_CHAT = int(os.getenv("LOG_CHAT"))
-
+THUMB = os.environ.get("THUMB", "https://te.legra.ph/file/0f54f2801ef1baea71f95.jpg")
 
 if not CMD_HANDLERS:
     CMD_HANDLERS = "."
+
+BytesFile = requests.get(THUMB)
+THUMB_FILE = io.BytesIO(BytesFile.content)
 
 OWNER_ID = 1
 

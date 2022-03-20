@@ -6,7 +6,8 @@ import traceback
 
 import requests
 
-from ciri.utils import ciri_cmd, eor
+from ciri import THUMB_FILE
+from ciri.utils import ciri_cmd, eor, errors
 
 
 @ciri_cmd(pattern="eval", full_sudo=True)
@@ -88,7 +89,7 @@ async def upload(e):
     except IndexError:
         return await eor(e, "Provide the path to file!")
     try:
-        await e.respond(file=cmd)
+        await e.respond(file=cmd, thumb=THUMB_FILE)
         await e.delete()
     except Exception as c:
         await eor(e, str(c))
@@ -134,24 +135,31 @@ async def _ls(e):
     try:
         cmd = e.text.split(maxsplit=1)[1]
     except IndexError:
-        return
+        cmd = "."
     try:
         Files = os.listdir(cmd)
     except BaseException as b:
         return await eor(e, str(b))
-    Dir = "**Ls** \n"
+    Dir = "**Directory Manager** \n"
     for D in Files:
         if os.path.isdir(cmd + "/" + D):
             Dir += "📁 " + D + "\n"
         else:
             if D.endswith(("jpg", "png", "webp")):
-                Dir += "🖼️ " + D + "\n"
+                Dir += "📸 " + D + "\n"
             elif D.endswith(("mp4", "mkv", "webm")):
-                Dir += "🎥 " + D + "\n"
+                Dir += "🎞 " + D + "\n"
             elif D.endswith(("mp3", "m4a", "mpeg")):
                 Dir += "📀 " + D + "\n"
             elif D.endswith(("txt", "doc", "csv", "json")):
-                Dir += "📜 " + D + "\n"
+                Dir += "📝 " + D + "\n"
+            elif D.endswith("torrent"):
+                Dir += "🌀 " + D + "\n"
             else:
                 Dir += "❔ " + D + "\n"
     await eor(e, Dir)
+
+
+@ciri_cmd(pattern="err")
+async def see_last_exception(e):
+    await eor(e, "**Latest Exception**:\n" + str(errors["latest"]))
