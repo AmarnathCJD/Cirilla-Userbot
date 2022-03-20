@@ -1,8 +1,9 @@
-from .. import HelpStr, userbot
-from ..utils import ciri_cmd, eor
 from telethon import Button, events, functions
+
 from ciri.modules.db import get_dp
-from .. import bot
+
+from .. import HelpStr, bot
+from ..utils import ciri_cmd, eor
 
 cmds = ["Alive", "Admin", "Dp", "Eval", "Spotdl", "Torr", "StickTools"]
 
@@ -14,9 +15,7 @@ main_help_menu = [
     ],
     [
         Button.inline("Owner Tools", data="ownr"),
-        Button.url(
-            "Settings", url=f"https://t.me/aiko_robot?start=set"
-        ),
+        Button.url("Settings", url=f"https://t.me/aiko_robot?start=set"),
     ],
     [Button.inline("Close", data="close")],
 ]
@@ -61,6 +60,7 @@ async def help_show(e):
     await r[0].click(e.chat_id, reply_to=e.reply_to_msg_id, hide_via=True)
     await e.delete()
 
+
 @bot.on(events.CallbackQuery(pattern="help(\_(.*))"))
 async def help_show(e):
     p = e.pattern_match.group(1)
@@ -72,6 +72,7 @@ async def help_show(e):
         await e.edit(string, buttons=Button.inline("Back", "help_back"))
     else:
         await e.answer("No help found for this plugin.", alert=True)
+
 
 @ciri_cmd(pattern="dc")
 async def _(e):

@@ -1,6 +1,7 @@
-from ciri import HelpStr
-from ciri.utils import eor, ciri_cmd
 from google_translate_py import AsyncTranslator
+
+from ciri import HelpStr
+from ciri.utils import ciri_cmd, eor
 
 
 @ciri_cmd(pattern="at(?: |$)(.*)")
@@ -15,6 +16,12 @@ async def _at(e):
     tr = await AsyncTranslator().translate(text, "", lang)
     await eor(e, tr)  # eor(e, tr)
 
-HelpStr.append({
-    "at": {"description": "Auto Translate text while typing", "usage": ".at <lang> <text>"}
-})
+
+HelpStr.append(
+    {
+        "at": {
+            "description": "Auto Translate text while typing",
+            "usage": ".at <lang> <text>",
+        }
+    }
+)

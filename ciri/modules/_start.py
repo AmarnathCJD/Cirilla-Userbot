@@ -36,7 +36,8 @@ async def _start(e):
     try:
         await e.respond(
             ALIVE_CAPTION.format(
-                me.first_name, (time.time() - StartTime).strftime("%H:%M:%S")),
+                me.first_name, (time.time() - StartTime).strftime("%H:%M:%S")
+            ),
             file=file,
             parse_mode="html",
             link_preview=False,
@@ -117,4 +118,3 @@ async def _setalive(e):
         await eor(e, "`Setted.`")
     else:
         await eor(e, "`I can't set this.`")
-

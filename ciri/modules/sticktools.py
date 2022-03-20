@@ -1,6 +1,6 @@
 import os
-from ciri import HelpStr
 
+from ciri import HelpStr
 from ciri.utils import ciri_cmd, eor
 
 
@@ -28,7 +28,10 @@ async def _kmg_to_stkr(e):
     await e.delete()
     os.remove(new_name)
 
-HelpStr.append({
-    "stoi": {"description": "Sticker to Image", "usage": ".stoi"},
-    "itos": {"description": "Image to Sticker", "usage": ".itos"}
-})
+
+HelpStr.append(
+    {
+        "stoi": {"description": "Sticker to Image", "usage": ".stoi"},
+        "itos": {"description": "Image to Sticker", "usage": ".itos"},
+    }
+)
