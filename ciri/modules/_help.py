@@ -1,6 +1,6 @@
 from .. import bot
 
-cmds = ["Alive", "Admin", "Autodp", "Eval", "Spotdl", "Torr"]
+cmds = ["Alive", "Admin", "Autodp", "Eval", "Spotdl", "Torr", "StickTools"]
 from telethon import Button, events, functions
 
 from ..utils import ciri_cmd, eor
