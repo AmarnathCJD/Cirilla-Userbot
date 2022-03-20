@@ -117,4 +117,3 @@ async def _setalive(e):
         await eor(e, "`Setted.`")
     else:
         await eor(e, "`I can't set this.`")
-

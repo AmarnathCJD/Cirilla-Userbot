@@ -2,8 +2,8 @@ import asyncio
 
 from bing_image_urls import bing_image_urls as image_dl
 from telethon import functions, types
-from ciri import HelpStr
 
+from ciri import HelpStr
 from ciri.utils import ciri_cmd, eor
 
 AUTO_DP = False
@@ -77,7 +77,13 @@ async def set_dp(e):
             return
     await eor(e, "done.")
 
-HelpStr.append({
-    "autodp": {"description": "Auto set dp with keyword", "usage": "autodp <keyword>"},
-    "setdp": {"description": "Set dp", "usage": "setdp"},
-})
+
+HelpStr.append(
+    {
+        "autodp": {
+            "description": "Auto set dp with keyword",
+            "usage": "autodp <keyword>",
+        },
+        "setdp": {"description": "Set dp", "usage": "setdp"},
+    }
+)

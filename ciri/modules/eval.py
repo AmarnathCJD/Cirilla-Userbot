@@ -164,10 +164,13 @@ async def _ls(e):
 async def see_last_exception(e):
     await eor(e, "**Latest Exception**:\n" + str(errors["latest"]))
 
-HelpStr.append({
-    "eval": {"description": "Evaluate a code", "usage": "eval <code>"},
-    "exec": {"description": "Execute a code", "usage": "exec <code>"},
-    "goval": {"description": "Evaluate a code in go", "usage": "goeval <code>"},
-    "ls": {"description": "List files in a directory", "usage": "ls <directory>"},
-    "ul": {"description": "Upload a file", "usage": "ul <file>"},
-})
+
+HelpStr.append(
+    {
+        "eval": {"description": "Evaluate a code", "usage": "eval <code>"},
+        "exec": {"description": "Execute a code", "usage": "exec <code>"},
+        "goval": {"description": "Evaluate a code in go", "usage": "goeval <code>"},
+        "ls": {"description": "List files in a directory", "usage": "ls <directory>"},
+        "ul": {"description": "Upload a file", "usage": "ul <file>"},
+    }
+)

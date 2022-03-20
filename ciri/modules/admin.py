@@ -1,6 +1,6 @@
 import telethon
-from ciri import HelpStr
 
+from ciri import HelpStr
 from ciri.modules import CheckRights, get_user
 from ciri.utils import ciri_cmd, eor
 
@@ -38,8 +38,10 @@ async def _ban(e: telethon.types.UpdateNewMessage):
         return
     await eor(e, "`Banned`")
 
-HelpStr.append({
-    "del": {"description": "Deletes a message.", "usage": "del"},
-    "ban": {"description": "Bans a user.", "usage": "ban"}
-})
 
+HelpStr.append(
+    {
+        "del": {"description": "Deletes a message.", "usage": "del"},
+        "ban": {"description": "Bans a user.", "usage": "ban"},
+    }
+)
