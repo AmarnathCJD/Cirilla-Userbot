@@ -42,7 +42,7 @@ class Owner:
         self.Username = username
 
 
-Master = Owner()
+Master = Owner(id=0, first_name="", last_name="", username="")
 HelpStr = {}
 StartTime = time.time()
 

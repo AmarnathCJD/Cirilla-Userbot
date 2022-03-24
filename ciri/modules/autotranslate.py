@@ -6,8 +6,8 @@ from ciri.utils import ciri_cmd, eor
 
 @ciri_cmd(pattern="at(?: |$)(.*)")
 async def _at(e):
-    payload = e.text.split(maxsplit=2)
-    if len(payload) == 2:
+    payload = e.text.split(maxsplit=3)
+    if len(payload) == 3:
         text = payload[2]
         lang = payload[1]
     else:
