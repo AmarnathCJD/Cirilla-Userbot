@@ -6,7 +6,7 @@ from pathlib import Path
 
 from telethon import events
 
-from ciri import CMD_HANDLERS, LOG_CHAT, OWNER_ID, Master, bot, userbot
+from ciri import CMD_HANDLERS, LOG_CHAT, Master, bot, userbot
 
 errors = {"latest": "null"}
 
@@ -62,7 +62,10 @@ def load_modules():
 
 async def get_owner():
     user = await userbot.get_me()
-    Master.set_user(user.id, user.first_name or "", user.last_name or "", user.username or "")
+    Master.set_user(
+        user.id, user.first_name or "", user.last_name or "", user.username or ""
+    )
+
 
 async def send_start_message():
     if LOG_CHAT != -100 and LOG_CHAT != 0:
@@ -71,8 +74,11 @@ async def send_start_message():
 UserMode: {}
 ➖➖➖➖➖➖➖➖➖➖
 Support: @RoseLoverX_Support
-➖➖➖➖➖➖➖➖➖➖**""".format(Master.FirstName+" "+Master.LastName)
+➖➖➖➖➖➖➖➖➖➖**""".format(
+            Master.FirstName + " " + Master.LastName
+        )
         await userbot.send_message(LOG_CHAT, msg)
+
 
 async def startup_tasks():
     await get_owner()

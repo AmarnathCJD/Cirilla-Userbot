@@ -75,5 +75,5 @@ if MONGO_DB_URI:
 else:
     db = None
 
-FULL_SUDO =[]
+FULL_SUDO = []
 SUDO_USERS = []
