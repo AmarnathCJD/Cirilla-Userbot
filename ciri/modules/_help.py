@@ -1,6 +1,6 @@
 from telethon import Button, events, functions
 
-from .. import HelpStr, Master, bot
+from .. import HelpStr, Master, bot, userbot
 from ..utils import ciri_cmd, eor
 
 cmds = ["Alive", "Admin", "Dp", "Eval", "Spotdl", "Torr", "StickTools"]
@@ -38,8 +38,6 @@ async def help_menu(e):
 
 @bot.on(events.InlineQuery(pattern="hedd"))
 async def help_menuu(e):
-    from ciri import Master
-
     string = """
 <b>Bᴏᴛ Oғ {}</b>
 
@@ -48,7 +46,7 @@ Mᴀɪɴ Mᴇɴᴜ
 <b>Pʟᴜɢɪɴs ~ {}</b>
 Tᴏᴛᴀʟ Cᴏᴍᴍᴀɴᴅs ~ .
 """.format(
-        len(cmds), Master.FirstName + " " + Master.LastName
+        Master.Mention, len(cmds),
     )
     r = await e.builder.article(
         title="1.0.0",
@@ -61,16 +59,30 @@ Tᴏᴛᴀʟ Cᴏᴍᴍᴀɴᴅs ~ .
 
 @ciri_cmd(pattern="help")
 async def help_menu(e):
-    r = await e.client.inline_query("@" + Master.Bot, "hedd")
+    r = await userbot.inline_query("@" + Master.Bot, "hedd")
     await r[0].click(e.chat_id, reply_to=e.reply_to_msg_id, hide_via=True)
     await e.delete()
 
 
 @bot.on(events.CallbackQuery(pattern="uh_Official_"))
 async def help_show(e):
-    r = await e.client.inline_query("@" + Master.Bot, "help")
-    await r[0].click(e.chat_id, reply_to=e.reply_to_msg_id, hide_via=True)
-    await e.delete()
+    string = "Here is the help menu for Ciri."
+    buttons = []
+    btn = []
+    for x in cmds:
+        if len(btn) == 3:
+            buttons.append(btn)
+            btn = []
+        btn.append(Button.inline(x, "help_" + x.lower()))
+    if len(btn) != 0:
+        buttons.append(btn)
+    buttons.append([Button.inline("Back", "help_back")])
+    await e.edit(
+        string,
+        buttons=buttons,
+        parse_mode="md",
+        link_preview=False,
+    )
 
 
 @bot.on(events.CallbackQuery(pattern="help(\_(.*))"))
