@@ -1,7 +1,7 @@
 import sys
 
-from ciri import BOT_TOKEN, OWNER_ID, bot, userbot
-from ciri.utils import startup_tasks, load_modules
+from ciri import BOT_TOKEN, bot, userbot
+from ciri.utils import load_modules, startup_tasks
 
 try:
     userbot.start()
