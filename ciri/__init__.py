@@ -19,6 +19,7 @@ load_dotenv()
 
 # __Cirilla-Userbot__# [© 2021- 2022]
 
+
 class Owner:
     ID = 0
     Name = ""
@@ -28,12 +29,15 @@ class Owner:
         self.ID = id
         self.Name = name
         self.Username = username
+
     def __str__(self):
         return f"{self.Name} ({self.Username})"
+
     def set_user(self, id, name, username):
         self.ID = id
         self.Name = name
         self.Username = username
+
 
 Master = Owner(0, "", "")
 HelpStr = {}

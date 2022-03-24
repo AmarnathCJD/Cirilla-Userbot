@@ -39,6 +39,7 @@ async def help_menu(e):
 @bot.on(events.InlineQuery(pattern="hedd"))
 async def help_menuu(e):
     from ciri import Master
+
     string = """
 Bᴏᴛ Oғ {}
 
@@ -47,7 +48,9 @@ Mᴀɪɴ Mᴇɴᴜ
 Pʟᴜɢɪɴs ~ 77
 Aᴅᴅᴏɴs ~ 85
 Tᴏᴛᴀʟ Cᴏᴍᴍᴀɴᴅs ~ 562
-""".format(Master.Name)
+""".format(
+        Master.Name
+    )
     r = await e.builder.article(
         title="1.0.0",
         text=string,
