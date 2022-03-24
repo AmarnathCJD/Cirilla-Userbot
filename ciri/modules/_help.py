@@ -90,7 +90,7 @@ async def help_show(e):
 @bot.on(events.CallbackQuery(pattern="help_(.*?)"))
 async def help_show(e):
     p = e.pattern_match.group(1).decode("utf-8")
-    if p.lower() in HelpStr:
+    if p.lower() in HelpStr.keys():
         string = "Help for {}/n**Description:** ".format(p)
         for key, val in HelpStr[p.lower()].items():
             string += "{} - {}\n".format(key, val["description"])
