@@ -57,7 +57,7 @@ def load_modules():
             mod.eor = eor
             spec.loader.exec_module(mod)
             sys.modules["ciri.modules." + name] = mod
-            print("Import " + name.upper() + " module")
+            print("Imported " + name.title() + " module")
 
 
 async def get_owner():
@@ -68,7 +68,7 @@ async def get_owner():
         user.first_name or "",
         user.last_name or "",
         user.username or "",
-        bot=botme.username,
+        botme.username or "",
     )
 
 
