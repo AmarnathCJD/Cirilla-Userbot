@@ -37,16 +37,17 @@ async def help_menu(e):
 
 
 @bot.on(events.InlineQuery(pattern="hedd"))
-async def help_men(e):
+async def help_menuu(e):
+    from ciri import Master
     string = """
-Bᴏᴛ Oғ 4☈ RᴇxMᴏᴅZ🇷🇺『𝙸𝚅𝙰𝚁』
+Bᴏᴛ Oғ {}
 
 Mᴀɪɴ Mᴇɴᴜ
 
 Pʟᴜɢɪɴs ~ 77
 Aᴅᴅᴏɴs ~ 85
 Tᴏᴛᴀʟ Cᴏᴍᴍᴀɴᴅs ~ 562
-"""
+""".format(Master.Name)
     r = await e.builder.article(
         title="1.0.0",
         text=string,
@@ -74,11 +75,10 @@ async def help_show(e):
 @bot.on(events.CallbackQuery(pattern="help(\_(.*))"))
 async def help_show(e):
     p = e.pattern_match.group(1)
-    if p in HelpStr:
+    if p.lower() in HelpStr:
         string = "Help for {}/n**Description:** ".format(p)
-        string += HelpStr[p]["description"]
-        string += "\n**Usage:** "
-        string += HelpStr[p]["usage"]
+        for key, val in HelpStr[p.lower()].items():
+            string += "{} - {}\n".format(key, val["description"])
         await e.edit(string, buttons=Button.inline("Back", "help_back"))
     else:
         await e.answer("No help found for this plugin.", alert=True)

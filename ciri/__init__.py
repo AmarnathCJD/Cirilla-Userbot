@@ -19,8 +19,24 @@ load_dotenv()
 
 # __Cirilla-Userbot__# [© 2021- 2022]
 
-UserDetails = {"id": 0, "first_name": "", "username": ""}
-HelpStr = []
+class Owner:
+    ID = 0
+    Name = ""
+    Username = ""
+
+    def __init__(self, id, name, username):
+        self.ID = id
+        self.Name = name
+        self.Username = username
+    def __str__(self):
+        return f"{self.Name} ({self.Username})"
+    def set_owner(self, id, name, username):
+        self.ID = id
+        self.Name = name
+        self.Username = username
+
+Master = Owner(0, "", "")
+HelpStr = {}
 StartTime = time.time()
 
 # ENV
