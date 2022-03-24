@@ -30,7 +30,7 @@ class Owner:
         self.Username = username
     def __str__(self):
         return f"{self.Name} ({self.Username})"
-    def set_owner(self, id, name, username):
+    def set_user(self, id, name, username):
         self.ID = id
         self.Name = name
         self.Username = username
