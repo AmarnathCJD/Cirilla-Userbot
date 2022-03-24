@@ -32,10 +32,9 @@ async def _kmg_to_stkr(e):
 HelpStr.update(
     {
         "sticker": {
-            {
                 "stoi": {"description": "Sticker to Image", "usage": ".stoi"},
                 "itos": {"description": "Image to Sticker", "usage": ".itos"},
-            }
+            
         }
     }
 )

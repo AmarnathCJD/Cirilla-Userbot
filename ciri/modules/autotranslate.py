@@ -20,12 +20,10 @@ async def _at(e):
 HelpStr.update(
     {
         "autotranslate": {
-            {
                 "at": {
                     "description": "Auto Translate text while typing",
                     "usage": ".at <lang> <text>",
                 }
             }
-        }
     }
 )

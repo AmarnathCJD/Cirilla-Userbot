@@ -236,7 +236,6 @@ def humanbytes(size, decimal_places=2):
 HelpStr.update(
     {
         "aria": {
-            {
                 "ariadl": {
                     "description": "Downloads torrent file from the given url or magnet link.",
                     "usage": ".ariadl <url> or .ariadl <magnet link>",
@@ -262,6 +261,5 @@ HelpStr.update(
                     "usage": ".ariastatus",
                 },
             }
-        }
     }
 )

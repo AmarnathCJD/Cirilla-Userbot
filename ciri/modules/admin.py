@@ -43,10 +43,8 @@ async def _ban(e: telethon.types.UpdateNewMessage):
 HelpStr.update(
     {
         "admin": {
-            {
                 "del": {"description": "Deletes a message.", "usage": "del"},
                 "ban": {"description": "Bans a user.", "usage": "ban"},
-            }
         }
     }
 )
