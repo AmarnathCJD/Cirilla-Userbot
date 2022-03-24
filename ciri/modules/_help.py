@@ -35,6 +35,7 @@ async def help_menu(e):
     result = e.builder.article(title=string, text=string, buttons=buttons)
     await e.answer([result])
 
+
 @bot.on(events.InlineQuery(pattern="hedd"))
 async def help_menuu(e):
     string = """
@@ -56,11 +57,13 @@ Tᴏᴛᴀʟ Cᴏᴍᴍᴀɴᴅs ~ .
     )
     await e.answer([r])
 
+
 @ciri_cmd(pattern="help")
 async def help_menu(e):
     r = await userbot.inline_query("@" + Master.Bot, "hedd")
     await r[0].click(e.chat_id, reply_to=e.reply_to_msg_id, hide_via=True)
     await e.delete()
+
 
 @Own
 @bot.on(events.CallbackQuery(pattern="uh_Official_"))
@@ -106,4 +109,3 @@ async def _(e):
         result.this_dc, result.nearest_dc, result.country
     )
     await eor(e, res)
-
