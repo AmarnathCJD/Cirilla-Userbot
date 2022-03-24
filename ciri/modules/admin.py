@@ -30,8 +30,7 @@ async def _ban(e: telethon.types.UpdateNewMessage):
             telethon.functions.channels.EditBannedRequest(
                 channel=e.chat_id,
                 user_id=user.id,
-                banned_rights=telethon.types.ChatBannedRights(
-                    view_messages=True),
+                banned_rights=telethon.types.ChatBannedRights(view_messages=True),
             )
         )
     except Exception as err:
