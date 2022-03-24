@@ -46,7 +46,8 @@ Mᴀɪɴ Mᴇɴᴜ
 <b>Pʟᴜɢɪɴs ~ {}</b>
 Tᴏᴛᴀʟ Cᴏᴍᴍᴀɴᴅs ~ .
 """.format(
-        Master.Mention, len(cmds),
+        Master.Mention,
+        len(cmds),
     )
     r = await e.builder.article(
         title="1.0.0",
