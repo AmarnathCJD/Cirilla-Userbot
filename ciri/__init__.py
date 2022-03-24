@@ -33,7 +33,7 @@ class Owner:
         self.FirstName = first_name
         self.LastName = last_name
         self.Username = username
-        self.Mention = "[{}](tg://user?id={})".format(self.FirstName, self.ID)
+        self.Mention = "<a href='tg://user?id={}'>{}</a>".format(self.ID, self.FirstName)
 
     def __str__(self):
         return f"{self.ID} {self.FirstName} {self.LastName} ({self.Username})"
@@ -43,7 +43,8 @@ class Owner:
         self.FirstName = first_name
         self.LastName = last_name
         self.Username = username
-        self.Mention = "[{}](tg://user?id={})".format(self.FirstName, self.ID)
+        self.Mention = "<a href='tg://user?id={}'>{}</a>".format(self.ID, self.FirstName)
+
 
 
 Master = Owner(id=0, first_name="", last_name="", username="")

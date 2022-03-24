@@ -70,16 +70,16 @@ async def get_owner():
 
 async def send_start_message():
     if LOG_CHAT != -100 and LOG_CHAT != 0:
-        msg = """**CIRI has been deployed!
+        msg = """<b>CIRI has been deployed!
 ➖➖➖➖➖➖➖➖➖➖
 UserMode: {}
 Assistant: {}
 ➖➖➖➖➖➖➖➖➖➖
 Support: @RoseLoverX_Support
-➖➖➖➖➖➖➖➖➖➖**""".format(
+➖➖➖➖➖➖➖➖➖➖</b>""".format(
             Master.FirstName + " " + Master.Mention, Master.Bot
         )
-        await userbot.send_message(LOG_CHAT, msg)
+        await userbot.send_message(LOG_CHAT, msg, parse_mode="html")
 
 
 async def startup_tasks():
