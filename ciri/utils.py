@@ -6,7 +6,7 @@ from pathlib import Path
 
 from telethon import events
 
-from ciri import CMD_HANDLERS, OWNER_ID, Master, bot, userbot, Master
+from ciri import CMD_HANDLERS, Master, bot, userbot
 
 errors = {"latest": "null"}
 
