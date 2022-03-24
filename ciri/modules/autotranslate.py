@@ -17,14 +17,10 @@ async def _at(e):
     await eor(e, tr)  # eor(e, tr)
 
 
-HelpStr.update({
-    "autotranslate": {
-    {
+HelpStr["autotranslate"]={
         "at": {
             "description": "Auto Translate text while typing",
             "usage": ".at <lang> <text>",
         }
     }
-    }
-}
-)
+

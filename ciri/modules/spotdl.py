@@ -35,12 +35,7 @@ async def spot_dl(e):
         await eor(e, "Song not found!")
 
 
-HelpStr.update({
-    "spotdl": {
-        "spotdl": {
+HelpStr["spotdl"] = {
             "description": "Downloads songs from spotify.",
             "usage": "spotdl <query>",
-        },
-    },
-}
-)
+        }

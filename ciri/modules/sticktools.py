@@ -29,12 +29,7 @@ async def _kmg_to_stkr(e):
     os.remove(new_name)
 
 
-HelpStr.update({
-    "sticker": {
-        {
+HelpStr["stickertools"] = {
             "stoi": {"description": "Sticker to Image", "usage": ".stoi"},
             "itos": {"description": "Image to Sticker", "usage": ".itos"},
         }
-    }
-}
-)

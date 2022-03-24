@@ -9,7 +9,8 @@ from ciri.utils import ciri_cmd, eor
 
 
 def subprocess_run(cmd):
-    subproc = Popen(cmd, stdout=PIPE, stderr=PIPE, shell=True, universal_newlines=True)
+    subproc = Popen(cmd, stdout=PIPE, stderr=PIPE,
+                    shell=True, universal_newlines=True)
     talk = subproc.communicate()
     exitCode = subproc.returncode
     if exitCode != 0:
@@ -40,7 +41,8 @@ def aria_start():
           --daemon=true \
           --allow-overwrite=true"
     subprocess_run(cmd)
-    aria2 = aria2p.API(aria2p.Client(host="http://localhost", port=6800, secret=""))
+    aria2 = aria2p.API(aria2p.Client(
+        host="http://localhost", port=6800, secret=""))
     return aria2
 
 
@@ -179,7 +181,8 @@ async def remove_a_download(message):
         await eor(message, "GID not found ....")
         return
     file_name = downloads.name
-    aria2p_client.remove(downloads=[downloads], force=True, files=True, clean=True)
+    aria2p_client.remove(downloads=[downloads],
+                         force=True, files=True, clean=True)
     await eor(message, f"**Successfully cancelled download.** \n`{file_name}`")
 
 
@@ -230,22 +233,16 @@ def humanbytes(size, decimal_places=2):
     return f"{size:.{decimal_places}f} {unit}"
 
 
-HelpStr.update({
-    "aria": {
-    {
-        "ariadl": {
-            "description": "Downloads torrent file from the given url or magnet link.",
-            "usage": ".ariadl <url> or .ariadl <magnet link>",
-        },
-        "ariapause": {"description": "Pauses all downloads.", "usage": ".ariapause"},
-        "ariaresume": {"description": "Resumes all downloads.", "usage": ".ariaresume"},
-        "ariacancel": {
-            "description": "Cancel download of specific gid.",
-            "usage": ".ariacancel <gid>",
-        },
-        "ariadelall": {"description": "Cancel all downloads.", "usage": ".ariadelall"},
-        "ariastatus": {"description": "Shows all downloads.", "usage": ".ariastatus"},
-    }
-    }
+HelpStr["aria"] = {"ariadl": {
+    "description": "Downloads torrent file from the given url or magnet link.",
+    "usage": ".ariadl <url> or .ariadl <magnet link>",
+},
+    "ariapause": {"description": "Pauses all downloads.", "usage": ".ariapause"},
+    "ariaresume": {"description": "Resumes all downloads.", "usage": ".ariaresume"},
+    "ariacancel": {
+    "description": "Cancel download of specific gid.",
+    "usage": ".ariacancel <gid>",
+},
+    "ariadelall": {"description": "Cancel all downloads.", "usage": ".ariadelall"},
+    "ariastatus": {"description": "Shows all downloads.", "usage": ".ariastatus"},
 }
-)
