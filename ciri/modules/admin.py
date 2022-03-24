@@ -40,7 +40,13 @@ async def _ban(e: telethon.types.UpdateNewMessage):
     await eor(e, "`Banned`")
 
 
-HelpStr["admin"] = {
-    "del": {"description": "Deletes a message.", "usage": "del"},
-    "ban": {"description": "Bans a user.", "usage": "ban"},
-}
+HelpStr.update(
+    {
+        "admin": {
+            {
+                "del": {"description": "Deletes a message.", "usage": "del"},
+                "ban": {"description": "Bans a user.", "usage": "ban"},
+            }
+        }
+    }
+)

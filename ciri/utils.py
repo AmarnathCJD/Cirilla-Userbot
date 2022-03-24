@@ -6,7 +6,7 @@ from pathlib import Path
 
 from telethon import events
 
-from ciri import CMD_HANDLERS, OWNER_ID, Master, bot, userbot, Master
+from ciri import CMD_HANDLERS, OWNER_ID, Master, bot, userbot
 
 errors = {"latest": "null", "previous": "null"}
 
@@ -50,8 +50,7 @@ def load_modules():
         with open(x) as f:
             name = Path(f.name).stem.replace(".py", "")
             spec = importlib.util.spec_from_file_location(
-                "ciri.modules.{}".format(name), Path(
-                    "ciri/modules/{}.py".format(name))
+                "ciri.modules.{}".format(name), Path("ciri/modules/{}.py".format(name))
             )
             mod = importlib.util.module_from_spec(spec)
             mod.bot = userbot

@@ -233,16 +233,35 @@ def humanbytes(size, decimal_places=2):
     return f"{size:.{decimal_places}f} {unit}"
 
 
-HelpStr["aria"] = {"ariadl": {
-    "description": "Downloads torrent file from the given url or magnet link.",
-    "usage": ".ariadl <url> or .ariadl <magnet link>",
-},
-    "ariapause": {"description": "Pauses all downloads.", "usage": ".ariapause"},
-    "ariaresume": {"description": "Resumes all downloads.", "usage": ".ariaresume"},
-    "ariacancel": {
-    "description": "Cancel download of specific gid.",
-    "usage": ".ariacancel <gid>",
-},
-    "ariadelall": {"description": "Cancel all downloads.", "usage": ".ariadelall"},
-    "ariastatus": {"description": "Shows all downloads.", "usage": ".ariastatus"},
-}
+HelpStr.update(
+    {
+        "aria": {
+            {
+                "ariadl": {
+                    "description": "Downloads torrent file from the given url or magnet link.",
+                    "usage": ".ariadl <url> or .ariadl <magnet link>",
+                },
+                "ariapause": {
+                    "description": "Pauses all downloads.",
+                    "usage": ".ariapause",
+                },
+                "ariaresume": {
+                    "description": "Resumes all downloads.",
+                    "usage": ".ariaresume",
+                },
+                "ariacancel": {
+                    "description": "Cancel download of specific gid.",
+                    "usage": ".ariacancel <gid>",
+                },
+                "ariadelall": {
+                    "description": "Cancel all downloads.",
+                    "usage": ".ariadelall",
+                },
+                "ariastatus": {
+                    "description": "Shows all downloads.",
+                    "usage": ".ariastatus",
+                },
+            }
+        }
+    }
+)
