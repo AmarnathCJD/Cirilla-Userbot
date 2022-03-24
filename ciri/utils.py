@@ -8,7 +8,7 @@ from telethon import events
 
 from ciri import CMD_HANDLERS, LOG_CHAT, OWNER_ID, Master, bot, userbot
 
-errors = {"latest": "null", "previous": "null"}
+errors = {"latest": "null"}
 
 
 def ciri_cmd(**args):
@@ -25,7 +25,6 @@ def ciri_cmd(**args):
                 await func(ev)
             except BaseException as exception:
                 logging.info(exception)
-                errors["previous"] = errors["latest"]
                 errors["latest"] = exception
 
         userbot.add_event_handler(wrapper, events.NewMessage(**args))
@@ -35,7 +34,7 @@ def ciri_cmd(**args):
 
 
 async def eor(e, msg, file=None, parse_mode="md", link_preview=False):
-    if e.sender_id == OWNER_ID:
+    if e.sender_id == Master.ID:
         return await e.edit(
             msg, file=file, parse_mode=parse_mode, link_preview=link_preview
         )
