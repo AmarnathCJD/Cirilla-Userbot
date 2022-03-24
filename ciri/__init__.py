@@ -22,24 +22,27 @@ load_dotenv()
 
 class Owner:
     ID = 0
-    Name = ""
+    FirstName = ""
+    LastName = ""
     Username = ""
 
-    def __init__(self, id, name, username):
+    def __init__(self, id, first_name, last_name, username):
         self.ID = id
-        self.Name = name
+        self.FirstName = first_name
+        self.LastName = last_name
         self.Username = username
 
     def __str__(self):
-        return f"{self.Name} ({self.Username})"
+        return f"{self.ID} {self.FirstName} {self.LastName} ({self.Username})"
 
-    def set_user(self, id, name, username):
+    def set_user(self, id, first_name="", last_name="", username=""):
         self.ID = id
-        self.Name = name
+        self.FirstName = first_name
+        self.LastName = last_name
         self.Username = username
 
 
-Master = Owner(0, "", "")
+Master = Owner()
 HelpStr = {}
 StartTime = time.time()
 
@@ -60,8 +63,6 @@ if not CMD_HANDLERS:
 BytesFile = requests.get(THUMB)
 THUMB_FILE = io.BytesIO(BytesFile.content)
 
-OWNER_ID = 1
-
 # userbot client
 userbot = TelegramClient(StringSession(STRING_SESSION), API_KEY, API_HASH)
 
@@ -74,4 +75,5 @@ if MONGO_DB_URI:
 else:
     db = None
 
-FULL_SUDO = SUDO = []
+FULL_SUDO =[]
+SUDO_USERS = []
