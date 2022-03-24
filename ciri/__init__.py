@@ -26,6 +26,7 @@ class Owner:
     LastName = ""
     Username = ""
     Mention = ""
+    Bot = ""
 
     def __init__(self, id, first_name, last_name, username):
         self.ID = id
@@ -37,7 +38,7 @@ class Owner:
     def __str__(self):
         return f"{self.ID} {self.FirstName} {self.LastName} ({self.Username})"
 
-    def set_user(self, id, first_name="", last_name="", username=""):
+    def set_user(self, id, first_name="", last_name="", username="", bot=""):
         self.ID = id
         self.FirstName = first_name
         self.LastName = last_name
