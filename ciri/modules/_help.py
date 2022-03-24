@@ -1,6 +1,6 @@
 from telethon import Button, events, functions
 
-from .. import HelpStr, bot
+from .. import HelpStr, Master, bot
 from ..utils import ciri_cmd, eor
 
 cmds = ["Alive", "Admin", "Dp", "Eval", "Spotdl", "Torr", "StickTools"]
@@ -41,36 +41,34 @@ async def help_menuu(e):
     from ciri import Master
 
     string = """
-Bᴏᴛ Oғ {}
+<b>Bᴏᴛ Oғ {}</b>
 
 Mᴀɪɴ Mᴇɴᴜ
 
-Pʟᴜɢɪɴs ~ 77
-Aᴅᴅᴏɴs ~ 85
-Tᴏᴛᴀʟ Cᴏᴍᴍᴀɴᴅs ~ 562
+<b>Pʟᴜɢɪɴs ~ {}</b>
+Tᴏᴛᴀʟ Cᴏᴍᴍᴀɴᴅs ~ .
 """.format(
-        Master.Name
+        len(cmds), Master.FirstName + " " + Master.LastName
     )
     r = await e.builder.article(
         title="1.0.0",
         text=string,
         buttons=main_help_menu,
+        parse_mode="html",
     )
     await e.answer([r])
 
 
 @ciri_cmd(pattern="help")
 async def help_menu(e):
-    bot_get = await bot.get_me()
-    r = await e.client.inline_query("@" + bot_get.username, "hedd")
+    r = await e.client.inline_query("@" + Master.Bot, "hedd")
     await r[0].click(e.chat_id, reply_to=e.reply_to_msg_id, hide_via=True)
     await e.delete()
 
 
 @bot.on(events.CallbackQuery(pattern="uh_Official_"))
 async def help_show(e):
-    bot_get = await bot.get_me()
-    r = await e.client.inline_query("@" + bot_get.username, "help")
+    r = await e.client.inline_query("@" + Master.Bot, "help")
     await r[0].click(e.chat_id, reply_to=e.reply_to_msg_id, hide_via=True)
     await e.delete()
 
