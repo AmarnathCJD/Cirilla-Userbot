@@ -28,7 +28,7 @@ class Owner:
     Mention = ""
     Bot = ""
 
-    def __init__(self, id, first_name, last_name, username):
+    def __init__(self, id=0, first_name="", last_name="", username="", bot=""):
         self.ID = id
         self.FirstName = first_name
         self.LastName = last_name
@@ -36,6 +36,7 @@ class Owner:
         self.Mention = "<a href='tg://user?id={}'>{}</a>".format(
             self.ID, self.FirstName
         )
+        self.Bot = bot
 
     def __str__(self):
         return f"{self.ID} {self.FirstName} {self.LastName} ({self.Username})"
@@ -48,9 +49,10 @@ class Owner:
         self.Mention = "<a href='tg://user?id={}'>{}</a>".format(
             self.ID, self.FirstName
         )
+        self.Bot = bot
 
 
-Master = Owner(id=0, first_name="", last_name="", username="")
+Master = Owner()
 HelpStr = {}
 StartTime = time.time()
 

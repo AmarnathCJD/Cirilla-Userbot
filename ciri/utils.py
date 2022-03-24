@@ -81,7 +81,7 @@ Assistant: {}
 ➖➖➖➖➖➖➖➖➖➖
 Support: @RoseLoverX_Support
 ➖➖➖➖➖➖➖➖➖➖</b>""".format(
-            Master.FirstName + " " + Master.Mention, Master.Bot
+            Master.Mention, Master.Bot
         )
         await userbot.send_message(LOG_CHAT, msg, parse_mode="html")
 
