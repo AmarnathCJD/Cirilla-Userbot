@@ -89,6 +89,7 @@ async def help_show(e):
 @bot.on(events.CallbackQuery(pattern="help(\_(.*))"))
 async def help_show(e):
     p = e.pattern_match.group(1)
+    p = p.split("_")[1]
     if p.lower() in HelpStr:
         string = "Help for {}/n**Description:** ".format(p)
         for key, val in HelpStr[p.lower()].items():
