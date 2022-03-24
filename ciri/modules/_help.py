@@ -1,7 +1,7 @@
 from telethon import Button, events, functions
 
 from .. import HelpStr, Master, bot, userbot
-from ..utils import ciri_cmd, eor
+from ..utils import Own, ciri_cmd, eor
 
 cmds = ["Alive", "Admin", "Dp", "Eval", "Spotdl", "Torr", "StickTools"]
 
@@ -35,7 +35,6 @@ async def help_menu(e):
     result = e.builder.article(title=string, text=string, buttons=buttons)
     await e.answer([result])
 
-
 @bot.on(events.InlineQuery(pattern="hedd"))
 async def help_menuu(e):
     string = """
@@ -57,14 +56,13 @@ Tᴏᴛᴀʟ Cᴏᴍᴍᴀɴᴅs ~ .
     )
     await e.answer([r])
 
-
 @ciri_cmd(pattern="help")
 async def help_menu(e):
     r = await userbot.inline_query("@" + Master.Bot, "hedd")
     await r[0].click(e.chat_id, reply_to=e.reply_to_msg_id, hide_via=True)
     await e.delete()
 
-
+@Own
 @bot.on(events.CallbackQuery(pattern="uh_Official_"))
 async def help_show(e):
     string = "Here is the help menu for Ciri."
@@ -86,7 +84,7 @@ async def help_show(e):
     )
 
 
-@bot.on(events.CallbackQuery(pattern="help(\_(.*))"))
+@bot.on(events.CallbackQuery(pattern="help_(.*?)"))
 async def help_show(e):
     p = e.pattern_match.group(1)
     p = p.split("_")[1]
@@ -109,8 +107,3 @@ async def _(e):
     )
     await eor(e, res)
 
-
-@bot.on(events.CallbackQuery(pattern="help_(.*?)"))
-async def cb_gelp(e):
-    data = e.data.decode()
-    await e.answer(data, alert=True)

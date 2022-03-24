@@ -33,6 +33,15 @@ def ciri_cmd(**args):
     return decorator
 
 
+def Own(func):
+    async def wrapper(ev):
+        if ev.sender_id == Master.ID:
+            await func(ev)
+        else:
+            await ev.answer("You are not my master!", alert=True)
+    return wrapper
+
+
 async def eor(e, msg, file=None, parse_mode="md", link_preview=False):
     if e.sender_id == Master.ID:
         return await e.edit(
@@ -49,7 +58,8 @@ def load_modules():
         with open(x) as f:
             name = Path(f.name).stem.replace(".py", "")
             spec = importlib.util.spec_from_file_location(
-                "ciri.modules.{}".format(name), Path("ciri/modules/{}.py".format(name))
+                "ciri.modules.{}".format(name), Path(
+                    "ciri/modules/{}.py".format(name))
             )
             mod = importlib.util.module_from_spec(spec)
             mod.bot = userbot
