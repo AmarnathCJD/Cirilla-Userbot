@@ -62,20 +62,22 @@ def load_modules():
 
 async def get_owner():
     user = await userbot.get_me()
+    botme = await bot.get_me()
     Master.set_user(
-        user.id, user.first_name or "", user.last_name or "", user.username or ""
+        user.id, user.first_name or "", user.last_name or "", user.username or "", bot=botme.username
     )
 
 
 async def send_start_message():
     if LOG_CHAT != -100 and LOG_CHAT != 0:
-        msg = """*CIRI has been deployed!
+        msg = """**CIRI has been deployed!
 ➖➖➖➖➖➖➖➖➖➖
 UserMode: {}
+Assistant: {}
 ➖➖➖➖➖➖➖➖➖➖
 Support: @RoseLoverX_Support
 ➖➖➖➖➖➖➖➖➖➖**""".format(
-            Master.FirstName + " " + Master.Mention
+            Master.FirstName + " " + Master.Mention, Master.Bot
         )
         await userbot.send_message(LOG_CHAT, msg)
 
