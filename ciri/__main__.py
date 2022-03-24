@@ -9,8 +9,8 @@ try:
     bot.start(bot_token=BOT_TOKEN)
 except Exception:
     sys.exit(1)
+
 userbot.loop.run_until_complete(get_owner())
-time.sleep(3)
 print("Ji", OWNER_ID)
 load_modules()
 print("Cirilla Userbot Is Alive")
