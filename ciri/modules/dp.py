@@ -81,11 +81,11 @@ async def set_dp(e):
 HelpStr.update(
     {
         "dp": {
-                "autodp": {
-                    "description": "Auto set dp with keyword",
-                    "usage": "autodp <keyword>",
-                },
-                "setdp": {"description": "Set dp", "usage": "setdp"},
+            "autodp": {
+                "description": "Auto set dp with keyword",
+                "usage": "autodp <keyword>",
+            },
+            "setdp": {"description": "Set dp", "usage": "setdp"},
         }
     }
 )
