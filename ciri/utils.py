@@ -69,13 +69,13 @@ async def get_owner():
 
 async def send_start_message():
     if LOG_CHAT != -100 and LOG_CHAT != 0:
-        msg = """**Ultroid has been deployed!
+        msg = """*CIRI has been deployed!
 ➖➖➖➖➖➖➖➖➖➖
 UserMode: {}
 ➖➖➖➖➖➖➖➖➖➖
 Support: @RoseLoverX_Support
 ➖➖➖➖➖➖➖➖➖➖**""".format(
-            Master.FirstName + " " + Master.LastName
+            Master.FirstName + " " + Master.Mention
         )
         await userbot.send_message(LOG_CHAT, msg)
 

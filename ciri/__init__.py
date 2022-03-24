@@ -25,12 +25,14 @@ class Owner:
     FirstName = ""
     LastName = ""
     Username = ""
+    Mention = ""
 
     def __init__(self, id, first_name, last_name, username):
         self.ID = id
         self.FirstName = first_name
         self.LastName = last_name
         self.Username = username
+        self.Mention = "[{}](tg://user?id={})".format(self.FirstName, self.ID)
 
     def __str__(self):
         return f"{self.ID} {self.FirstName} {self.LastName} ({self.Username})"
@@ -40,6 +42,7 @@ class Owner:
         self.FirstName = first_name
         self.LastName = last_name
         self.Username = username
+        self.Mention = "[{}](tg://user?id={})".format(self.FirstName, self.ID)
 
 
 Master = Owner(id=0, first_name="", last_name="", username="")
