@@ -230,7 +230,8 @@ def humanbytes(size, decimal_places=2):
     return f"{size:.{decimal_places}f} {unit}"
 
 
-HelpStr.append(
+HelpStr.update({
+    "aria": {
     {
         "ariadl": {
             "description": "Downloads torrent file from the given url or magnet link.",
@@ -245,4 +246,6 @@ HelpStr.append(
         "ariadelall": {"description": "Cancel all downloads.", "usage": ".ariadelall"},
         "ariastatus": {"description": "Shows all downloads.", "usage": ".ariastatus"},
     }
+    }
+}
 )

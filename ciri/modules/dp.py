@@ -78,7 +78,8 @@ async def set_dp(e):
     await eor(e, "done.")
 
 
-HelpStr.append(
+HelpStr.update({
+    "dp":{
     {
         "autodp": {
             "description": "Auto set dp with keyword",
@@ -86,4 +87,6 @@ HelpStr.append(
         },
         "setdp": {"description": "Set dp", "usage": "setdp"},
     }
+    }
+}
 )
