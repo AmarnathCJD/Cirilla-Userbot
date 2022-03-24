@@ -64,7 +64,11 @@ async def get_owner():
     user = await userbot.get_me()
     botme = await bot.get_me()
     Master.set_user(
-        user.id, user.first_name or "", user.last_name or "", user.username or "", bot=botme.username
+        user.id,
+        user.first_name or "",
+        user.last_name or "",
+        user.username or "",
+        bot=botme.username,
     )
 
 
