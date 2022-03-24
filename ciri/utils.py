@@ -39,6 +39,7 @@ def Own(func):
             await func(ev)
         else:
             await ev.answer("You are not my master!", alert=True)
+
     return wrapper
 
 
@@ -58,8 +59,7 @@ def load_modules():
         with open(x) as f:
             name = Path(f.name).stem.replace(".py", "")
             spec = importlib.util.spec_from_file_location(
-                "ciri.modules.{}".format(name), Path(
-                    "ciri/modules/{}.py".format(name))
+                "ciri.modules.{}".format(name), Path("ciri/modules/{}.py".format(name))
             )
             mod = importlib.util.module_from_spec(spec)
             mod.bot = userbot
