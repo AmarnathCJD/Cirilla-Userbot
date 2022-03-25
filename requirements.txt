@@ -4,7 +4,7 @@ pymongo
 spotdl
 bing_image_urls
 gitpython
-aira2p
+aria2p
 numpy
 google-translate.py
 python-dotenv
