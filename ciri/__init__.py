@@ -18,7 +18,8 @@ logging.basicConfig(
 load_dotenv()
 
 # __Cirilla-Userbot__# [© 2021- 2022]
-
+T = []
+# shr
 
 class Owner:
     ID = 0
