@@ -21,6 +21,7 @@ load_dotenv()
 T = []
 # shr
 
+
 class Owner:
     ID = 0
     FirstName = ""
