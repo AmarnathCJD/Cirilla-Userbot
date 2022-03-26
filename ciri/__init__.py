@@ -62,6 +62,7 @@ class Owner:
 
     def get_msgs(self):
         return self.Messages
+
     def purge_msg(self):
         self.Messages = []
 
