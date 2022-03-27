@@ -45,7 +45,7 @@ def get_download_url(post_id: str, data: bytes):
     height = json_data["posts"]["models"][post_id]["media"]["height"]
     dash_url = dash_url[: int(dash_url.find("DASH")) + 4]
 
-    return f"{dash_url}_{height}.mp4", f"{dash_url}_audio.mp4", title
+    return f"{dash_url}_{height}.mp4", f"{dash_url}_audio.mp3", title
 
 
 def download_files(a, v, title="reddit"):
@@ -53,10 +53,22 @@ def download_files(a, v, title="reddit"):
         if r.status_code == 200:
             with open(f"{title}_aud.mp3", "wb") as f:
                 f.write(r.content)
+        else:
+            with requests.get(a.split("_audio.mp3")[0] + "audio") as r:
+                print(a.split("_audio.mp3")[0] + "audio")
+                if r.status_code == 200:
+                 with open(f"{title}_aud.mp3", "wb") as f:
+                    f.write(r.content)
     with requests.get(v) as r:
         if r.status_code == 200:
             with open(f"{title}_vid.mp4", "wb") as f:
                 f.write(r.content)
+        else:
+            with requests.get(v.split(".mp4")[0]) as r:
+                print(v.split(".mp4")[0])
+                if r.status_code == 200:
+                    with open(f"{title}_vid.mp4", "wb") as f:
+                        f.write(r.content)        
     subprocess.call(
         [
             "ffmpeg",
