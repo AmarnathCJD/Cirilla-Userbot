@@ -1,8 +1,10 @@
 import json
+import os
 import subprocess
 
 import requests
 from bs4 import BeautifulSoup
+from ciri import HelpStr
 
 from ciri.utils import ciri_cmd, eor
 
@@ -22,7 +24,6 @@ async def reddit(e):
         return await e.edit("`Invalid reddit url, returned 404.`")
     post_id = get_post_id(url)
     vid, aud, title = get_download_url(post_id, r)
-    await e.respond(aud + vid + title)
     msg = await eor(e, f"`Downloading...`")
     file = download_files(aud, vid, title)
     await msg.delete()
@@ -30,7 +31,7 @@ async def reddit(e):
 
 
 def get_post_id(url: str) -> str:
-    post_id = url[url.find("comments/") + 9 :]
+    post_id = url[url.find("comments/") + 9:]
     post_id = f"t3_{post_id[:post_id.find('/')]}"
     return post_id
 
@@ -57,7 +58,6 @@ def download_files(a, v, title="reddit"):
                 f.write(r.content)
         else:
             with requests.get(a.split("DASH_audio.mp3")[0] + "audio") as r:
-                print(a.split("_audio.mp3")[0] + "audio")
                 if r.status_code == 200:
                     with open(f"{title}_aud.mp3", "wb") as f:
                         f.write(r.content)
@@ -67,7 +67,6 @@ def download_files(a, v, title="reddit"):
                 f.write(r.content)
         else:
             with requests.get(v.split(".mp4")[0]) as r:
-                print(v.split(".mp4")[0])
                 if r.status_code == 200:
                     with open(f"{title}_vid.mp4", "wb") as f:
                         f.write(r.content)
@@ -87,4 +86,14 @@ def download_files(a, v, title="reddit"):
             f"{title}.mp4",
         ]
     )
+    os.remove(f"{title}_vid.mp4")
+    os.remove(f"{title}_aud.mp3")
     return f"{title}.mp4"
+
+
+HelpStr.update({
+    "reddit": {
+        "red(ddit)": {"Description": "Downloads the audio and video from a reddit post.", "Usage": "red(ddit <url>)"},
+    }
+}
+)
