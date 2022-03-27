@@ -4,8 +4,8 @@ import subprocess
 
 import requests
 from bs4 import BeautifulSoup
-from ciri import HelpStr
 
+from ciri import HelpStr
 from ciri.utils import ciri_cmd, eor
 
 
@@ -31,7 +31,7 @@ async def reddit(e):
 
 
 def get_post_id(url: str) -> str:
-    post_id = url[url.find("comments/") + 9:]
+    post_id = url[url.find("comments/") + 9 :]
     post_id = f"t3_{post_id[:post_id.find('/')]}"
     return post_id
 
@@ -91,9 +91,13 @@ def download_files(a, v, title="reddit"):
     return f"{title}.mp4"
 
 
-HelpStr.update({
-    "reddit": {
-        "red(ddit)": {"Description": "Downloads the audio and video from a reddit post.", "Usage": "red(ddit <url>)"},
+HelpStr.update(
+    {
+        "reddit": {
+            "red(ddit)": {
+                "Description": "Downloads the audio and video from a reddit post.",
+                "Usage": "red(ddit <url>)",
+            },
+        }
     }
-}
 )
