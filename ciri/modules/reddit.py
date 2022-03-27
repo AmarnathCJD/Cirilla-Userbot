@@ -72,5 +72,4 @@ def download_files(a, v, title="reddit"):
             f"{title}.mp4",
         ]
     )
-    subprocess.call(["rm", f"{title}_vid.mp4", f"{title}_aud.mp3"])
     return f"{title}.mp4"
