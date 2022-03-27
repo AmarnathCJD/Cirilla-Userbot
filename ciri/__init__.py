@@ -18,6 +18,8 @@ logging.basicConfig(
 load_dotenv()
 
 # __Cirilla-Userbot__# [© 2021- 2022]
+T = []
+# shr
 
 
 class Owner:
@@ -27,8 +29,11 @@ class Owner:
     Username = ""
     Mention = ""
     Bot = ""
+    Messages = []
 
-    def __init__(self, id=0, first_name="", last_name="", username="", bot=""):
+    def __init__(
+        self, id=0, first_name="", last_name="", username="", bot="", messages=[]
+    ):
         self.ID = id
         self.FirstName = first_name
         self.LastName = last_name
@@ -37,6 +42,7 @@ class Owner:
             self.ID, self.FirstName
         )
         self.Bot = bot
+        self.Messages = messages
 
     def __str__(self):
         return f"{self.ID} {self.FirstName} {self.LastName} ({self.Username})"
@@ -50,6 +56,15 @@ class Owner:
             self.ID, self.FirstName
         )
         self.Bot = bot
+
+    def add_msg(self, msg):
+        self.Messages.append(msg)
+
+    def get_msgs(self):
+        return self.Messages
+
+    def purge_msg(self):
+        self.Messages = []
 
 
 Master = Owner()
