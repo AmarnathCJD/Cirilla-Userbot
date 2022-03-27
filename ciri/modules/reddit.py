@@ -54,7 +54,7 @@ def download_files(a, v, title="reddit"):
             with open(f"{title}_aud.mp3", "wb") as f:
                 f.write(r.content)
         else:
-            with requests.get(a.split("_audio.mp3")[0] + "audio") as r:
+            with requests.get(a.split("DASH_audio.mp3")[0] + "audio") as r:
                 print(a.split("_audio.mp3")[0] + "audio")
                 if r.status_code == 200:
                     with open(f"{title}_aud.mp3", "wb") as f:
