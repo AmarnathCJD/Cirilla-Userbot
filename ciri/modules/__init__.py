@@ -1,3 +1,4 @@
+from subprocess import PIPE, Popen
 import telethon
 
 from ciri.utils import eor
@@ -50,3 +51,11 @@ async def CheckRights(e, right: str):
     else:
         await eor(e, "You don't have the right to use this command!")
         return False
+
+def run_cmd(cmd):
+    subproc = Popen(cmd, stdout=PIPE, stderr=PIPE, shell=True, universal_newlines=True)
+    talk = subproc.communicate()
+    exitCode = subproc.returncode
+    if exitCode != 0:
+        return
+    return talk
