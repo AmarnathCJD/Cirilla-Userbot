@@ -164,13 +164,15 @@ async def _ls(e):
 async def see_last_exception(e):
     await eor(e, "**Latest Exception**:\n" + str(errors["latest"]))
 
+
 @ciri_cmd(pattern="log")
 async def see_last_log(e):
     logs = ""
     with open("logs.txt", "r") as f:
-        for line in (f.readlines() [-50:]):
+        for line in f.readlines()[-50:]:
             logs += line
     await eor(e, "**Latest Log**:\n" + logs)
+
 
 HelpStr.update(
     {
