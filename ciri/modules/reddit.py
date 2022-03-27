@@ -43,6 +43,8 @@ def get_download_url(post_id: str, data: bytes):
     title = title.replace(" ", "_")
     dash_url = json_data["posts"]["models"][post_id]["media"]["dashUrl"]
     height = json_data["posts"]["models"][post_id]["media"]["height"]
+    if height == "1080":
+        height = "480"
     dash_url = dash_url[: int(dash_url.find("DASH")) + 4]
 
     return f"{dash_url}_{height}.mp4", f"{dash_url}_audio.mp3", title
