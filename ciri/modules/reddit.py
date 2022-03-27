@@ -21,7 +21,7 @@ async def reddit(e):
     if not r.status_code == 200:
         return await e.edit("`Invalid reddit url, returned 404.`")
     post_id = get_post_id(url)
-    aud, vid, title = get_download_url(post_id, r)
+    vid, aud, title = get_download_url(post_id, r)
     await e.respond(aud + vid + title)
     msg = await eor(e, f"`Downloading...`")
     file = download_files(aud, vid, title)
