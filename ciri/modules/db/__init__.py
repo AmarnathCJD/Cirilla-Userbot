@@ -1,6 +1,6 @@
 from os import getenv
 
-DB_URL = getenv("MONGO_DB_URL")
+DB_URL = getenv("MONGO_DB_URI")
 
 from pymongo import MongoClient
 from telethon import types
