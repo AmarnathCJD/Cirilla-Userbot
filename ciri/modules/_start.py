@@ -1,5 +1,6 @@
 import datetime
 import time
+import speedtest
 
 from telethon import types
 
@@ -113,3 +114,26 @@ async def _setalive(e):
         await eor(e, "`Setted.`")
     else:
         await eor(e, "`I can't set this.`")
+
+@ciri_cmd(pattern="speedtest")
+async def _speedtest(e):
+    msg = await e.edit("Testing internet speed...")
+    st = speedtest.Speedtest()
+    download = st.download()
+    upload = st.upload()
+    ping = st.results.ping
+    server = st.results.server.get("name", "Unknown")
+    isp = st.results.client.get("isp", "Unknown")
+    ip = st.results.client.get("ip", "Unknown")
+    country = st.results.client.get("country", "Unknown")
+    result = (
+        f"**Speedtest Results:**\n\n"
+        f"**Download:** `{human_readable_size(download, True)}`\n"
+        f"**Upload:** `{human_readable_size(upload, True)}`\n"
+        f"**Ping:** `{ping} ms`\n"
+        f"**Server:** `{server}`\n"
+        f"**ISP:** `{isp}`\n"
+        f"**IP:** `{ip}`\n"
+        f"**Country:** `{country}`"
+    )
+    await msg.edit(result)
