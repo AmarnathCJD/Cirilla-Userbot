@@ -9,6 +9,18 @@ from ciri.utils import ciri_cmd, eor
 
 from .db import get_dp, set_dp
 
+def human_readable_size(size, speed=False):
+    # Convert a size in bytes to a human readable string
+    variables = ["bytes", "KB", "MB", "GB", "TB"]
+    if speed:
+        variables = ["bps", "Kbps", "Mbps", "Gbps", "Tbps"]
+    for x in variables:
+        if size < 1024.0:
+            return "%3.1f %s" % (size, x)
+        size /= 1024.0
+    return "%3.1f %s" % (size, "TB")
+
+
 ALIVE_PIC = []
 
 ALIVE_CAPTION = """
