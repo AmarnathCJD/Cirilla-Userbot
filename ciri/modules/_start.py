@@ -1,7 +1,7 @@
 import datetime
 import time
-import speedtest
 
+import speedtest
 from telethon import types
 
 from ciri import ALIVE_PIC, StartTime
@@ -114,6 +114,7 @@ async def _setalive(e):
         await eor(e, "`Setted.`")
     else:
         await eor(e, "`I can't set this.`")
+
 
 @ciri_cmd(pattern="speedtest")
 async def _speedtest(e):
